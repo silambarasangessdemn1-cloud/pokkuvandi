@@ -1,0 +1,441 @@
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 209
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 250
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 250
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 251
+[27-Jul-2021 09:59:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 338
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 338
+[27-Jul-2021 09:59:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 339
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  include(../../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  include(): Failed opening '../../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 209
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 250
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 250
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 251
+[27-Jul-2021 09:59:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 338
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 338
+[27-Jul-2021 09:59:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 339
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 249
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 249
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 250
+[27-Jul-2021 10:03:28 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[27-Jul-2021 10:03:28 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 338
+[27-Jul-2021 10:07:19 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 10:07:19 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[27-Jul-2021 10:07:19 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 10:07:19 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[27-Jul-2021 10:07:19 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 249
+[27-Jul-2021 10:07:19 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[27-Jul-2021 10:07:25 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 10:07:25 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[27-Jul-2021 10:07:25 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 10:07:25 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[27-Jul-2021 10:07:25 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 249
+[27-Jul-2021 10:07:25 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[27-Jul-2021 10:08:33 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[27-Jul-2021 10:08:33 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[27-Jul-2021 10:08:33 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[27-Jul-2021 10:08:33 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[27-Jul-2021 10:08:33 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 249
+[27-Jul-2021 10:08:33 UTC] PHP Notice:  Undefined index: orderid in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 275
+[28-Jul-2021 09:50:09 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 09:50:09 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 363
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 275
+[28-Jul-2021 09:50:50 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 09:50:50 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 363
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 275
+[28-Jul-2021 09:51:59 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 09:51:59 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 363
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 275
+[28-Jul-2021 10:07:33 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 370
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 370
+[28-Jul-2021 10:07:33 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 371
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 275
+[28-Jul-2021 10:08:05 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 370
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 370
+[28-Jul-2021 10:08:05 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 371
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 274
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 275
+[28-Jul-2021 10:08:06 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 370
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 370
+[28-Jul-2021 10:08:06 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 371
+[28-Jul-2021 15:44:50 Asia/Kolkata] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 288
+[28-Jul-2021 15:44:50 Asia/Kolkata] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 289
+[28-Jul-2021 15:45:54 Asia/Kolkata] PHP Notice:  Undefined property: stdClass::$Order_Price in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 294
+[28-Jul-2021 15:45:59 Asia/Kolkata] PHP Notice:  Undefined property: stdClass::$Order_Price in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 294
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 265
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 265
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 266
+[28-Jul-2021 11:36:52 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 361
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 361
+[28-Jul-2021 11:36:52 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 265
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 265
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 266
+[28-Jul-2021 11:54:39 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 361
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 361
+[28-Jul-2021 11:54:39 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 265
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 265
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 266
+[28-Jul-2021 11:54:53 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 361
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 361
+[28-Jul-2021 11:54:53 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 362
+[28-Jul-2021 17:48:07 Asia/Kolkata] PHP Notice:  Undefined variable: dis in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[28-Jul-2021 17:49:19 Asia/Kolkata] PHP Notice:  Undefined variable: dis in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[28-Jul-2021 17:57:18 Asia/Kolkata] PHP Notice:  Undefined variable: dis in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[28-Jul-2021 17:57:18 Asia/Kolkata] PHP Notice:  Undefined variable: Final in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 17:57:18 Asia/Kolkata] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 17:57:18 Asia/Kolkata] PHP Notice:  Undefined variable: delivery_pp in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 17:57:18 Asia/Kolkata] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 17:59:03 Asia/Kolkata] PHP Notice:  Undefined variable: dis in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 337
+[28-Jul-2021 17:59:03 Asia/Kolkata] PHP Notice:  Undefined variable: Final in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 17:59:03 Asia/Kolkata] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 17:59:03 Asia/Kolkata] PHP Notice:  Undefined variable: delivery_pp in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 17:59:03 Asia/Kolkata] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 18:01:02 Asia/Kolkata] PHP Notice:  Undefined variable: Final in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 18:01:02 Asia/Kolkata] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 410
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  include(../../config/setup.php): failed to open stream: No such file or directory in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  include(): Failed opening '../../config/setup.php' for inclusion (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 1
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 9
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 10
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 31
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 32
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 55
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 56
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 76
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 77
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 98
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 99
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 118
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 119
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 207
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 208
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 265
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 265
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 266
+[28-Jul-2021 12:39:15 UTC] PHP Notice:  Undefined variable: config in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 443
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 443
+[28-Jul-2021 12:39:15 UTC] PHP Warning:  mysqli_fetch_object() expects parameter 1 to be mysqli_result, null given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 444
+[28-Jul-2021 12:50:56 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[28-Jul-2021 12:50:58 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101
+[31-Jul-2021 16:39:44 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:39:44 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:39:49 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:39:49 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:40:32 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:40:32 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:41:39 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:41:39 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:41:41 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:41:41 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:42:17 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 16:42:17 Asia/Kolkata] PHP Warning:  number_format() expects parameter 1 to be double, string given in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 241
+[31-Jul-2021 11:33:58 UTC] PHP Notice:  Trying to get property of non-object in /home/dhcshopbee/public_html/App/invoice/invoice.php on line 101

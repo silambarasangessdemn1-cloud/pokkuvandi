@@ -1,0 +1,393 @@
+2025-06-27 13:21:07 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"M4863L9GSL","transactionId":"OMO2506271320285898761522","amount":100,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"517826742754","ifsc":"CNRB0000033","upiTransactionId":"YBLd205c08dbd91461dbccd78ec7779c644","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-27 13:34:10 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"GEC5B18J45","transactionId":"OMO2506271333362698761489","amount":100,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"517835484407","ifsc":"CNRB0000033","upiTransactionId":"YBL094de4ef7e6b41aeb3f63b5ff7368911","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-27 13:34:45 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"66T4KG7X72","transactionId":"OMO2506271319420385954696","amount":100,"state":"FAILED","responseCode":"U69","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 14:28:11 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"H7M6PTHVTG","transactionId":"OMO2506271427398681845887","amount":100,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"517814652817","ifsc":"CNRB0000033","upiTransactionId":"YBL6bf5faef529844fb8571745e0fc04d1f","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-27 14:41:17 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"A1AIAGWR70","transactionId":"OMO2506271440282074942414","amount":20000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"517865553086","ifsc":"KVBL0001129","upiTransactionId":"YBL0d4b093be1de4fb5b18e3747d25bc28f","cardNetwork":null,"accountType":"CURRENT"},"feesContext":{"amount":0}}}
+
+2025-06-27 14:51:00 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"5ZPQF7ZA4O","transactionId":"OMO2506271435590766271605","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 15:16:43 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"AMTM3JD9GB","transactionId":"OMO2506271501399285524160","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 15:30:38 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"OIEPN4DA3S","transactionId":"OMO2506271515364559375993","amount":20000,"state":"FAILED","responseCode":"Z9","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 15:37:35 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"24RNP7EGZ9","transactionId":"OMO2506271522334022704471","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 15:37:37 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"H6BNMDD768","transactionId":"OMO2506271522340145524142","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 16:19:50 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"MB7GW76WPO","transactionId":"OMO2506271604477126271020","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 16:49:44 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"MHTMVQJ80L","transactionId":"OMO2506271634433725011151","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 16:50:17 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"LZIS47N7DU","transactionId":"OMO2506271635152085737005","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 17:17:19 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"0J9KNLEKL2","transactionId":"OMO2506271715082041845566","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 17:27:37 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"0V0GHHTIL6","transactionId":"OMO2506271712339561401397","amount":20000,"state":"FAILED","responseCode":"U69","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 17:32:58 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"H74YD4MPFX","transactionId":"OMO2506271717557691437774","amount":20000,"state":"FAILED","responseCode":"U69","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-27 18:34:46 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"BK2GPPY44S","transactionId":"OMO2506271833496101845140","amount":20000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"517871055134","ifsc":"CNRB0000033","upiTransactionId":"YBLc2163aa1749f4a7da00328c0e85553f2","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-27 18:47:46 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"CISOO1QGII","transactionId":"OMO2506271832441813057383","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 09:40:10 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"12WI6AOEXA","transactionId":"OMO2506280938343962704653","amount":36000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"115254542453","ifsc":"SBIN0007464","upiTransactionId":"YBL54f6fa643d724c04a33b9eead1e7baf7","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-28 09:48:08 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"DXURLH5FTL","transactionId":"OMO2506280933072441437041","amount":20000,"state":"FAILED","responseCode":"U69","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 10:34:19 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"3URCYLZAUM","transactionId":"OMO2506281019168775954374","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 14:11:27 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"HVXH7SMT4X","transactionId":"OMO2506281356235145737195","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 14:12:02 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"WT1ACH94ZK","transactionId":"OMO2506281357021790482941","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 15:24:42 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"SGHMCWFEIC","transactionId":"OMO2506281509408025524503","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 15:28:06 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"K4I30DC0B7","transactionId":"OMO2506281513048908761809","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 15:29:31 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"O4B0RA25JW","transactionId":"OMO2506281514291039375209","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"IOBA","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-28 15:32:58 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"FRPF6H14H9","transactionId":"OMO2506281517558189375038","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 15:43:05 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"3Q16JUVXAW","transactionId":"OMO2506281528041221965126","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"IOBA","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-28 15:46:14 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"E685PEPK9Z","transactionId":"OMO2506281531119501845829","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 15:55:02 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"JMZTVGR7HF","transactionId":"OMO2506281554503266271488","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 15:58:50 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"TRW0MEC05H","transactionId":"OMO2506281558172816271594","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 16:10:13 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"LNKGPAMGEZ","transactionId":"OMO2506281555128445524978","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 16:11:43 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"TEI4NFP0PB","transactionId":"OMO2506281556426799058043","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 16:14:29 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"2EVP2Y97GJ","transactionId":"OMO2506281559278117003091","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 17:01:31 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"TOCYZNBZ45","transactionId":"OMO2506281701089455524669","amount":36000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 17:16:59 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"RU55O8EPHC","transactionId":"OMO2506281701567191401926","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 18:42:53 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"Y1ZHAL7WBN","transactionId":"OMO2506281827530674913984","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 18:42:55 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"BC0O7617BX","transactionId":"OMO2506281827541708761974","amount":20000,"state":"FAILED","responseCode":"REQUEST_TIME_OUT","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 18:57:44 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"K6T9OBPMWH","transactionId":"OMO2506281842433437003814","amount":20000,"state":"FAILED","responseCode":"U69","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 19:15:17 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"ABUKVVB7K1","transactionId":"OMO2506281900150138228321","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 19:33:12 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"GQPKP8VEDB","transactionId":"OMO2506281918109802704042","amount":20000,"state":"FAILED","responseCode":"U69","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 19:49:30 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"2RA6OPVAYX","transactionId":"OMO2506281948045218228523","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 20:03:03 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"OOL4B2QBGT","transactionId":"OMO2506281948019718228424","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 20:03:03 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"PUG5291RPE","transactionId":"OMO2506281948013539058866","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 20:03:04 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"3I7B7T18I6","transactionId":"OMO2506281948038294913156","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 20:03:05 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"PV7Y9HGOGT","transactionId":"OMO2506281948026484942942","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 22:20:52 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"5XFU44NU5I","transactionId":"OMO2506282205493275011750","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 22:29:11 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"TTTNQMMW41","transactionId":"OMO2506282214102416271265","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-28 22:38:40 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"6HE6C6JW79","transactionId":"OMO2506282223379424913135","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-29 06:14:25 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"9OOPLXZ44W","transactionId":"OMO2506290614070288228915","amount":20000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"852925602936","ifsc":"IDIB000A133","upiTransactionId":"AXL2fda7d4a03f84deaaeb2387d44adb877","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-29 06:26:53 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"WUMK0B6WQF","transactionId":"OMO2506290611501988761045","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-29 10:03:07 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"F1ZM6H9BWA","transactionId":"OMO2506290948051612704395","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"IOBA","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-29 10:03:17 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"LM9BAY7RDO","transactionId":"OMO2506290955507445524177","amount":20000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"CARD","cardType":"DEBIT_CARD","pgTransactionId":"7511715966556029505164","bankTransactionId":null,"pgAuthorizationCode":"009537","arn":null,"bankId":"UTIB","brn":"517904232624","geoScope":"DOMESTIC","internationalCardFlowType":null},"feesContext":{"amount":0}}}
+
+2025-06-29 10:10:18 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"FP3FIJGTBC","transactionId":"OMO2506290955172109375089","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-29 16:00:19 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"YP3SP0PB7D","transactionId":"OMO2506291559462641845479","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-29 19:14:35 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"EA1ZSDTSWT","transactionId":"OMO2506291907367201401926","amount":20000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"518032703025","ifsc":"SIBL0000122","upiTransactionId":"YBL609c844324bd4164b13464146335e762","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-29 19:42:06 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"A6QHCF5L6V","transactionId":"OMO2506291939266998228738","amount":36000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"712350342172","ifsc":"UTIB0003161","upiTransactionId":"AXL22e8a8e8df50491588e92268c3248fa9","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-29 20:10:55 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"1E1OAT9EO4","transactionId":"OMO2506291955528684942239","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 09:23:29 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"XZQ97MBIOJ","transactionId":"OMO2506300923036784913202","amount":20000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"416711286222","ifsc":"HDFC0000795","upiTransactionId":"YBLc9e3a77b59d044e086f7315cb9f5fe5f","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-30 10:00:34 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"L7QAJZVU4R","transactionId":"OMO2506301000234131845799","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 14:22:11 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"3AW0E1MR2D","transactionId":"OMO2506301409422520974064","amount":36000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"518182547091","ifsc":"SBIN0012765","upiTransactionId":"YBL443c7847dff746f9a81aaab8b9be496e","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-06-30 14:22:13 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"NOETD8OUE8","transactionId":"OMO2506301407109650972528","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 14:22:15 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"XCGIIKGZ1I","transactionId":"OMO2506301407121814891395","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 14:23:54 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"PLFTCDNP8Y","transactionId":"OMO2506301408530642652459","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"ICIC","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-30 14:34:15 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"QG8VOK085T","transactionId":"OMO2506301419137536564755","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 14:35:11 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"99NXJR1UIQ","transactionId":"OMO2506301420092139938747","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 14:42:41 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"USH9EPRJ0U","transactionId":"OMO2506301427408360728180","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 16:11:23 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"I2VOD4W20K","transactionId":"OMO2506301556220006564606","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 18:04:56 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"J4IPKXB99W","transactionId":"OMO2506301749541155382315","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 19:01:49 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"34ZZ9BS7XY","transactionId":"OMO2506301846480432461246","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"KKBK","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-30 19:07:34 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"7WBD326IJC","transactionId":"OMO2506301852325099046062","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"KKBK","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-30 19:07:35 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"ZEG04S4ZMN","transactionId":"OMO2506301852317874669307","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 19:13:26 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"HCYFGLB6M4","transactionId":"OMO2506301858235946633247","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 19:14:05 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"J165PWW232","transactionId":"OMO2506301859025633063745","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"ICIC","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-30 19:14:29 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"DLV1LHE1TT","transactionId":"OMO2506301914190916633458","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 19:15:45 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"9IML8C2ZFY","transactionId":"OMO2506301900433225382967","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"ICIC","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-30 19:16:02 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"L7BBXH9AFE","transactionId":"OMO2506301901005612654940","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"KKBK","brn":null},"feesContext":{"amount":0}}}
+
+2025-06-30 19:29:42 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"CSPN14QFOH","transactionId":"OMO2506301914417111044641","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 19:39:43 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"J37D6HHIM4","transactionId":"OMO2506301924413601044449","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 19:44:32 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"I6NMK6GJQD","transactionId":"OMO2506301929308082461023","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 19:45:27 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"X9Q1PM5HR7","transactionId":"OMO2506301930260725632167","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-06-30 19:45:30 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"GLQA0DJK0A","transactionId":"OMO2506301930266798937487","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-01 09:07:51 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"FPR58Q3JMC","transactionId":"OMO2507010852488568966782","amount":20000,"state":"FAILED","responseCode":"REQUEST_TIME_OUT","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-01 09:22:20 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"W24BXW2NPV","transactionId":"OMO2507010907185943063685","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-01 10:25:27 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"MQFEDAUJK0","transactionId":"OMO2507011010260780242016","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-01 11:50:30 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"8E1EUBT8UX","transactionId":"OMO2507011149415181118596","amount":36000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"518293485042","ifsc":"UTIB0000170","upiTransactionId":"YBL26a352a00f1c4a708d681622a027a879","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-07-01 16:10:44 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"GH9FXTWP8R","transactionId":"OMO2507011555411644725898","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-01 16:39:38 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"P07ZHZ7NUL","transactionId":"OMO2507011639061097916702","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-01 17:15:27 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"5XY5LIFQM2","transactionId":"OMO2507011700248721858222","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 06:13:22 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"QKVCWMSU5U","transactionId":"OMO2507020612323973827406","amount":36000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 06:29:07 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"PU8NB0LHBX","transactionId":"OMO2507020614037257813854","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"ICIC","brn":null},"feesContext":{"amount":0}}}
+
+2025-07-02 08:05:40 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"E4L6MHVEUX","transactionId":"OMO2507020750379858419125","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 08:06:20 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"ZF4GWVN15N","transactionId":"OMO2507020751194986785638","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 08:06:26 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"SN1EYMSUA2","transactionId":"OMO2507020751240290103036","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 08:06:27 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"0YILCNFEIW","transactionId":"OMO2507020751267870310241","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 08:06:29 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"K8Q1KGB9FU","transactionId":"OMO2507020751288678419504","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 08:06:32 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"CGW1946EIU","transactionId":"OMO2507020751307964182031","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"IDIB","brn":null},"feesContext":{"amount":0}}}
+
+2025-07-02 09:12:07 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"JN82CW50YB","transactionId":"OMO2507020857039014020328","amount":20000,"state":"FAILED","responseCode":"REQUEST_TIME_OUT","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 09:24:17 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"29BX65KWRX","transactionId":"OMO2507020909151850921976","amount":20000,"state":"FAILED","responseCode":"REQUEST_DECLINE_BY_REQUESTEE","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 10:40:27 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"OWUXWZHC2U","transactionId":"OMO2507021039540691858184","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 11:32:41 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"G0KJECXG2Q","transactionId":"OMO2507021117395759729775","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 11:34:38 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"RJMZJFM6Q8","transactionId":"OMO2507021119360004182031","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"KKBK","brn":null},"feesContext":{"amount":0}}}
+
+2025-07-02 11:35:50 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"Y62DF4U25P","transactionId":"OMO2507021120475326785831","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"ICIC","brn":null},"feesContext":{"amount":0}}}
+
+2025-07-02 11:36:33 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"JMI9KI6025","transactionId":"OMO2507021134340078457690","amount":36000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"CARD","cardType":"DEBIT_CARD","pgTransactionId":"51830000000213671468","bankTransactionId":null,"pgAuthorizationCode":"197393","arn":null,"bankId":"KKBK","brn":"518311458582","geoScope":"DOMESTIC","internationalCardFlowType":null},"feesContext":{"amount":0}}}
+
+2025-07-02 11:37:12 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"U0EM984IP3","transactionId":"OMO2507021122111224725740","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"KKBK","brn":null},"feesContext":{"amount":0}}}
+
+2025-07-02 11:39:07 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"HEYBSIH1IO","transactionId":"OMO2507021138514814782854","amount":36000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 11:43:16 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"9F5RRS6M94","transactionId":"OMO2507021128139923331953","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 11:45:38 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"JVPUGUIFYM","transactionId":"OMO2507021130366180153442","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"ICIC","brn":null},"feesContext":{"amount":0}}}
+
+2025-07-02 11:46:41 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"AQDAY8D706","transactionId":"OMO2507021131388494800357","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":{"type":"NETBANKING","pgTransactionId":null,"pgServiceTransactionId":null,"bankTransactionId":null,"bankId":"KKBK","brn":null},"feesContext":{"amount":0}}}
+
+2025-07-02 12:01:52 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"I05TOGUUP2","transactionId":"OMO2507021146519426665403","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 13:59:37 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"EGPJRWO2AB","transactionId":"OMO2507021344352144649066","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 14:36:09 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"QUTA4HVHIO","transactionId":"OMO2507021421071836378168","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 15:11:02 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"ZC75HDK6IW","transactionId":"OMO2507021509598751341253","amount":36000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"926655978820","ifsc":"IDIB000C048","upiTransactionId":"YBL8ca84583f33f4c73b91bc243c6ddb132","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-07-02 16:00:49 [Decoded]
+{"success":true,"code":"PAYMENT_SUCCESS","message":"Your payment is successful.","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"SY1C5U6R5A","transactionId":"OMO2507021558160444782434","amount":20000,"state":"COMPLETED","responseCode":"SUCCESS","paymentInstrument":{"type":"UPI","utr":"621289133256","ifsc":"IDIB000K559","upiTransactionId":"YBLfaa6c1838db34c17a87a45a34806326d","cardNetwork":null,"accountType":"SAVINGS"},"feesContext":{"amount":0}}}
+
+2025-07-02 21:02:59 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"VNZPJUERTQ","transactionId":"OMO2507022102451865069360","amount":16000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 21:41:35 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"LNSTVPQVPH","transactionId":"OMO2507022141073370452666","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-02 21:43:31 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"QCZ3SCLPIP","transactionId":"OMO2507022142171008967005","amount":20000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-03 14:54:31 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"6RPX8A1YM0","transactionId":"OMO2507031439304762338167","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-03 14:54:40 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"86Z08U3386","transactionId":"OMO2507031439387064330983","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-03 16:55:38 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"PAHCQU3WIZ","transactionId":"OMO2507031640373455841173","amount":20000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-11 16:32:36 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"A8YNF3P0H3","transactionId":"OMO2507111617342284373922","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-11 19:30:37 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"7D8ZC6J92K","transactionId":"OMO2507111930170301482763","amount":10000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-11 19:31:22 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"CELDILS4EI","transactionId":"OMO2507111931139772353354","amount":10000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-11 19:45:20 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"7D8ZC6J92K","transactionId":"OMO2507111930170301482763","amount":10000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-11 19:46:16 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"CELDILS4EI","transactionId":"OMO2507111931139772353354","amount":10000,"state":"FAILED","responseCode":"REQUEST_CANCEL_BY_REQUESTER","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-12 13:27:04 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"HNHNO16AHT","transactionId":"OMO2507121312023115668561","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-12 13:28:28 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"2B4K3XCZXY","transactionId":"OMO2507121313248169332452","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-12 13:28:33 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"N5XKMZFH86","transactionId":"OMO2507121313309774373225","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-12 13:28:46 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"QUI9V2UI0A","transactionId":"OMO2507121313427673828899","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-12 13:35:33 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"2V12OHDF62","transactionId":"OMO2507121320296448817189","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+
+2025-07-12 13:36:34 [Decoded]
+{"success":false,"code":"PAYMENT_ERROR","message":"Payment Failed","data":{"merchantId":"M1IB4F213MJY","merchantTransactionId":"2V12OHDF62","transactionId":"OMO2507121320296448817189","amount":36000,"state":"FAILED","responseCode":"TXN_AUTO_FAILED","paymentInstrument":null,"feesContext":{"amount":0}}}
+

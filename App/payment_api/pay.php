@@ -1,0 +1,88 @@
+  
+<?php
+
+require('config.php');
+require('razorpay-php/Razorpay.php');
+session_start();
+
+// Create the Razorpay Order
+
+use Razorpay\Api\Api;
+
+$api = new Api($keyId, $keySecret);
+
+//
+// We create an razorpay order using orders api
+// Docs: https://docs.razorpay.com/docs/orders
+//
+
+
+
+$customername = $_GET['session__username'];
+$customerid = $_GET['session_id'];
+$contactno = $_GET['session__phone'];
+$Add_amount =  $_SESSION['Add_amount'];
+$net_amount=$_SESSION['net_amount']; 
+if($net_amount =='')
+{
+    $amount=$Add_amount;
+}
+else
+{
+    $amount=$net_amount;
+}
+$orderData = [
+    'receipt'         => 3456,
+    'amount'          => $amount * 100, // 2000 rupees in paise
+    'currency'        => 'INR',
+    'payment_capture' => 1 // auto capture
+];
+
+$razorpayOrder = $api->order->create($orderData);
+
+$razorpayOrderId = $razorpayOrder['id'];
+
+$_SESSION['razorpay_order_id'] = $razorpayOrderId;
+
+$displayAmount = $amount = $orderData['amount'];
+
+if ($displayCurrency !== 'INR')
+{
+    $url = "https://api.fixer.io/latest?symbols=$displayCurrency&base=INR";
+    $exchange = json_decode(file_get_contents($url), true);
+
+    $displayAmount = $exchange['rates'][$displayCurrency] * $amount / 100;
+}
+
+$data = [
+    "key"               => $keyId,
+    "amount"            => $amount,
+    "name"              => "Pokkuvandi",
+    "description"       => "Pokkuvandi",
+    "image"             => "logo.png",
+    "prefill"           => [
+    "name"              => $customername,    
+    "contact"           => $contactno,
+    ],
+    "notes"             => [
+   
+ 
+    ],
+    "theme"             => [
+    "color"             => "#F37254"
+    ],
+    "order_id"          => $razorpayOrderId,
+];
+
+if ($displayCurrency !== 'INR')
+{
+    $data['display_currency']  = $displayCurrency;
+    $data['display_amount']    = $displayAmount;
+}
+
+$json = json_encode($data);
+
+require("manual.php");
+?>
+
+

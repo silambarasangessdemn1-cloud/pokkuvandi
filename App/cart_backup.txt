@@ -1,0 +1,214 @@
+
+<?php include('config/setup.php')?>
+<?php include('session.php');
+ 
+	?>
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" type="image/png" href="img/logo.svg">
+      <title>Leefoodies</title>
+      <!-- Slick Slider -->
+      <link rel="stylesheet" type="text/css" href="vendor/slick/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.min.css"/>
+      <!-- Icofont Icon-->
+      <link href="vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+      <!-- Bootstrap core CSS -->
+      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="css/style.css" rel="stylesheet">
+      <!-- Sidebar CSS -->
+      <link href="vendor/sidebar/demo.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/script.js"></script>
+	  
+	    <link rel="stylesheet" href="css/style1.css" />
+		   
+   </head>
+   <body class="fixed-bottom-padding">
+      <div class="theme-switch-wrapper">
+         <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+            <i class="icofont-moon"></i>
+         </label>
+         <em>Enable Dark Mode!</em>
+      </div>
+      <div class="osahan-cart">
+      <div class="p-3 border-bottom">
+         <div class="d-flex align-items-center">
+            <h5 class="font-weight-bold m-0">Cart</h5>
+            <a class="toggle ml-auto" href="#"><i class="icofont-navigation-menu"></i></a>
+         </div>
+      </div>
+      <div class="osahan-body">
+	 
+ 	<?php 
+	$adcart=mysqli_query($config,"select * from order_master where Customer_id='$session_id'");
+	while($ac=mysqli_fetch_object($adcart))
+	
+	{
+		 
+	$cartpro=mysqli_query($config,"select * from product_master where Product_id='". $ac->Order_product."' ");
+            $cp=mysqli_fetch_object($cartpro);
+       	
+		
+		?>
+
+
+	<div class="cart-items bg-white position-relative border-bottom">
+            <a href="#" class="position-absolute">
+           
+			<?php
+			$sub_offer=mysqli_query($config,"select * from offer_master where offer_Product_id='". $cp->Product_id."' and  Offer_upto >='".date('Y-m-d')."' ");
+            $sub_off=mysqli_fetch_object($sub_offer);
+          if($sub_off)
+		  {
+		  ?>
+			 <span class="badge badge-danger m-3">	<?php echo $sub_off->Offer_percent;?>	%</span>	
+			<?php 
+	}
+			
+			?>
+			
+			
+			
+			
+			
+            </a>	 
+ <form>
+            <div class="d-flex  align-items-center p-3">
+               <img src="
+			   
+			<?php
+					 
+ $pro_po=mysqli_query($config,"select Product_image from product_image_master where Product_id='".$cp->Product_id."' and Product_image_status=1 LIMIT 1");
+            $pro_poto=mysqli_fetch_array($pro_po);
+ if(!$pro_poto)
+ {
+ echo  "../Photos/product/no_pro.png";
+ }else{
+	 
+	  
+	 $pg=substr($pro_poto[0],6);
+				  echo  $pg;
+ }
+ 
+	   ?> " class="img-fluid"> 
+               <a href="#" class="ml-3 text-dark text-decoration-none w-100">
+                  <h5 class="mb-1"><?php echo $cp->Product_Name;?></h5>
+                  <p class="text-muted mb-2">Rs.
+				  
+				  <?php if($sub_off)
+				  {?>
+				  <del class="text-success mr-1"> <?php echo $ac->Order_product_price;?> </del>
+				    <span id="product_price"> <?php echo $sub_off->offer_price;?></span>
+					  <input type="hidden"  class='total' name="total"   value=" <?php echo $sub_off->offer_price;?>">
+   <?php }else{?>
+				  <span id="product_price"> <?php echo$ac->Order_product_price;?></span>
+ <input type="hidden"  class='total' name="total"   value=" <?php echo $ac->Order_product_price;?>">
+				  
+				  <?php }?>
+				  </p>
+				    <div class="p-3 bg-white">
+			      <h6 style="margin-bottom: -1.5rem !important;">Select Quantity</h6> 
+                 
+		<input type="number" value="<?php echo $ac->Ordered_quantity?>" class="qty  " style=" width: 56px;margin-left: 130px;" >
+                </div>
+				     
+                  <div class="d-flex align-items-center">
+				  </h6> 
+                   <p class="total_price font-weight-bold m-0">  Sub Total : Rs.  <span class="total_amount"> </span></p>  
+                                
+                  </div>
+               </a>
+            </div>
+         </div>
+     
+
+  
+  
+
+</form>
+		 
+	<?php } ?> 
+	 
+	 
+	 
+	 
+	   <div class="p-3 mt-5">
+            <a href="order_address.html" class="text-decoration-none">
+               <div class="rounded shadow bg-success d-flex align-items-center p-3 text-white">
+                  <div class="more">
+                     <h6 class="m-0">Subtotal  </h6>  
+                     <p class="small m-0">Proceed to checkout</p>
+                  </div>
+                  <div class="ml-auto"><i class="icofont-simple-right"></i></div>
+               </div>
+            </a>
+         </div>
+	
+ 
+
+
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+      </div>  	
+      <!-- Footer -->
+         <div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+         <div class="row m-0">
+            <a href="home.php" class="text-dark small col font-weight-bold text-decoration-none p-2 ">
+               <p class="h5 m-0"><i class="text-success icofont-grocery"></i></p>
+               Shop
+            </a>
+            <a href="cart.php" class="text-muted col small text-decoration-none p-2 selected" >
+               <p class="h5 m-0"><i class="icofont-cart"></i></p>
+               Cart
+            </a>
+            <a href="complete_order.php" class="text-muted col small text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-bag"></i></p>
+               My Order
+            </a>
+            <a href="signin_check.php" class="text-muted small col text-decoration-none p-2">
+               <p class="h5 m-0"><i class="icofont-user"></i></p>
+               Account
+            </a>
+         </div>
+      </div>
+        <?php include('menu.php');?>
+		<script>
+ 
+$('.qty').on('input', function(){
+  var form = $(this).closest('form');
+  var totalAmt = parseInt(form.find('.total').val());
+  var qty = parseInt($(this).val());
+
+  form.find('.total_amount').text(totalAmt*qty);
+})
+		</script>
+		
+		
+		
+		
+		
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- slick Slider JS-->
+      <script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+      <!-- Sidebar JS-->
+      <script type="text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="js/osahan.js"></script>
+   </body>
+</html>
