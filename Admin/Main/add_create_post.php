@@ -167,7 +167,7 @@ if($logstatus == 1)
                                                 
                                                 <div class="form-group col-md-6">
                                                     <label for="Add_vehicle_photo">Photo(Size 250 X 250 px & 2 MB)</label>
-                                                    <input required type="file" class="form-control" id="Add_vehicle_photo" name="Add_vehicle_photo" onchange="previewImage(this)">
+                                                    <input required type="file" class="form-control" id="Add_vehicle_photo" name="Add_vehicle_photo" onchange="previewImage(this)" accept=".png, .jpg, .jpeg, .webp">
                                                     <img id="imagePreview" src="" alt="Image Preview" style="display:none; margin-top:10px; max-width: 250px; max-height: 250px; border-radius: 8px; border: 1px solid #ccc; padding: 5px;">
                                                 </div>
                                                 

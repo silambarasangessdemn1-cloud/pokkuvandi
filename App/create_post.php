@@ -660,7 +660,7 @@ if (mysqli_num_rows($query1) > 0) {
                                                 
                                             <div class="form-group col-md-6">
     <label for="email2">Photo (Size 250 X 250 px & 2 MB)</label>
-    <input required type="file" id="Add_vehicle_photo" class="form-control" name="Add_vehicle_photo" accept=".png, .jpg, .jpeg">
+    <input required type="file" id="Add_vehicle_photo" class="form-control" name="Add_vehicle_photo" accept=".png, .jpg, .jpeg, .webp">
 
     <!-- Preview after image select -->
     <div id="imagePreview" style="margin-top:10px;">
@@ -713,10 +713,10 @@ document.getElementById("Add_vehicle_photo").addEventListener("change", function
     var file = this.files[0];
     if (file) {
         var fileType = file.type;
-        var validTypes = ["image/png", "image/jpg", "image/jpeg"];
+        var validTypes = ["image/png", "image/jpg", "image/jpeg", "image/webp"];
         
         if (!validTypes.includes(fileType)) {
-            alert("Invalid file type! Only PNG, JPG, and JPEG are allowed.");
+            alert("Invalid file type! Only PNG, JPG, JPEG, and WEBP are allowed.");
             this.value = ""; // Clear the file input
         }
     }

@@ -1,5 +1,7 @@
 <?php 
 include('../config/setup.php');
+// Fix ONLY_FULL_GROUP_BY for MySQL 5.7+ to allow GROUP BY on non-aggregated columns
+mysqli_query($config, "SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
 
 $where = " WHERE 1=1 "; // Default condition
 
