@@ -129,7 +129,7 @@ if (!empty($data->create_on) && !empty($data->package_days)) {
         echo json_encode(array('status' => 'info', 'message' => 'Please wait... Payment Option Will be open below...'));
         exit();
       } else {
-        echo json_encode(array('status' => 'error', 'message' => 'Failed to create post. Error: ' . mysqli_error($config)'));
+        echo json_encode(array('status' => 'error', 'message' => 'Failed to create post. Error: ' . mysqli_error($config)));
         exit();
       }    
       }  
@@ -171,7 +171,7 @@ if (!empty($data->create_on) && !empty($data->package_days)) {
       echo json_encode(array('status' => 'info', 'message' => 'Please wait... Payment Option Will be open below...'));
       exit();
     } else {
-      echo json_encode(array('status' => 'error', 'message' => 'Failed to create post. Error: ' . mysqli_error($config)'));
+      echo json_encode(array('status' => 'error', 'message' => 'Failed to create post. Error: ' . mysqli_error($config)));
       exit();
     }    
   
@@ -224,7 +224,7 @@ if (!empty($data->create_on) && !empty($data->package_days)) {
           echo json_encode(array('status' => 'info', 'message' => 'Please wait... Payment Option Will be open below...'));
           exit();
         } else {
-          echo json_encode(array('status' => 'error', 'message' => 'Failed to create post. Error: ' . mysqli_error($config)'));
+          echo json_encode(array('status' => 'error', 'message' => 'Failed to create post. Error: ' . mysqli_error($config)));
           exit();
         }
       }
@@ -283,7 +283,7 @@ if (!empty($data->create_on) && !empty($data->package_days)) {
          echo json_encode(array('status' => 'info', 'message' => 'Please wait... Payment Option Will be open below...'));
          exit();
        } else {
-         echo json_encode(array('status' => 'error', 'message' => 'Failed to create post. Error: ' . mysqli_error($config)'));
+         echo json_encode(array('status' => 'error', 'message' => 'Failed to create post. Error: ' . mysqli_error($config)));
          exit();
        }    
      
