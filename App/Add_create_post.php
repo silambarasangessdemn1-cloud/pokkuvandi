@@ -3,6 +3,9 @@
 include('config/setup.php');
 include('session.php');
 
+// Disable MySQL strict mode for this script so empty dates don't crash in production
+mysqli_query($config, "SET sql_mode = ''");
+
 // Initialize session variables (set in session.php, but ensure they exist)
 if(!isset($session_id)) $session_id = '';
 if(!isset($session__username)) $session__username = '';
