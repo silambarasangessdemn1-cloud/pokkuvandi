@@ -34,6 +34,7 @@ window.location.replace("App/index.php")
 
 </script>
 
+<link rel="manifest" href="/manifest.json">
 </head>
 
 <body>
