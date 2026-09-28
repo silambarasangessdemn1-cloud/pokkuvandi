@@ -271,9 +271,9 @@ if (!empty($data->create_on) && !empty($data->package_days)) {
       // exit;
        $vehicle_body_type = isset($_POST['vehicle_body_type']) ? mysqli_real_escape_string($config, $_POST['vehicle_body_type']) : '';
        
-       $add_registration_date_sql = empty($_POST['Add_Registration_date']) ? 'NULL' : "'" . mysqli_real_escape_string($config, $_POST['Add_Registration_date']) . "'";
-       $add_insurance_exp_date_sql = empty($_POST['Add_insurance_exp_date']) ? 'NULL' : "'" . mysqli_real_escape_string($config, $_POST['Add_insurance_exp_date']) . "'";
-       $fc_date_sql = empty($_POST['FC_date']) ? 'NULL' : "'" . mysqli_real_escape_string($config, $_POST['FC_date']) . "'";
+       $add_registration_date_sql = empty($_POST['Add_Registration_date']) ? "''" : "'" . mysqli_real_escape_string($config, $_POST['Add_Registration_date']) . "'";
+       $add_insurance_exp_date_sql = empty($_POST['Add_insurance_exp_date']) ? "''" : "'" . mysqli_real_escape_string($config, $_POST['Add_insurance_exp_date']) . "'";
+       $fc_date_sql = empty($_POST['FC_date']) ? "''" : "'" . mysqli_real_escape_string($config, $_POST['FC_date']) . "'";
 
        $addmaincate=mysqli_query($config,"insert into create_post(driver_name,vehicle_no,vehicle_photo,phone_no,whatsapp_no,address,city_id,area_id,status,post_addon,vehicle_name,category_id,subcategory_id,meta_keyword,create_on,Add_load_detail,Add_location,Add_Registration_date,Add_RC_owner_name,Add_insurance_exp_date,FC_date,remarks,package_id,package_amount,package_days,customer_id,expiry_date,day_duty,night_duty,vehicle_type_id,seating_capacity,facilities,space,size,tonnage,shop_name,work_nature,shop_address,stand_name,sub_area_id,reffered_by_phone_no,reffered_by_name,discount_amount,discount_name,coupon_type,state_id,other_vehicle_type,vehicle_body_type,net_amount)            
 
