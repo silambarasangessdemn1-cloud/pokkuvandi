@@ -2000,7 +2000,8 @@ const storedRefMob = localStorage.getItem('referred_by_phone_no');
                         $('#sc').html(data);
                         var storedSubCate = localStorage.getItem("selected_sub_cate");
             if (storedSubCate) {
-                document.getElementById('Add_sub_cate_Name').value = storedSubCate;
+                var subCateEl = document.getElementById('Add_sub_cate_Name');
+                if(subCateEl) subCateEl.value = storedSubCate;
             }
                         }			
                     });	
@@ -2369,7 +2370,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // If the value exists, set the selected value in the dropdown
     if (storedValue) {
-        document.getElementById('mainCategorySelect').value = storedValue;
+        var mainCatEl = document.getElementById('mainCategorySelect');
+        if(mainCatEl) mainCatEl.value = storedValue;
 
         // Optionally, trigger the onchange event to load related data
         maincateg(storedValue);
@@ -2404,7 +2406,8 @@ if (storedVehicleType) {
 
             
             if (storedVehicleType) {
-                document.getElementById('Add_vehicle_type').value = storedVehicleType;
+                var avtEl1 = document.getElementById('Add_vehicle_type');
+                if(avtEl1) avtEl1.value = storedVehicleType;
                 
                 // Check if "Others" was selected and show the text field
                 if (storedVehicleType == "0") {
@@ -2543,7 +2546,8 @@ document.addEventListener("DOMContentLoaded", function () {
             var storedVehicleType = localStorage.getItem("selected_vehicle_type");
             if (storedVehicleType) {
                
-                document.getElementById('Add_vehicle_type').value = storedVehicleType;
+                var avtEl2 = document.getElementById('Add_vehicle_type');
+                if(avtEl2) avtEl2.value = storedVehicleType;
             }
                         }			
                     });	
