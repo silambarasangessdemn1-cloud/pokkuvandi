@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.pokkuvandi.twa",
+        "sha256_cert_fingerprints": ["B7:2C:07:45:55:E4:8D:DF:75:B6:56:91:15:EF:0C:36:7B:38:96:9D:84:92:AE:9C:5C:35:76:C1:DD:C7:17:71"]
+      }
+    }]
