@@ -68,6 +68,130 @@ if($namestatus == 1)
       <link href="vendor/sidebar/demo.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+      <style>
+         /* Modern UI Enhancements */
+         body {
+            background: #f4f7f6;
+            font-family: 'Inter', 'Lato', sans-serif;
+         }
+         .osahan-signin, .osahan-signup {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 40px rgba(0,0,0,0.05);
+            padding-bottom: 80px;
+            animation: fadeIn 0.8s ease-in-out;
+         }
+         @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+         }
+         .brand-header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+            border-bottom: none !important;
+            padding: 30px 20px 25px 20px !important;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+         }
+         .brand-header h4 {
+            color: #ffffff;
+            font-weight: 700;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+            text-align: center;
+         }
+         .index-osahan-logo {
+            border-radius: 50%;
+            padding: 8px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+         }
+         .form-container {
+            padding: 40px 25px !important;
+         }
+         .form-container h2 {
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 24px;
+         }
+         .form-group label {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 14px;
+            margin-bottom: 8px;
+         }
+         .form-control {
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 14px 16px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+            height: auto;
+         }
+         .form-control:focus {
+            background-color: #ffffff;
+            border-color: #28a745;
+            box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.15);
+         }
+         .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+         }
+         .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+            color: white;
+         }
+         .btn-google {
+            background: #ffffff;
+            color: #d32f2f;
+            border: 1px solid #f5c6c6;
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+         }
+         .btn-google:hover {
+            background: #fffafa;
+            color: #c62828;
+         }
+         .osahan-fotter {
+            max-width: 500px;
+            margin: 0 auto;
+            right: 0;
+            left: 0;
+            background: transparent;
+            padding: 15px;
+         }
+         .osahan-fotter .btn {
+            border-radius: 12px;
+            font-weight: 700;
+            color: #28a745;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            padding: 14px;
+         }
+         .theme-switch-wrapper {
+            display: none;
+         }
+      </style>
    </head>
 <?php
 
@@ -175,7 +299,7 @@ if (isset($_POST['login_submit'])) {
       </div>
       <!-- sign in -->
       <div class="osahan-signin">
-         <div class="border-bottom p-3 d-flex align-items-center" style="background-color:#68ba61;">
+         <div class="brand-header">
         <center> <img class="index-osahan-logo" src="
             <?php 
             
@@ -222,9 +346,9 @@ if($namestatus == 1)
 
          </div>
 
-         <div class="p-3">
-            <h2 class="my-0">Welcome To Service Provider Login.</h2>
-            <!-- <p class="small">Welcome To Service Provider Login.</p> -->
+         <div class="p-3 form-container">
+            <h2 class="my-0">Welcome Back!</h2>
+            <!-- <p class="small text-center text-muted mb-4">Service Provider Login</p> -->
             <?php if($_GET['verify']){ ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
   <strong>Your account has been successfully verified</strong> 
