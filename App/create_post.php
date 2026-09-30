@@ -770,26 +770,23 @@ document.getElementById("Add_vehicle_photo").addEventListener("change", function
                                                     <label for="exampleInputEmail1">City</label>
                                                         <div id="area">
                                                           <?php 
-                                                            $_SESSION['Add_area'];
-                                                          
-                                                          if($_SESSION['Add_area']!='') { ?>
-                                                        <select id="" name="Add_area" class="form-select form-control form-select-lg mb-3" aria-label=".form-select-lg example">
-
+                                                            $add_area = isset($_SESSION['Add_area']) ? $_SESSION['Add_area'] : '';
+                                                          if($add_area!='') { ?>
+                                                        <select id="area1" name="Add_area" class="form-select form-control form-select-lg mb-3" aria-label=".form-select-lg example">
+                                                            <option value="">---SELECT---</option>
                                                             <?php
-
-                                                             $wuei="SELECT * FROM `dir_area_master` where dir_cityid='".$_SESSION['Add_city']."' ORDER BY `dir_area_master`.`dir_area_name` ASC ";
-
-                                                                                $main_cate3_area=mysqli_query($config,"SELECT * FROM `dir_area_master` where dir_cityid='".$_SESSION['Add_city']."' ORDER BY `dir_area_master`.`dir_area_name` ASC ");
-
-                                                                                while($macate3_area=mysqli_fetch_object($main_cate3_area))
-
-                                                                                {
-
-                                                                                ?>
-                                                            <option  <?php if($macate3_area->dir_area_id == $_SESSION['Add_area']) {?>selected="selected"<?php }?>  value="<?php echo $macate3_area->dir_area_id ?>"><?php echo $macate3_area->dir_area_name ?></option>
+                                                                $wuei="SELECT * FROM `dir_area_master` where dir_cityid='".$_SESSION['Add_city']."' ORDER BY `dir_area_master`.`dir_area_name` ASC ";
+                                                                $main_cate3_area=mysqli_query($config,"SELECT * FROM `dir_area_master` where dir_cityid='".$_SESSION['Add_city']."' ORDER BY `dir_area_master`.`dir_area_name` ASC ");
+                                                                while($macate3_area=mysqli_fetch_object($main_cate3_area)) {
+                                                            ?>
+                                                            <option <?php if($macate3_area->dir_area_id == $add_area) {?>selected="selected"<?php }?> value="<?php echo $macate3_area->dir_area_id ?>"><?php echo $macate3_area->dir_area_name ?></option>
                                                             <?php }?>
-                                                            </select> 
-                                                            <?php } ?>
+                                                        </select> 
+                                                        <?php } else { ?>
+                                                        <select required id="area1" name="Add_area" class="form-select form-control form-select-lg mb-3" aria-label=".form-select-lg example">
+                                                            <option value="">---SELECT---</option>
+                                                        </select>
+                                                        <?php } ?>
                                                         </div>
                                                 </div>
 

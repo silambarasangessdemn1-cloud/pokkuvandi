@@ -18,6 +18,8 @@
 
       <meta name="author" content="">
 
+      <meta name="referrer" content="strict-origin-when-cross-origin">
+
           <link rel="icon" type="image/png" href="<?php 
 
             

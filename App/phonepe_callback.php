@@ -44,10 +44,13 @@ $post_id = $post_data['post_id'];
     }
 
     $post_data = mysqli_fetch_assoc($post);
+    $payment_confirmed_at = date('Y-m-d H:i:s');
     mysqli_query($config, "
     UPDATE create_post SET
         
-        status = '1'
+        status = '1',
+        payment_type = '0',
+        payment_confirmed_at = '$payment_confirmed_at'
     WHERE post_id = '$post_id'
 ");
     // Extract necessary values
@@ -75,7 +78,9 @@ $post_id = $post_data['post_id'];
     mysqli_query($config, "
     UPDATE create_post SET
         
-        status = '1'
+        status = '1',
+        payment_type = '0',
+        payment_confirmed_at = '$payment_confirmed_at'
     WHERE post_id = '$post_id'
 ");
     // If expired, extend & add to renewal

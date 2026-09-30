@@ -471,27 +471,22 @@ if($namestatus == 1)
                                                     <div class="form-group col-md-6" >    
                                                             
                                                             </div>
-                                                      <div id="post_btn">
+                                                      <div id="post_btn" style="width: 100%; display: flex; justify-content: flex-end; padding-right: 15px;">
                                                         <?php 
                                                       if($package_amount == '0')
                     { ?>
-                                                                        <div class="form-group col-md-6" >    
+                                                                        <div class="form-group" >    
 
-                       <button class="btn btn-success" type="submit" name="post_add" style="
-    margin-left: 38px;
-">Get Free registration</button>
-                  <div>
+                       <button class="btn btn-success" type="submit" name="post_add" >Get Free registration</button>
+                  </div>
                   <?php  }
                     else
                     { ?>
 
 
-                        <button class="btn btn-success" type="submit" name="post_add" style="
-    margin-left: 40px;
-">Pay For registration</button>
+                        <button class="btn btn-success" type="submit" name="post_add" >Pay For registration</button>
                      <?php } ?>
                                                       </div>
-                
 									</div>
 								
                             </form>

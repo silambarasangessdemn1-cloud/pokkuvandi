@@ -6,7 +6,7 @@ $id=$_POST['id'];
 ?> 
 <?php 
 $data='';
-            $data .='<div class="form-group ">';
+            $data .='<div class="form-group" style="width: 100%; display: flex; justify-content: flex-end;">';
             
                 $shop_master_=mysqli_query($config,"select * from category_package where package_id ='$id' and status=1");
                 while($sm_=mysqli_fetch_object($shop_master_))
