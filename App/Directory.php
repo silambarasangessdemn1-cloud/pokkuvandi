@@ -1258,6 +1258,7 @@ $("#enq_city").change(function(){
             var adminModalWillShow = false;
             var sessionAdminKey = 'app_admin_msg_shown_' + '<?php echo $popup_hash; ?>';
             var sessionVehicleKey = 'app_vehicle_msg_shown';
+            var isDriver = (localStorage.getItem('user_type') === 'driver');
 
             <?php if($show_popup) { ?>
             if (!sessionStorage.getItem(sessionAdminKey)) {
@@ -1268,9 +1269,9 @@ $("#enq_city").change(function(){
                 sessionStorage.setItem(sessionAdminKey, 'true');
             }
 
-            // When admin modal closes, show the static modal if not shown this session
+            // When admin modal closes, show the static modal if not shown this session and user is driver
             $('#contentPopupModal').on('hidden.bs.modal', function () {
-                if (!sessionStorage.getItem(sessionVehicleKey)) {
+                if (isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
                     setTimeout(function() {
                         $('#vehicleImageUpdateModal').modal('show');
                     }, 500);
@@ -1279,8 +1280,8 @@ $("#enq_city").change(function(){
             });
             <?php } ?>
 
-            // If admin modal is NOT showing right now, show the static modal directly
-            if (!adminModalWillShow && !sessionStorage.getItem(sessionVehicleKey)) {
+            // If admin modal is NOT showing right now, show the static modal directly for drivers
+            if (!adminModalWillShow && isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
                 setTimeout(function() {
                     $('#vehicleImageUpdateModal').modal('show');
                 }, 1000);
