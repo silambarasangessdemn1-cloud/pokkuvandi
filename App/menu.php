@@ -127,9 +127,9 @@
             <li><a href="customer_pokku_entry_list_view.php"><i class="icofont-login mr-2"></i>Customer Vehicle Required List</a></li>
 
             <li>
-            <a href="#"><i class="icofont-ui-user mr-2"></i> Vehicle Booking</a>
+            <a href="#" onclick="showServiceNotAvailable(event)"><i class="icofont-ui-user mr-2"></i> Vehicle Booking</a>
             <ul>
-            <li><a href="customer_order_pokkuvadi_entry.php"><i class="icofont-login mr-2"></i> Vehicle  Booking Form</a></li>
+            <li><a href="#" onclick="showServiceNotAvailable(event)"><i class="icofont-login mr-2"></i> Vehicle  Booking Form</a></li>
 
             <li><a href="view_order.php?type=ongoing"><i class="icofont-login mr-2"></i>Order Ongoing List <span class="badge badge-warning"><?= $cust_ongoing ? $cust_ongoing: 0 ?></span></a></li>
 <li><a href="view_order.php?type=cancel"><i class="icofont-login mr-2"></i>Order Cancelled List</a></li>
@@ -277,3 +277,36 @@
       $('meta[name=viewport]').attr('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
     });
   </script>
+
+<!-- Service Not Available Modal -->
+<div class="modal fade" id="menuServiceNotAvailableModal" tabindex="-1" role="dialog" aria-labelledby="menuServiceNotAvailableModalLabel" aria-hidden="true" style="z-index: 10000; background: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+      <div class="modal-header" style="background-color: #f8d7da; color: #721c24; border-bottom: none; border-radius: 15px 15px 0 0;">
+        <h5 class="modal-title" id="menuServiceNotAvailableModalLabel">⚠️ Service Not Available</h5>
+      </div>
+      <div class="modal-body text-center" style="padding: 30px;">
+        <p style="font-size: 1.1rem; color: #555;">This service is currently not available.</p>
+        <p style="margin-bottom: 0;">You will be redirected to the <strong>Customer Vehicle Requirement Entry</strong> page shortly.</p>
+      </div>
+      <div class="modal-footer justify-content-center" style="border-top: none;">
+        <a href="customer_pokkuvadi_entry.php" class="btn btn-danger" style="border-radius: 8px; padding: 10px 25px;">Proceed Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showServiceNotAvailable(e) {
+    if(e) e.preventDefault();
+    if (window.jQuery && window.jQuery.fn.modal) {
+        jQuery('#menuServiceNotAvailableModal').modal('show');
+        setTimeout(function() {
+            window.location.href = 'customer_pokkuvadi_entry.php';
+        }, 3000);
+    } else {
+        alert("This service is currently not available. You will be redirected.");
+        window.location.href = 'customer_pokkuvadi_entry.php';
+    }
+}
+</script>

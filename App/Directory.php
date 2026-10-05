@@ -1123,38 +1123,88 @@ $( document ).ready(function() {
 
 
 
-<div id="popup" style="display: none; width: 100%;height: 100% !important;background-color: white; position: absolute; top: 17%; padding: 0px 14px 0px 0px;">
-<div class="modal-dialog">
-            <div class="modal-content">
-                
-                <div class="modal-body">
-                <!-- <h5 class="mt-2">Terms & Conditions</h5>
-                <p>The vehicle directorys terms and conditions govern the use of the platform by its users. By accessing and utilizing the services provided, users agree to abide by these terms. The directory grants eligible users the right to access and view its content while also outlining responsibilities and restrictions. Users must comply with all applicable laws and regulations while using the platform. The directory retains ownership of its content, including copyrights and trademarks. Additionally, users must respect the privacy of others and adhere to the guidelines for user-generated content. When listing vehicles or related services, users are required to provide accurate and reliable information while following the specified guidelines. The directory may contain links to third-party websites, and users acknowledge that these external entities are beyond the directorys control, disclaiming any responsibility for their content. While the directory strives for accuracy and reliability, it does not guarantee the correctness of information provided and is not liable for any damages resulting from its use. Users found violating the terms and conditions may face termination of their access to the platform. The directory reserves the right to modify these terms at its discretion and will notify users of any changes. </p> -->
-                <?php
-				 
-                    $about=mysqli_query($config,"select fron_contanct from cms");
-                    
-                    while($del=mysqli_fetch_array($about))
-                    {
-                    
-                    echo $del[0];
+<?php
+$about_q = mysqli_query($config,"select fron_contanct from cms");
+$del_content = mysqli_fetch_array($about_q);
+$popup_text = $del_content ? trim(strip_tags(str_replace('&nbsp;', '', $del_content[0]))) : '';
+$has_image = $del_content ? strpos($del_content[0], '<img') !== false : false;
+$show_popup = ($popup_text != '' || $has_image) ? true : false;
+$popup_hash = $del_content ? md5($del_content[0]) : '';
+?>
+<?php if($show_popup) { ?>
+<style>
+/* Modern Modal Styles */
+#contentPopupModal .modal-content {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+#contentPopupModal .modal-header {
+    background: linear-gradient(135deg, #199b37, #21c045);
+    color: white;
+    border-bottom: none;
+    padding: 20px 25px;
+}
+#contentPopupModal .modal-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+#contentPopupModal .close {
+    color: white;
+    opacity: 0.8;
+    text-shadow: none;
+    font-size: 1.5rem;
+}
+#contentPopupModal .close:hover {
+    opacity: 1;
+}
+#contentPopupModal .modal-body {
+    padding: 30px 25px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #444;
+}
+#contentPopupModal .modal-footer {
+    border-top: 1px solid #f0f0f0;
+    padding: 15px 25px;
+    background-color: #fafafa;
+}
+#contentPopupModal .btn-modern {
+    background-color: #199b37;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 24px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+#contentPopupModal .btn-modern:hover {
+    background-color: #147b2c;
+    box-shadow: 0 4px 10px rgba(25, 155, 55, 0.3);
+}
+</style>
 
-
-                    }				?>
-
-                </div>
-                <div class="modal-footer">
-                <button class="btn btn-secondary btn-lg" onclick="closePopup()">Close</button>
-                </div>
-            </div>
-        </div>
-
-<div>
-<!-- <h5 class="mt-2">Terms & Conditions</h5>
-       <p>The vehicle directory's terms and conditions govern the use of the platform by its users. By accessing and utilizing the services provided, users agree to abide by these terms. The directory grants eligible users the right to access and view its content while also outlining responsibilities and restrictions. Users must comply with all applicable laws and regulations while using the platform. The directory retains ownership of its content, including copyrights and trademarks. Additionally, users must respect the privacy of others and adhere to the guidelines for user-generated content. When listing vehicles or related services, users are required to provide accurate and reliable information while following the specified guidelines. The directory may contain links to third-party websites, and users acknowledge that these external entities are beyond the directory's control, disclaiming any responsibility for their content. While the directory strives for accuracy and reliability, it does not guarantee the correctness of information provided and is not liable for any damages resulting from its use. Users found violating the terms and conditions may face termination of their access to the platform. The directory reserves the right to modify these terms at its discretion and will notify users of any changes. </p>
-       <button class="btn btn-primary" onclick="closePopup()">Close</button>
-    </div> -->
+<div class="modal fade" id="contentPopupModal" tabindex="-1" role="dialog" aria-labelledby="contentPopupModalLabel" aria-hidden="true" style="z-index: 9999;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contentPopupModalLabel">📢 Announcement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closePopup()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <?php echo $del_content[0]; ?>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-modern" data-dismiss="modal" onclick="closePopup()">Got it!</button>
+      </div>
+    </div>
   </div>
+</div>
+<?php } ?>
 
 
   <?php 
@@ -1226,25 +1276,58 @@ $("#enq_city").change(function(){
 
 
 <script>
- function showPopup() {
-  //alert();
-            document.getElementById('popup').style.display = 'block';
-           // alert();
-        }
-
+<?php if($show_popup) { ?>
         function closePopup() {
-            document.getElementById('popup').style.display = 'none';
+            $('#contentPopupModal').modal('hide');
         }
 
-        // Check if the cookie is set
-        var popupCookie = document.cookie.replace(/(?:(?:^|.*;\s*)popup_shown\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if (!popupCookie) {
-            // If cookie is not set, show the popup and set the cookie to indicate it's shown
-            showPopup();
-            document.cookie = "popup_shown=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+        function getCookie(name) {
+            var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return v ? v[2] : null;
         }
 
-   </script>
+        var currentHash = "<?php echo $popup_hash; ?>";
+        var popupCookie = getCookie('app_popup_hash');
+
+        if (popupCookie !== currentHash) {
+            setTimeout(function() {
+                $('#contentPopupModal').modal('show');
+            }, 500);
+            document.cookie = "app_popup_hash=" + currentHash + "; path=/; max-age=31536000";
+        }
+<?php } ?>
+
+        // Static Vehicle Image Update Modal Logic
+        var vehicleImgCookie = getCookie('app_vehicle_img_msg_shown');
+        if (!vehicleImgCookie) {
+            // Wait slightly longer so it doesn't instantly overlap if the CMS modal also shows
+            setTimeout(function() {
+                $('#vehicleImageUpdateModal').modal('show');
+            }, 1000);
+            document.cookie = "app_vehicle_img_msg_shown=true; path=/; max-age=31536000";
+        }
+</script>
+
+<!-- Static Vehicle Image Update Modal -->
+<div class="modal fade" id="vehicleImageUpdateModal" tabindex="-1" role="dialog" aria-labelledby="vehicleImageUpdateModalLabel" aria-hidden="true" style="z-index: 10000; background: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+      <div class="modal-header" style="background-color: #ffc107; color: #333; border-bottom: none; border-radius: 15px 15px 0 0;">
+        <h5 class="modal-title" id="vehicleImageUpdateModalLabel">⚠️ Action Required</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#vehicleImageUpdateModal').modal('hide');">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center" style="padding: 30px;">
+        <p style="font-size: 1.1rem; color: #555; margin-bottom: 10px;">Due to a recent system update, some vehicle images were lost.</p>
+        <p style="margin-bottom: 0;">Please upload your vehicle photos again to ensure your listings stay active.</p>
+      </div>
+      <div class="modal-footer justify-content-center" style="border-top: none;">
+        <a href="createpost_list.php" class="btn btn-primary btn-block rounded shadow-sm" style="background: linear-gradient(135deg, #007bff, #0056b3); border: none; padding: 10px 25px;">Update Photos Now</a>
+      </div>
+    </div>
+  </div>
+</div>
 
    
 

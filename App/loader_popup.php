@@ -17,13 +17,17 @@ $maincate3_loader=mysqli_query($config,$or_loader);
 $mac3_loader=mysqli_fetch_object($maincate3_loader);
 
 
-$loader_to_date= $mac3_loader->loader_to_date;
-$loader_to_time= $mac3_loader->loader_to_time;
-$loader_from_date= $mac3_loader->loader_from_date;
-$loader_from_time= $mac3_loader->loader_from_time;
+$loader_to_date = $mac3_loader ? $mac3_loader->loader_to_date : '';
+$loader_to_time = $mac3_loader ? $mac3_loader->loader_to_time : '';
+$loader_from_date = $mac3_loader ? $mac3_loader->loader_from_date : '';
+$loader_from_time = $mac3_loader ? $mac3_loader->loader_from_time : '';
 date_default_timezone_set('Asia/Kolkata'); 
-$from_date_time = date('Y-m-d H:i', strtotime("$loader_from_date $loader_from_time"));
-$to_date_time = date('Y-m-d H:i', strtotime("$loader_to_date $loader_to_time"));
+$from_date_time = ($loader_from_date && $loader_from_time) ? date('Y-m-d H:i', strtotime("$loader_from_date $loader_from_time")) : '';
+$to_date_time = ($loader_to_date && $loader_to_time) ? date('Y-m-d H:i', strtotime("$loader_to_date $loader_to_time")) : '';
+
+$loader_to_place = $mac3_loader ? $mac3_loader->loader_to_place : '';
+$loader_space = $mac3_loader ? $mac3_loader->loader_space : '';
+$loader_remarks = $mac3_loader ? $mac3_loader->loader_remarks : '';
 
 
  $data='';
@@ -55,18 +59,18 @@ $to_date_time = date('Y-m-d H:i', strtotime("$loader_to_date $loader_to_time"));
 
 <div class="form-group col-md-6">    
  <label for="email2">To Place</label>
- <input value="'.$mac3_loader->loader_to_place.'"  type="text" class="form-control" id="loader_to_place" name="loader_to_place" placeholder="Location Name" >
+ <input value="'.$loader_to_place.'"  type="text" class="form-control" id="loader_to_place" name="loader_to_place" placeholder="Location Name" >
 </div>   
 
 
 
 <div class="form-group col-md-6">    
  <label for="email2">Available Space</label>
- <input value="'.$mac3_loader->loader_space.'"  type="text" class="form-control" id="loader_space" name="loader_space"  >
+ <input value="'.$loader_space.'"  type="text" class="form-control" id="loader_space" name="loader_space"  >
 </div>  
 <div class="form-group col-md-6">    
  <label for="email2">General Remarks</label>
- <input  value="'.$mac3_loader->loader_remarks.'" type="text" class="form-control" id="loader_remarks" name="loader_remarks"  >
+ <input  value="'.$loader_remarks.'" type="text" class="form-control" id="loader_remarks" name="loader_remarks"  >
 </div>';
 
 

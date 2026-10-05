@@ -176,12 +176,11 @@ if($namestatus == 1)
   overflow: hidden;font-size: 18px;
   font-weight: 700;"><?php echo $mac3->video_name ?> </p>
 
-                  <a  target="_blank" href="https://www.youtube.com/embed/<?php echo $mac3->Main_Category_Name ?>"  >
+                  <a target="_blank" href="https://www.youtube.com/watch?v=<?php echo str_replace('?si=', '&si=', $mac3->Main_Category_Name); ?>">
                   <div style="border: 5px solid green;border-radius: 15px;pointer-events: none;">
                   <iframe style="height: 158px;width:100%;border-radius: 9px;margin-bottom: -5px;background: silver;object-fit: cover;" 
-                      src="https://www.youtube.com/embed/<?php echo $mac3->Main_Category_Name ?>"    rel="0"
-                      
-                      frameborder="0" allowtransparency="true" allowfullscreen
+                      src="https://www.youtube-nocookie.com/embed/<?php echo $mac3->Main_Category_Name; ?><?php echo strpos($mac3->Main_Category_Name, '?') !== false ? '&' : '?'; ?>enablejsapi=1"
+                      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
                     ></iframe>
                           </div></a>
                           </div> 

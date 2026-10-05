@@ -123,13 +123,29 @@ $_SESSION['form_token'] = $token;
 
         <div class="osahan-body">
 
-
+            <!-- Service Not Available Modal -->
+            <div class="modal fade" id="serviceNotAvailableModal" tabindex="-1" role="dialog" aria-labelledby="serviceNotAvailableModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" style="z-index: 10000; background: rgba(0,0,0,0.5);">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                  <div class="modal-header" style="background-color: #f8d7da; color: #721c24; border-bottom: none; border-radius: 15px 15px 0 0;">
+                    <h5 class="modal-title" id="serviceNotAvailableModalLabel">⚠️ Service Not Available</h5>
+                  </div>
+                  <div class="modal-body text-center" style="padding: 30px;">
+                    <p style="font-size: 1.1rem; color: #555;">This service is currently not available.</p>
+                    <p style="margin-bottom: 0;">You will be redirected to the <strong>Customer Vehicle Requirement Entry</strong> page shortly.</p>
+                  </div>
+                  <div class="modal-footer justify-content-center" style="border-top: none;">
+                    <a href="customer_pokkuvadi_entry.php" class="btn btn-danger" style="border-radius: 8px; padding: 10px 25px;">Proceed Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <h5 class="text-center mt-3 mb-3">Vechicle Booking Form</h5>
 
 
-            <div class="card">
+            <div class="card" style="display: none;">
 
                 <div class="container">
 
@@ -725,6 +741,19 @@ alert(formattedDatetime);
     }
 </script>
 
+
+<script>
+    // Show the modal and redirect
+    var checkDependencies = setInterval(function() {
+        if (window.jQuery && window.jQuery.fn.modal) {
+            clearInterval(checkDependencies);
+            window.jQuery('#serviceNotAvailableModal').modal('show');
+            setTimeout(function() {
+                window.location.href = 'customer_pokkuvadi_entry.php';
+            }, 3000);
+        }
+    }, 50);
+</script>
 
 </body>
 
