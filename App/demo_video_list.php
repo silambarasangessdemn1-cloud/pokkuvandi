@@ -176,13 +176,16 @@ if($namestatus == 1)
   overflow: hidden;font-size: 18px;
   font-weight: 700;"><?php echo $mac3->video_name ?> </p>
 
+                  <?php 
+                    $yt_id = explode('?', $mac3->Main_Category_Name)[0]; 
+                  ?>
                   <a target="_blank" href="https://www.youtube.com/watch?v=<?php echo str_replace('?si=', '&si=', $mac3->Main_Category_Name); ?>">
-                  <div style="border: 5px solid green;border-radius: 15px;pointer-events: none;">
-                  <iframe style="height: 158px;width:100%;border-radius: 9px;margin-bottom: -5px;background: silver;object-fit: cover;" 
-                      src="https://www.youtube-nocookie.com/embed/<?php echo $mac3->Main_Category_Name; ?><?php echo strpos($mac3->Main_Category_Name, '?') !== false ? '&' : '?'; ?>enablejsapi=1"
-                      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
-                    ></iframe>
-                          </div></a>
+                  <div style="border: 5px solid green; border-radius: 15px; position: relative; overflow: hidden; background: #000; height: 158px;">
+                    <img style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;" src="https://img.youtube.com/vi/<?php echo $yt_id; ?>/hqdefault.jpg" alt="Video Thumbnail">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 3rem; text-shadow: 0 0 10px rgba(0,0,0,0.8);">
+                        <i class="fa fa-youtube-play text-danger" style="background: white; border-radius: 50%; padding: 2px;"></i>
+                    </div>
+                  </div></a>
                           </div> 
                               
           <?php } ?>

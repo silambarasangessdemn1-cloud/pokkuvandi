@@ -1275,15 +1275,14 @@ $("#enq_city").change(function(){
 </script>
 
 
-<script>
-<?php if($show_popup) { ?>
-        function closePopup() {
-            $('#contentPopupModal').modal('hide');
-        }
-
         function getCookie(name) {
             var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return v ? v[2] : null;
+        }
+
+<?php if($show_popup) { ?>
+        function closePopup() {
+            $('#contentPopupModal').modal('hide');
         }
 
         var currentHash = "<?php echo $popup_hash; ?>";
