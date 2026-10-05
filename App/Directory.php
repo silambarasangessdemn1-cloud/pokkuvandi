@@ -1256,26 +1256,35 @@ $("#enq_city").change(function(){
 
         $(document).ready(function() {
             var adminModalWillShow = false;
+            var sessionAdminKey = 'app_admin_msg_shown_' + '<?php echo $popup_hash; ?>';
+            var sessionVehicleKey = 'app_vehicle_msg_shown';
 
             <?php if($show_popup) { ?>
-            adminModalWillShow = true;
-            setTimeout(function() {
-                $('#contentPopupModal').modal('show');
-            }, 500);
-
-            // When admin modal closes, show the static modal
-            $('#contentPopupModal').on('hidden.bs.modal', function () {
+            if (!sessionStorage.getItem(sessionAdminKey)) {
+                adminModalWillShow = true;
                 setTimeout(function() {
-                    $('#vehicleImageUpdateModal').modal('show');
+                    $('#contentPopupModal').modal('show');
                 }, 500);
+                sessionStorage.setItem(sessionAdminKey, 'true');
+            }
+
+            // When admin modal closes, show the static modal if not shown this session
+            $('#contentPopupModal').on('hidden.bs.modal', function () {
+                if (!sessionStorage.getItem(sessionVehicleKey)) {
+                    setTimeout(function() {
+                        $('#vehicleImageUpdateModal').modal('show');
+                    }, 500);
+                    sessionStorage.setItem(sessionVehicleKey, 'true');
+                }
             });
             <?php } ?>
 
             // If admin modal is NOT showing right now, show the static modal directly
-            if (!adminModalWillShow) {
+            if (!adminModalWillShow && !sessionStorage.getItem(sessionVehicleKey)) {
                 setTimeout(function() {
                     $('#vehicleImageUpdateModal').modal('show');
                 }, 1000);
+                sessionStorage.setItem(sessionVehicleKey, 'true');
             }
         });
 </script>
