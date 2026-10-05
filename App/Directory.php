@@ -1255,22 +1255,34 @@ $("#enq_city").change(function(){
         <?php } ?>
 
         $(document).ready(function() {
+            var adminModalWillShow = false;
+
             <?php if($show_popup) { ?>
             var currentHash = "<?php echo $popup_hash; ?>";
             var popupCookie = getCookie('app_popup_hash');
 
             if (popupCookie !== currentHash) {
+                adminModalWillShow = true;
                 setTimeout(function() {
                     $('#contentPopupModal').modal('show');
                 }, 500);
                 document.cookie = "app_popup_hash=" + currentHash + "; path=/; max-age=31536000";
             }
+
+            // When admin modal closes, show the static modal
+            $('#contentPopupModal').on('hidden.bs.modal', function () {
+                setTimeout(function() {
+                    $('#vehicleImageUpdateModal').modal('show');
+                }, 500);
+            });
             <?php } ?>
 
-            // Show Vehicle Image Update Modal on EVERY page load
-            setTimeout(function() {
-                $('#vehicleImageUpdateModal').modal('show');
-            }, 1000);
+            // If admin modal is NOT showing right now, show the static modal directly
+            if (!adminModalWillShow) {
+                setTimeout(function() {
+                    $('#vehicleImageUpdateModal').modal('show');
+                }, 1000);
+            }
         });
 </script>
 
