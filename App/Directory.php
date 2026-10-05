@@ -1275,6 +1275,7 @@ $("#enq_city").change(function(){
 </script>
 
 
+<script>
         function getCookie(name) {
             var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
             return v ? v[2] : null;

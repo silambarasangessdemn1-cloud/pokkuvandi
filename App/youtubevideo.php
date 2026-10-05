@@ -8,7 +8,24 @@
 
 
 
- $text=$_POST['text'];
+ $text=$_POST['text'] ?? '';
+
+ function getThumbnailHtml($iframeString) {
+    if (preg_match('/src="([^"]+)"/', $iframeString, $matches)) {
+        $src = $matches[1];
+        if (preg_match('/embed\/([a-zA-Z0-9_-]+)/', $src, $idMatches)) {
+            $yt_id = $idMatches[1];
+            return '<a target="_blank" href="https://www.youtube.com/watch?v=' . $yt_id . '">
+                    <div style="border: 5px solid green; border-radius: 15px; position: relative; overflow: hidden; background: #000; height: 158px;">
+                      <img style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;" src="https://img.youtube.com/vi/' . $yt_id . '/hqdefault.jpg" alt="Video Thumbnail">
+                      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 3rem; text-shadow: 0 0 10px rgba(0,0,0,0.8);">
+                          <i class="fa fa-youtube-play text-danger" style="background: white; border-radius: 50%; padding: 2px;"></i>
+                      </div>
+                    </div></a>';
+        }
+    }
+    return $iframeString;
+ }
 
  if($text == '')
 
@@ -23,9 +40,7 @@
     {
 
        $data .=' <div class="card">
-
-       '.$row ->video.'
-
+       '.getThumbnailHtml($row->video).'
           <div class="card-body">
 
           <h5>'. $row ->video_title.'</h5>
@@ -71,9 +86,7 @@
                    
 
                    $data .=' <div class="card">
-
-                   '.$row ->video.'
-
+                   '.getThumbnailHtml($row->video).'
                       <div class="card-body">
 
                       <h5>'. $row ->video_title.'</h5>
