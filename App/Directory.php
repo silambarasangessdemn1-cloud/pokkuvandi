@@ -1132,74 +1132,20 @@ $show_popup = ($popup_text != '' || $has_image) ? true : false;
 $popup_hash = $del_content ? md5($del_content[0]) : '';
 ?>
 <?php if($show_popup) { ?>
-<style>
-/* Modern Modal Styles */
-#contentPopupModal .modal-content {
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-}
-#contentPopupModal .modal-header {
-    background: linear-gradient(135deg, #199b37, #21c045);
-    color: white;
-    border-bottom: none;
-    padding: 20px 25px;
-}
-#contentPopupModal .modal-title {
-    font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 0.5px;
-}
-#contentPopupModal .close {
-    color: white;
-    opacity: 0.8;
-    text-shadow: none;
-    font-size: 1.5rem;
-}
-#contentPopupModal .close:hover {
-    opacity: 1;
-}
-#contentPopupModal .modal-body {
-    padding: 30px 25px;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: #444;
-}
-#contentPopupModal .modal-footer {
-    border-top: 1px solid #f0f0f0;
-    padding: 15px 25px;
-    background-color: #fafafa;
-}
-#contentPopupModal .btn-modern {
-    background-color: #199b37;
-    color: white;
-    border-radius: 8px;
-    padding: 8px 24px;
-    font-weight: 600;
-    border: none;
-    transition: all 0.3s ease;
-}
-#contentPopupModal .btn-modern:hover {
-    background-color: #147b2c;
-    box-shadow: 0 4px 10px rgba(25, 155, 55, 0.3);
-}
-</style>
-
 <div class="modal fade" id="contentPopupModal" tabindex="-1" role="dialog" aria-labelledby="contentPopupModalLabel" aria-hidden="true" style="z-index: 9999;">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="contentPopupModalLabel">📢 Announcement</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closePopup()">
+    <div class="modal-content" style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); overflow: hidden;">
+      <div class="modal-header" style="background: linear-gradient(135deg, #199b37, #21c045); color: white; border-bottom: none; padding: 20px 25px;">
+        <h5 class="modal-title" id="contentPopupModalLabel" style="font-weight: 700; font-size: 1.25rem; letter-spacing: 0.5px;">📢 Announcement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closePopup()" style="color: white; opacity: 0.8; text-shadow: none; font-size: 1.5rem;">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-center">
+      <div class="modal-body text-center" style="padding: 30px 25px; font-size: 1.05rem; line-height: 1.6; color: #444;">
         <?php echo $del_content[0]; ?>
       </div>
-      <div class="modal-footer justify-content-center">
-        <button type="button" class="btn btn-modern" data-dismiss="modal" onclick="closePopup()">Got it!</button>
+      <div class="modal-footer justify-content-center" style="border-top: 1px solid #f0f0f0; padding: 15px 25px; background-color: #fafafa;">
+        <button type="button" class="btn btn-modern" data-dismiss="modal" onclick="closePopup()" style="background-color: #199b37; color: white; border-radius: 8px; padding: 8px 24px; font-weight: 600; border: none;">Got it!</button>
       </div>
     </div>
   </div>
@@ -1275,39 +1221,6 @@ $("#enq_city").change(function(){
 </script>
 
 
-<script>
-        function getCookie(name) {
-            var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-            return v ? v[2] : null;
-        }
-
-<?php if($show_popup) { ?>
-        function closePopup() {
-            $('#contentPopupModal').modal('hide');
-        }
-
-        var currentHash = "<?php echo $popup_hash; ?>";
-        var popupCookie = getCookie('app_popup_hash');
-
-        if (popupCookie !== currentHash) {
-            setTimeout(function() {
-                $('#contentPopupModal').modal('show');
-            }, 500);
-            document.cookie = "app_popup_hash=" + currentHash + "; path=/; max-age=31536000";
-        }
-<?php } ?>
-
-        // Static Vehicle Image Update Modal Logic
-        var vehicleImgCookie = getCookie('app_vehicle_img_msg_shown');
-        if (!vehicleImgCookie) {
-            // Wait slightly longer so it doesn't instantly overlap if the CMS modal also shows
-            setTimeout(function() {
-                $('#vehicleImageUpdateModal').modal('show');
-            }, 1000);
-            document.cookie = "app_vehicle_img_msg_shown=true; path=/; max-age=31536000";
-        }
-</script>
-
 <!-- Static Vehicle Image Update Modal -->
 <div class="modal fade" id="vehicleImageUpdateModal" tabindex="-1" role="dialog" aria-labelledby="vehicleImageUpdateModalLabel" aria-hidden="true" style="z-index: 10000; background: rgba(0,0,0,0.5);">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1328,6 +1241,42 @@ $("#enq_city").change(function(){
     </div>
   </div>
 </div>
+
+<script>
+        function getCookie(name) {
+            var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return v ? v[2] : null;
+        }
+
+        <?php if($show_popup) { ?>
+        function closePopup() {
+            $('#contentPopupModal').modal('hide');
+        }
+        <?php } ?>
+
+        $(document).ready(function() {
+            <?php if($show_popup) { ?>
+            var currentHash = "<?php echo $popup_hash; ?>";
+            var popupCookie = getCookie('app_popup_hash');
+
+            if (popupCookie !== currentHash) {
+                setTimeout(function() {
+                    $('#contentPopupModal').modal('show');
+                }, 500);
+                document.cookie = "app_popup_hash=" + currentHash + "; path=/; max-age=31536000";
+            }
+            <?php } ?>
+
+            // Static Vehicle Image Update Modal Logic
+            var vehicleImgCookie = getCookie('app_vehicle_img_msg_v2');
+            if (!vehicleImgCookie) {
+                setTimeout(function() {
+                    $('#vehicleImageUpdateModal').modal('show');
+                }, 1000);
+                document.cookie = "app_vehicle_img_msg_v2=true; path=/; max-age=31536000";
+            }
+        });
+</script>
 
    
 
