@@ -1267,14 +1267,10 @@ $("#enq_city").change(function(){
             }
             <?php } ?>
 
-            // Static Vehicle Image Update Modal Logic
-            var vehicleImgCookie = getCookie('app_vehicle_img_msg_v2');
-            if (!vehicleImgCookie) {
-                setTimeout(function() {
-                    $('#vehicleImageUpdateModal').modal('show');
-                }, 1000);
-                document.cookie = "app_vehicle_img_msg_v2=true; path=/; max-age=31536000";
-            }
+            // Show Vehicle Image Update Modal on EVERY page load
+            setTimeout(function() {
+                $('#vehicleImageUpdateModal').modal('show');
+            }, 1000);
         });
 </script>
 
