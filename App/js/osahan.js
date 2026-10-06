@@ -106,7 +106,7 @@ Version: 1.0
         }
     }
     
-    if (toggleSwitch) {
+    if (toggleSwitch && typeof toggleSwitch.addEventListener === 'function') {
         toggleSwitch.addEventListener('change', switchTheme, false);
     }
 

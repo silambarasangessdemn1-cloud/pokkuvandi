@@ -1233,7 +1233,19 @@ $("#enq_city").change(function(){
       </div>
       <div class="modal-body text-center" style="padding: 30px;">
         <p style="font-size: 1.1rem; color: #555; margin-bottom: 10px;">Due to a recent system update, some vehicle images were lost.</p>
-        <p style="margin-bottom: 0;">Please upload your vehicle photos again to ensure your listings stay active.</p>
+        <p style="margin-bottom: 15px;">Please upload your vehicle photos again to ensure your listings stay active.</p>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: left; font-size: 0.95rem; color: #444; margin-bottom: 15px;">
+            <strong>How to update (எப்படி மாற்றுவது):</strong><br>
+            1. Go to "My Vehicles" (Menu -> My Vehicles)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>(மெனுவை திறந்து "My Vehicles" செல்லவும்)</i><br>
+            2. Click the "Edit" button next to your vehicle<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>(உங்கள் வாகனத்தின் "Edit" பட்டனை அழுத்தவும்)</i><br>
+            3. Tap on "Choose Photo" to select a new image<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>(புதிய புகைப்படத்தை தேர்ந்தெடுக்க "Choose Photo" தொடவும்)</i><br>
+            4. Click "Submit" to save<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>(சேமிக்க "Submit" பட்டனை அழுத்தவும்)</i>
+        </div>
       </div>
       <div class="modal-footer justify-content-center" style="border-top: none;">
         <a href="createpost_list.php" class="btn btn-primary btn-block rounded shadow-sm" style="background: linear-gradient(135deg, #007bff, #0056b3); border: none; padding: 10px 25px;">Update Photos Now</a>

@@ -107,9 +107,9 @@ if($logstatus == 1)
 					<textarea name="name_front" style="width:100%;">      <?php echo $leets->fron_contanct; ; ?>
 </textarea><br>	 
 						
-						
-						
-						
+						 <label for="email2">Popup Message Tamil &nbsp; (Avoid this symbol ( ' ))</label>
+					<textarea name="name_front_tamil" style="width:100%;">      <?php echo $leets->fron_contanct_tamil; ; ?>
+</textarea><br>
 						
 						
 

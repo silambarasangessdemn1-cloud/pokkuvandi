@@ -99,12 +99,8 @@ Menu
 </a> -->
 
 <a href="#" class="text-muted col iconm small text-decoration-none p-2 toggle">
-
-<p class="h5 m-0"><i class="fa fa-bars" aria-hidden="true"></i>
-</p>
-<p style="
-    font-size: 15px;margin-top: 8px;
-">Menu</p>
+<p class="h5 m-0"><i class="fa fa-bars" aria-hidden="true"></i></p>
+Menu
 </a>
             
 <!-- <a href="state_type_choose.php" class="text-muted col iconm small text-decoration-none p-2">
@@ -120,6 +116,13 @@ Pokkuvandi
       <style>
          .osahan-menu-fotter{
             background-color: #199b37   !important;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+         }
+         /* Add extra padding for android system navigation bar overlap */
+         @media screen and (max-width: 768px) {
+            .osahan-menu-fotter {
+               padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5px) !important;
+            }
          }
          .iconm{
             color: #000000!important;

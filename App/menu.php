@@ -287,9 +287,10 @@
       </div>
       <div class="modal-body text-center" style="padding: 30px;">
         <p style="font-size: 1.1rem; color: #555;">This service is currently not available.</p>
-        <p style="margin-bottom: 0;">You will be redirected to the <strong>Customer Vehicle Requirement Entry</strong> page shortly.</p>
+        <p style="margin-bottom: 0;">You can proceed to the <strong>Customer Vehicle Requirement Entry</strong> page.</p>
       </div>
       <div class="modal-footer justify-content-center" style="border-top: none;">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 8px; padding: 10px 25px;">Close</button>
         <a href="customer_pokkuvadi_entry.php" class="btn btn-danger" style="border-radius: 8px; padding: 10px 25px;">Proceed Now</a>
       </div>
     </div>
@@ -301,12 +302,8 @@ function showServiceNotAvailable(e) {
     if(e) e.preventDefault();
     if (window.jQuery && window.jQuery.fn.modal) {
         jQuery('#menuServiceNotAvailableModal').modal('show');
-        setTimeout(function() {
-            window.location.href = 'customer_pokkuvadi_entry.php';
-        }, 3000);
     } else {
-        alert("This service is currently not available. You will be redirected.");
-        window.location.href = 'customer_pokkuvadi_entry.php';
+        alert("This service is currently not available.");
     }
 }
 </script>
