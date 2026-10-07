@@ -149,31 +149,7 @@ $del=mysqli_fetch_object($about);
                ?> </h6>
                </a>
                
-               <?php
-               // Show common notification message only for logged-in users
-               if ($session_id) {
-                   // Fetch common notification messages for logged-in users
-                   $common_msg_query = "SELECT * FROM comman_notification_messages 
-                                        WHERE message_type = 'common' 
-                                        AND (is_read IS NULL OR is_read = 0)
-                                        ORDER BY notification_id DESC 
-                                        LIMIT 1";
-                   $common_msg_result = mysqli_query($config, $common_msg_query);
-                   
-                   if ($common_msg_result && mysqli_num_rows($common_msg_result) > 0) {
-                       $common_msg = mysqli_fetch_object($common_msg_result);
-                       $common_msg_text = htmlspecialchars($common_msg->message_text, ENT_QUOTES, 'UTF-8');
-                       ?>
-                       <div class="alert alert-info alert-dismissible fade show mt-2 mb-2" role="alert" style="font-size: 0.9rem;">
-                           <strong>📢 Notice:</strong> <?php echo $common_msg_text; ?>
-                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="markCommonNotificationRead(<?php echo $common_msg->notification_id; ?>)">
-                               <span aria-hidden="true">&times;</span>
-                           </button>
-                       </div>
-                       <?php
-                   }
-               }
-               ?>
+
                
                <div class="ml-auto d-flex align-items-center">
                <?php
@@ -393,6 +369,33 @@ $notif_count = mysqli_num_rows($notif_result);
                <a class="toggle ml-3" href="#"><i class="icofont-navigation-menu"></i></a>
 
             </div>
+            
+            <?php
+            // Show common notification message only for logged-in users
+            if ($session_id) {
+                // Fetch common notification messages for logged-in users
+                $common_msg_query = "SELECT * FROM comman_notification_messages 
+                                     WHERE message_type = 'common' 
+                                     AND (is_read IS NULL OR is_read = 0)
+                                     ORDER BY notification_id DESC 
+                                     LIMIT 1";
+                $common_msg_result = mysqli_query($config, $common_msg_query);
+                
+                if ($common_msg_result && mysqli_num_rows($common_msg_result) > 0) {
+                    $common_msg = mysqli_fetch_object($common_msg_result);
+                    $common_msg_text = htmlspecialchars($common_msg->message_text, ENT_QUOTES, 'UTF-8');
+                    ?>
+                    <div class="alert alert-info alert-dismissible fade show mt-2 mb-2" role="alert" style="font-size: 0.9rem; margin-top: 15px !important;">
+                        <strong>📢 Notice:</strong> <?php echo $common_msg_text; ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="markCommonNotificationRead(<?php echo $common_msg->notification_id; ?>)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+            
             <?php
 if ($session_id) {
 
