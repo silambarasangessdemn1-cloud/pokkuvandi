@@ -101,14 +101,10 @@ if($logstatus == 1)
 											
 						  <form action="Function/edit_front_content.php" method="post">		
 						 <div class="form-group">
-						 <label for="email2">Popup Message &nbsp; (Avoid this symbol ( ' ))</label>
+						 <label for="email2">Popup Message</label>
 						 <input type="hidden" class="form-control" name="Edit_front_id"  value="<?php echo $leets->cms_id;?>">
 						
-					<textarea name="name_front" style="width:100%;">      <?php echo $leets->fron_contanct; ; ?>
-</textarea><br>	 
-						
-						 <label for="email2">Popup Message Tamil &nbsp; (Avoid this symbol ( ' ))</label>
-					<textarea name="name_front_tamil" style="width:100%;">      <?php echo $leets->fron_contanct_tamil; ; ?>
+					<textarea name="name_front" style="width:100%; height: 150px;">      <?php echo $leets->fron_contanct; ?>
 </textarea><br>
 						
 						
