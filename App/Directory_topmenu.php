@@ -175,7 +175,7 @@ $del=mysqli_fetch_object($about);
                }
                ?>
                
-               <p class="ml-auto m-0">
+               <div class="ml-auto d-flex align-items-center">
                <?php
 // Logged-in customer ID
  // or your session/customer ID variable
@@ -230,7 +230,7 @@ if ($session_id) {
     }
 }
 ?>
-<div class="d-flex align-items-center mb-3">
+<div class="d-flex align-items-center">
     <!-- Pending Orders Notification -->
     <?php if ($session_id) { // Only show for logged-in users ?>
     <a href="driver_noti_page.php" class="text-decoration-none bg-white p-2 rounded shadow-sm d-flex align-items-center mr-2">
@@ -388,7 +388,7 @@ $notif_count = mysqli_num_rows($notif_result);
                   </a> -->
 
       
-               </p>
+               </div>
 
                <a class="toggle ml-3" href="#"><i class="icofont-navigation-menu"></i></a>
 

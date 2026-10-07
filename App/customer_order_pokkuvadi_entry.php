@@ -135,7 +135,7 @@ $_SESSION['form_token'] = $token;
                     <p style="margin-bottom: 0;">You can proceed to the <strong>Customer Vehicle Requirement Entry</strong> page.</p>
                   </div>
                   <div class="modal-footer justify-content-center" style="border-top: none;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 8px; padding: 10px 25px;">Close</button>
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 8px; padding: 10px 25px;">Close</button> -->
                     <a href="customer_pokkuvadi_entry.php" class="btn btn-danger" style="border-radius: 8px; padding: 10px 25px;">Proceed Now</a>
                   </div>
                 </div>

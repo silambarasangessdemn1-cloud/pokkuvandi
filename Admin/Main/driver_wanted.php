@@ -138,7 +138,7 @@ if($logstatus == 1)
 											<tbody>
 											<?php 
 											$mc=1;
-											$main_cate=mysqli_query($config,"select * from job_search_post where status = '0' and delete_id= '0' and job_category_id = '1' and create_on >= '2025-01-09' order by job_search_id desc");
+											$main_cate=mysqli_query($config,"select * from job_search_post where delete_id= '0' and job_category_id = '1' and create_on >= '2025-01-09' order by job_search_id desc");
 											while($macate=mysqli_fetch_object($main_cate))
 											{
 											?>

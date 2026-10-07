@@ -1222,14 +1222,11 @@ $("#enq_city").change(function(){
 
 
 <!-- Static Vehicle Image Update Modal -->
-<div class="modal fade" id="vehicleImageUpdateModal" tabindex="-1" role="dialog" aria-labelledby="vehicleImageUpdateModalLabel" aria-hidden="true" style="z-index: 10000; background: rgba(0,0,0,0.5);">
+<div class="modal fade" id="vehicleImageUpdateModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="vehicleImageUpdateModalLabel" aria-hidden="true" style="z-index: 10000; background: rgba(0,0,0,0.5);">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
       <div class="modal-header" style="background-color: #ffc107; color: #333; border-bottom: none; border-radius: 15px 15px 0 0;">
         <h5 class="modal-title" id="vehicleImageUpdateModalLabel">⚠️ Action Required</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#vehicleImageUpdateModal').modal('hide');">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body text-center" style="padding: 30px;">
         <p style="font-size: 1.1rem; color: #555; margin-bottom: 10px;">Due to a recent system update, some vehicle images were lost.</p>
@@ -1237,14 +1234,14 @@ $("#enq_city").change(function(){
         
         <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: left; font-size: 0.95rem; color: #444; margin-bottom: 15px;">
             <strong>How to update (எப்படி மாற்றுவது):</strong><br>
-            1. Go to "My Vehicles" (Menu -> My Vehicles)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<i>(மெனுவை திறந்து "My Vehicles" செல்லவும்)</i><br>
+            1. Go to "My Vehicles" (Menu -> Registered Vehicles List)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>(மெனுவை திறந்து "Registered Vehicles" செல்லவும்)</i><br>
             2. Click the "Edit" button next to your vehicle<br>
             &nbsp;&nbsp;&nbsp;&nbsp;<i>(உங்கள் வாகனத்தின் "Edit" பட்டனை அழுத்தவும்)</i><br>
             3. Tap on "Choose Photo" to select a new image<br>
             &nbsp;&nbsp;&nbsp;&nbsp;<i>(புதிய புகைப்படத்தை தேர்ந்தெடுக்க "Choose Photo" தொடவும்)</i><br>
-            4. Click "Submit" to save<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<i>(சேமிக்க "Submit" பட்டனை அழுத்தவும்)</i>
+            4. Click "Update" to save<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>(சேமிக்க "Update" பட்டனை அழுத்தவும்)</i>
         </div>
       </div>
       <div class="modal-footer justify-content-center" style="border-top: none;">
@@ -1271,6 +1268,7 @@ $("#enq_city").change(function(){
             var sessionAdminKey = 'app_admin_msg_shown_' + '<?php echo $popup_hash; ?>';
             var sessionVehicleKey = 'app_vehicle_msg_shown';
             var isDriver = (localStorage.getItem('user_type') === 'driver');
+            var isUserLoggedIn = <?php echo (isset($session_id) && $session_id != '') ? 'true' : 'false'; ?>;
 
             <?php if($show_popup) { ?>
             if (!sessionStorage.getItem(sessionAdminKey)) {
@@ -1283,7 +1281,7 @@ $("#enq_city").change(function(){
 
             // When admin modal closes, show the static modal if not shown this session and user is driver
             $('#contentPopupModal').on('hidden.bs.modal', function () {
-                if (isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
+                if (isUserLoggedIn && isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
                     setTimeout(function() {
                         $('#vehicleImageUpdateModal').modal('show');
                     }, 500);
@@ -1293,7 +1291,7 @@ $("#enq_city").change(function(){
             <?php } ?>
 
             // If admin modal is NOT showing right now, show the static modal directly for drivers
-            if (!adminModalWillShow && isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
+            if (!adminModalWillShow && isUserLoggedIn && isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
                 setTimeout(function() {
                     $('#vehicleImageUpdateModal').modal('show');
                 }, 1000);

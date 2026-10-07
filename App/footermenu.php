@@ -116,12 +116,13 @@ Pokkuvandi
       <style>
          .osahan-menu-fotter{
             background-color: #199b37   !important;
-            padding-bottom: env(safe-area-inset-bottom, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 25px);
+            z-index: 1040;
          }
          /* Add extra padding for android system navigation bar overlap */
          @media screen and (max-width: 768px) {
             .osahan-menu-fotter {
-               padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5px) !important;
+               padding-bottom: calc(env(safe-area-inset-bottom, 25px) + 15px) !important;
             }
          }
          .iconm{

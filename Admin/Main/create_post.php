@@ -482,9 +482,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                         .table-responsive .table td:nth-child(9):before { content: "City"; }
                                         .table-responsive .table td:nth-child(10):before { content: "Status"; }
                                         .table-responsive .table td:nth-child(11):before { content: "Paid Status"; }
-                                        .table-responsive .table td:nth-child(12):before { content: "Amount"; }
-                                        .table-responsive .table td:nth-child(13):before { content: "Create On"; }
-                                        .table-responsive .table td:nth-child(14):before { content: "Action"; }
+                                        .table-responsive .table td:nth-child(12):before { content: "Confirmed On"; }
+                                        .table-responsive .table td:nth-child(13):before { content: "Amount"; }
+                                        .table-responsive .table td:nth-child(14):before { content: "Create On"; }
+                                        .table-responsive .table td:nth-child(15):before { content: "Action"; }
                                         
                                         /* Highlight the first row (S.No) as a header */
                                         .table-responsive .table td:nth-child(1) {
@@ -523,6 +524,7 @@ document.addEventListener('DOMContentLoaded', function() {
 													
 													<th>Status</th>
 													<th>Paid Status</th> <!-- New Column -->
+													<th>Confirmed On</th>
 													<th>Amount</th> <!-- New Column -->
 													<th>Create On</th>
 													<th>Action</th>

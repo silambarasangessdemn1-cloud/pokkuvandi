@@ -337,6 +337,9 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
     // Date
     $createDate = !empty($row['post_addon']) ? date('d-m-Y', strtotime($row['post_addon'])) : '';
     
+    // Payment Confirmed On
+    $paymentConfirmedDate = !empty($paymentConfirmedAt_db) ? date('d-M-Y h:i A', strtotime($paymentConfirmedAt_db)) : '-';
+    
     // Vehicle photo
     $vehiclePhoto = '<img src="../../photos/vehicle/' . $row['vehicle_photo'] . '" style="width: 128px; height: 129px;">';
     
@@ -356,6 +359,7 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
         $areaName,
         $statusText,
         $paymentStatus,
+        $paymentConfirmedDate,
         $amount,
         $createDate,
         $actionButtons

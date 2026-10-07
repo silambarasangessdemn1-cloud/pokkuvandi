@@ -17,17 +17,17 @@ $maincate3_loader=mysqli_query($config,$or_loader);
 $mac3_loader=mysqli_fetch_object($maincate3_loader);
 
 
-$loader_to_date = $mac3_loader ? $mac3_loader->loader_to_date : '';
-$loader_to_time = $mac3_loader ? $mac3_loader->loader_to_time : '';
-$loader_from_date = $mac3_loader ? $mac3_loader->loader_from_date : '';
-$loader_from_time = $mac3_loader ? $mac3_loader->loader_from_time : '';
+$loader_to_date = $mac3_loader ? $mac3_loader->loader_to_date_ : '';
+$loader_to_time = $mac3_loader ? $mac3_loader->loader_to_time_ : '';
+$loader_from_date = $mac3_loader ? $mac3_loader->loader_from_date_ : '';
+$loader_from_time = $mac3_loader ? $mac3_loader->loader_from_time_ : '';
 date_default_timezone_set('Asia/Kolkata'); 
 $from_date_time = ($loader_from_date && $loader_from_time) ? date('Y-m-d H:i', strtotime("$loader_from_date $loader_from_time")) : '';
 $to_date_time = ($loader_to_date && $loader_to_time) ? date('Y-m-d H:i', strtotime("$loader_to_date $loader_to_time")) : '';
 
-$loader_to_place = $mac3_loader ? $mac3_loader->loader_to_place : '';
-$loader_space = $mac3_loader ? $mac3_loader->loader_space : '';
-$loader_remarks = $mac3_loader ? $mac3_loader->loader_remarks : '';
+$loader_to_place = $mac3_loader ? $mac3_loader->loader_to_place_ : '';
+$loader_space = $mac3_loader ? $mac3_loader->loader_space_ : '';
+$loader_remarks = $mac3_loader ? $mac3_loader->loader_remarks_ : '';
 
 
  $data='';
