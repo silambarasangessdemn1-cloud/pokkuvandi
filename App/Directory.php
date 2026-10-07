@@ -1141,7 +1141,12 @@ $popup_hash = $del_content ? md5($del_content[0]) : '';
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-center" style="padding: 30px 25px; font-size: 1.05rem; line-height: 1.6; color: #444;">
+      <style>
+        #contentPopupModal .modal-body, #contentPopupModal .modal-body * {
+            color: #111111 !important;
+        }
+      </style>
+      <div class="modal-body text-center" style="padding: 30px 25px; font-size: 1.05rem; line-height: 1.6; color: #111111;">
         <?php echo $del_content[0]; ?>
       </div>
       <div class="modal-footer justify-content-center" style="border-top: 1px solid #f0f0f0; padding: 15px 25px; background-color: #fafafa;">

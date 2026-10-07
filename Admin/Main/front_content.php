@@ -61,7 +61,11 @@ if($logstatus == 1)
 	<link rel="stylesheet" href="../assets/css/atlantis.min.css">
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="../assets/css/demo.css">
-	
+	<style>
+		.nicEdit-main, .nicEdit-main * {
+			color: #111111 !important;
+		}
+	</style>
 </head>
 <body>
 	<div class="wrapper">
@@ -104,9 +108,8 @@ if($logstatus == 1)
 						 <label for="email2">Popup Message</label>
 						 <input type="hidden" class="form-control" name="Edit_front_id"  value="<?php echo $leets->cms_id;?>">
 						
-					<textarea name="name_front" style="width:100%; height: 150px;">      <?php echo $leets->fron_contanct; ?>
+					<textarea name="name_front" style="width:100%; height: 150px; color: #333333;">      <?php echo $leets->fron_contanct; ?>
 </textarea><br>
-						
 						
 
 
