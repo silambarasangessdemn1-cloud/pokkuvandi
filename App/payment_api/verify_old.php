@@ -88,7 +88,24 @@ if ($success === true)
   if($session_post_id !='')
   {
     $current_Date=date('Y-m-d');
-    $addmaincate=mysqli_query($config,"update create_post set driver_name='$session_driver',vehicle_no='$session_vehicle_no',address='$session_address',post_addon='$current_Date',vehicle_name='$session_vehicle_name',create_on='$current_Date',package_id='$session_package_id',package_amount='$session_package_amount',package_days='$session_package_days',expiry_date='$session_expiry_date'	where post_id='$session_post_id' ");	
+    
+    $post_=mysqli_query($config,"select * from create_post where post_id='$session_post_id'");
+    $post__=mysqli_fetch_object($post_);
+    $expiry_date = $post__->expiry_date;
+    $old_post_addon = $post__->post_addon;
+    $is_first_payment = ($post__->status == '0' || $post__->status == 0);
+    
+    if ($is_first_payment || empty($expiry_date) || $current_Date >= $expiry_date) {
+        // First payment or already expired: start from today
+        $new_post_addon = $current_Date;
+        $session_expiry_date = date('Y-m-d', strtotime("$current_Date +$session_package_days days"));
+    } else {
+        // Renewal before expiry: extend from existing expiry date
+        $new_post_addon = $old_post_addon;
+        $session_expiry_date = date('Y-m-d', strtotime("$expiry_date +$session_package_days days"));
+    }
+    
+    $addmaincate=mysqli_query($config,"update create_post set driver_name='$session_driver',vehicle_no='$session_vehicle_no',address='$session_address',post_addon='$new_post_addon',vehicle_name='$session_vehicle_name',create_on='$current_Date',package_id='$session_package_id',package_amount='$session_package_amount',package_days='$session_package_days',expiry_date='$session_expiry_date'	where post_id='$session_post_id' ");	
     
   }
   else

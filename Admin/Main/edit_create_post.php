@@ -1056,16 +1056,6 @@ $isFreeRegistration = (
            value="<?php echo $data->utr_date ?? ''; ?>">
 </div>
 
-<!-- PAID ON -->
-<div class="form-group col-md-6">
-    <label>Paid On</label>
-    <input type="date" class="form-control"
-           name="paid_on"
-           value="<?php echo $paidon_display; ?>">
-    <?php if ($online_payment_exists): ?>
-        <small style="color:green;">✓ Online payment detected</small>
-    <?php endif; ?>
-</div>
 
 <!-- BANK REFERENCE -->
 <div class="form-group col-md-6">
@@ -1149,44 +1139,12 @@ $(document).ready(function() {
         if ($("#paid_status").val() === "3") {
             // Update package start date to UTR date
             $("#package_start_date").val($(this).val());
-            // Update Paid On date to UTR date
-            $("#paid_on").val($(this).val());
             // Recalculate expiry date
             calculateExpiryDate();
         }
     });
     
-    // When payment status changes, update Paid On date if needed
-    $("#paid_status").on('change', function() {
-        var paidStatus = $(this).val();
-        var currentPaidOn = $("#paid_on").val();
-        
-        // If Paid On is empty and payment status is set, set to current date
-        if (!currentPaidOn && paidStatus !== "" && paidStatus !== "0") {
-            var today = new Date();
-            var year = today.getFullYear();
-            var month = String(today.getMonth() + 1).padStart(2, '0');
-            var day = String(today.getDate()).padStart(2, '0');
-            var formattedDate = year + '-' + month + '-' + day;
-            $("#paid_on").val(formattedDate);
-        }
-        
-        // If Scan QR Payment is selected and UTR date exists, use UTR date
-        if (paidStatus === "3" && $("#utr_date").val()) {
-            $("#paid_on").val($("#utr_date").val());
-        }
-    });
-    
-    // When Paid On date changes, update package start date if payment is confirmed
-    $("#paid_on").on('change', function() {
-        var paidStatus = $("#paid_status").val();
-        if (paidStatus !== "" && paidStatus !== "0") {
-            // Update package start date to Paid On date
-            $("#package_start_date").val($(this).val());
-            // Recalculate expiry date
-            calculateExpiryDate();
-        }
-    });
+
 });
 </script>
 

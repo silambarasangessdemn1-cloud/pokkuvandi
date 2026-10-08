@@ -68,6 +68,12 @@ try {
 error_log("create_post_ssp.php: Script started at " . date('Y-m-d H:i:s'));
 
 // DataTables server-side processing parameters
+$check_created_at = mysqli_query($config, "SHOW COLUMNS FROM `create_post` LIKE 'created_at'");
+if(mysqli_num_rows($check_created_at) == 0) {
+    mysqli_query($config, "ALTER TABLE `create_post` ADD COLUMN `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER `post_addon`");
+    mysqli_query($config, "UPDATE `create_post` SET `created_at` = CAST(`post_addon` AS DATETIME)");
+}
+
 $draw = isset($_GET['draw']) ? intval($_GET['draw']) : 1;
 $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
 $length = isset($_GET['length']) ? intval($_GET['length']) : 10;
@@ -292,7 +298,9 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
             }
             $paymentStatus .= "<br><span class='badge bg-success mt-2'>Paid</span>";
             if (!empty($paymentConfirmedAt_db)) {
-                $paymentStatus .= "<br><small>Confirmed on: " . date('d-M-Y h:i A', strtotime($paymentConfirmedAt_db)) . "</small>";
+                $p_time = date('H:i:s', strtotime($paymentConfirmedAt_db));
+                $p_format = ($p_time === '00:00:00') ? 'd-M-Y' : 'd-M-Y h:i A';
+                $paymentStatus .= "<br><small>Confirmed on: " . date($p_format, strtotime($paymentConfirmedAt_db)) . "</small>";
             }
         } else {
             $paymentStatus = "Payment Pending<br><span class='badge bg-warning mt-2'>Pending</span>";
@@ -305,7 +313,9 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
         if ($status == 1) {
             $paymentStatus = "UTR No: $utrNumber<br>UTR Date: $utrDate<br><span class='badge bg-success mt-2'>Payment Confirmed</span>";
             if (!empty($paymentConfirmedAt_db)) {
-                $paymentStatus .= "<br><small>Confirmed on: " . date('d-M-Y h:i A', strtotime($paymentConfirmedAt_db)) . "</small>";
+                $p_time = date('H:i:s', strtotime($paymentConfirmedAt_db));
+                $p_format = ($p_time === '00:00:00') ? 'd-M-Y' : 'd-M-Y h:i A';
+                $paymentStatus .= "<br><small>Confirmed on: " . date($p_format, strtotime($paymentConfirmedAt_db)) . "</small>";
             }
         } else {
             $paymentStatus = "UTR No: $utrNumber<br>UTR Date: $utrDate<br><button class='btn btn-success btn-sm mt-2' onclick='updatePaymentStatus(" . $row['post_id'] . ")'>Confirm Payment</button>";
@@ -335,10 +345,24 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
     $statusText = ($row['status'] == 1) ? '<label class="btn btn-success">Active</label>' : '<label class="btn btn-danger">In-Active</label>';
     
     // Date
-    $createDate = !empty($row['post_addon']) ? date('d-m-Y', strtotime($row['post_addon'])) : '';
-    
+    if (!empty($row['created_at'])) {
+        $c_time = date('H:i:s', strtotime($row['created_at']));
+        $c_format = ($c_time === '00:00:00') ? 'd-m-Y' : 'd-m-Y h:i A';
+        $createDate = date($c_format, strtotime($row['created_at']));
+    } elseif (!empty($row['post_addon'])) {
+        // Fallback just in case created_at is somehow empty, though it shouldn't be
+        $createDate = date('d-m-Y', strtotime($row['post_addon']));
+    } else {
+        $createDate = '';
+    }
     // Payment Confirmed On
-    $paymentConfirmedDate = !empty($paymentConfirmedAt_db) ? date('d-M-Y h:i A', strtotime($paymentConfirmedAt_db)) : '-';
+    if (!empty($paymentConfirmedAt_db)) {
+        $p_time2 = date('H:i:s', strtotime($paymentConfirmedAt_db));
+        $p_format2 = ($p_time2 === '00:00:00') ? 'd-M-Y' : 'd-M-Y h:i A';
+        $paymentConfirmedDate = date($p_format2, strtotime($paymentConfirmedAt_db));
+    } else {
+        $paymentConfirmedDate = '-';
+    }
     
     // Vehicle photo
     $vehiclePhoto = '<img src="../../photos/vehicle/' . $row['vehicle_photo'] . '" style="width: 128px; height: 129px;">';

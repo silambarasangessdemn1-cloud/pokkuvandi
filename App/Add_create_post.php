@@ -24,6 +24,13 @@ if(mysqli_num_rows($check_column) == 0) {
     mysqli_query($config, $alter_query);
 }
 
+// ✅ ALTER query to allow NULL in expiry_date if it's currently NOT NULL
+$check_expiry = mysqli_query($config, "SHOW COLUMNS FROM `create_post` LIKE 'expiry_date'");
+$expiry_data = mysqli_fetch_object($check_expiry);
+if ($expiry_data && strtoupper($expiry_data->Null) == 'NO') {
+    mysqli_query($config, "ALTER TABLE `create_post` MODIFY COLUMN `expiry_date` DATE NULL DEFAULT NULL");
+}
+
 if(isset($_POST['post_add']))
 {
   // ✅ FIRST: Check vehicle number BEFORE anything else

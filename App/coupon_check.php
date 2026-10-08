@@ -20,6 +20,8 @@ $session__username;
 $coupon=mysqli_query($config,"select * from coupon where coupon_name ='$coupon_code' and status=0");
  $coupon_=mysqli_fetch_object($coupon);
 
+if($coupon_)
+{
   $coupon_type = $coupon_->coupon_type;
 
  $coupon_->coupon_name;
@@ -44,8 +46,6 @@ $coupon=mysqli_query($config,"select * from coupon where coupon_name ='$coupon_c
    $current_date=date("Y-m-d ");
 ?>
 <?php 
-if($coupon_!='')
-{
    if($coupon_type == '1')
    {
      //echo $query="select count(*) as total from create_post where discount_name ='$coupon_code' and coupon_type='$coupon_type' and customer_id='$customer_id'";

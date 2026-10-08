@@ -103,21 +103,22 @@ if ($success === true)
     $post_=mysqli_query($config,"select * from create_post where post_id='$session_post_id'");
    $post__=mysqli_fetch_object($post_);
    $expiry_date = $post__->expiry_date;
-
-// if($current_Date >= $expiry_date )
-// {
-//   $addmaincate=mysqli_query($config,"update create_post set driver_name='$session_driver',vehicle_no='$session_vehicle_no',address='$session_address',post_addon='$current_Date',vehicle_name='$session_vehicle_name',create_on='$current_Date',package_id='$session_package_id',package_amount='$session_package_amount',package_days='$session_package_days',expiry_date='$session_expiry_date',renewal_post='1',net_amount='$session_net_amount',coupon_type='$coupon_type',discount_amount='$less_amount',discount_name='$coupon_code', shop_name='$session_shop_name',shop_address='$session_shop_address' where post_id='$session_post_id' ");	
-// }
-// else
-// {
-//   $addmaincate=mysqli_query($config,"update create_post set driver_name='$session_driver',vehicle_no='$session_vehicle_no',address='$session_address',post_addon='$current_Date',vehicle_name='$session_vehicle_name',create_on='$current_Date',package_id='$session_package_id',package_amount='$session_package_amount',package_days='$session_package_days',expiry_date='$session_expiry_date',renewal_post='1',net_amount='$session_net_amount',coupon_type='$coupon_type',discount_amount='$less_amount',discount_name='$coupon_code',shop_name='$session_shop_name',shop_address='$session_shop_address'	where post_id='$session_post_id' ");	
-// }
+   $old_post_addon = $post__->post_addon;
+   $is_first_payment = ($post__->status == '0' || $post__->status == 0);
    
-      
+   if ($is_first_payment || empty($expiry_date) || $current_Date >= $expiry_date) {
+       // First payment or already expired: start from today
+       $new_post_addon = $current_Date;
+       $session_expiry_date = date('Y-m-d', strtotime("$current_Date +$session_package_days days"));
+   } else {
+       // Renewal before expiry: extend from existing expiry date
+       $new_post_addon = $old_post_addon;
+       $session_expiry_date = date('Y-m-d', strtotime("$expiry_date +$session_package_days days"));
+   }
    
-if($current_Date >= $expiry_date )
+if($current_Date >= $expiry_date || $is_first_payment || empty($expiry_date))
 {
-  $addmaincate=mysqli_query($config,"update create_post set driver_name='$session_driver',create_on='$current_Date',package_id='$session_package_id',package_amount='$session_package_amount',package_days='$session_package_days',expiry_date='$session_expiry_date',renewal_post='1',net_amount='$session_net_amount',coupon_type='$coupon_type',discount_amount='$less_amount',discount_name='$coupon_code' where post_id='$session_post_id' ");	
+  $addmaincate=mysqli_query($config,"update create_post set driver_name='$session_driver',post_addon='$new_post_addon',create_on='$current_Date',package_id='$session_package_id',package_amount='$session_package_amount',package_days='$session_package_days',expiry_date='$session_expiry_date',renewal_post='1',net_amount='$session_net_amount',coupon_type='$coupon_type',discount_amount='$less_amount',discount_name='$coupon_code' where post_id='$session_post_id' ");	
 
   
   $addmaincate=mysqli_query($config,"insert into renewal_list(post_id,re_package_id,re_package_amount,re_package_days,re_expiry_date,re_net_amount,re_coupon_type,re_discount_amount,re_discount_name,re_date,re_customer_id)
@@ -127,7 +128,7 @@ if($current_Date >= $expiry_date )
 }
 else
 {
-  $addmaincate=mysqli_query($config,"update create_post set driver_name='$session_driver',create_on='$current_Date',package_id='$session_package_id',package_amount='$session_package_amount',package_days='$session_package_days',expiry_date='$session_expiry_date',renewal_post='1',net_amount='$session_net_amount',coupon_type='$coupon_type',discount_amount='$less_amount',discount_name='$coupon_code'	where post_id='$session_post_id' ");	
+  $addmaincate=mysqli_query($config,"update create_post set driver_name='$session_driver',post_addon='$new_post_addon',create_on='$current_Date',package_id='$session_package_id',package_amount='$session_package_amount',package_days='$session_package_days',expiry_date='$session_expiry_date',renewal_post='1',net_amount='$session_net_amount',coupon_type='$coupon_type',discount_amount='$less_amount',discount_name='$coupon_code'	where post_id='$session_post_id' ");	
   
   $addmaincate=mysqli_query($config,"insert into renewal_list(post_id,re_package_id,re_package_amount,re_package_days,re_expiry_date,re_net_amount,re_coupon_type,re_discount_amount,re_discount_name,re_date,re_customer_id)
   values('$session_post_id','$session_package_id','$session_package_amount','$session_package_days','$session_expiry_date',' $session_net_amount','$coupon_type','$less_amount','$coupon_code','$current_Date','$session_customer_id')");	
