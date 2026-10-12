@@ -414,9 +414,11 @@ else {
             }).then((result) => {
                 if (result.isConfirmed) {
                     localStorage.setItem('user_type', 'driver');
-                    window.location.href = 'Directory.php';
+                    sessionStorage.setItem('show_driver_popup_now', 'true');
+                    window.location.href = 'Directory.php?from_driver=1';
                 } else {
                     localStorage.setItem('user_type', 'customer');
+                    sessionStorage.removeItem('show_driver_popup_now');
                     window.location.href = 'Directory.php';
                 }
             });

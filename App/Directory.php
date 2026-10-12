@@ -1276,6 +1276,9 @@ $("#enq_city").change(function(){
     <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
       <div class="modal-header" style="background-color: #ffc107; color: #333; border-bottom: none; border-radius: 15px 15px 0 0;">
         <h5 class="modal-title" id="vehicleImageUpdateModalLabel">⚠️ Action Required</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #333; opacity: 0.8; text-shadow: none; font-size: 1.5rem;">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body text-center" style="padding: 30px;">
         <p style="font-size: 1.1rem; color: #555; margin-bottom: 10px;">Due to a recent system update, some vehicle images were lost.</p>
@@ -1293,8 +1296,9 @@ $("#enq_city").change(function(){
             &nbsp;&nbsp;&nbsp;&nbsp;<i>(சேமிக்க "Update" பட்டனை அழுத்தவும்)</i>
         </div>
       </div>
-      <div class="modal-footer justify-content-center" style="border-top: none;">
+      <div class="modal-footer justify-content-center" style="border-top: none; flex-direction: column;">
         <a href="createpost_list.php" class="btn btn-primary btn-block rounded shadow-sm" style="background: linear-gradient(135deg, #007bff, #0056b3); border: none; padding: 10px 25px;">Update Photos Now</a>
+        <button type="button" class="btn btn-light btn-block rounded mt-2" data-dismiss="modal" style="border: 1px solid #ddd; color: #666;">Close / Later</button>
       </div>
     </div>
   </div>
@@ -1314,70 +1318,73 @@ $("#enq_city").change(function(){
         }
 
         $(document).ready(function() {
-            var adminModalWillShow = false;
+            var urlParams = new URLSearchParams(window.location.search);
+            var isFromDriverSelection = (urlParams.get('from_driver') === '1') || (sessionStorage.getItem('show_driver_popup_now') === 'true');
+            if (isFromDriverSelection) {
+                sessionStorage.removeItem('show_driver_popup_now');
+            }
+
             var sessionAdminKey = 'app_admin_msg_shown_' + '<?php echo $all_users_hash; ?>';
             var sessionDriverKey = 'app_driver_msg_shown_' + '<?php echo $driver_hash; ?>';
             var sessionVehicleKey = 'app_vehicle_msg_shown';
-            var isDriver = (localStorage.getItem('user_type') === 'driver') || <?php echo $is_driver_user ? 'true' : 'false'; ?>;
-            var isUserLoggedIn = <?php echo (isset($session_id) && $session_id != '') ? 'true' : 'false'; ?>;
 
-            if (isDriver) {
+            if (isFromDriverSelection) {
+                // Flow: User just logged in and selected Driver
                 <?php if($show_driver_popup) { ?>
-                // Show driver popup specifically to drivers
-                if (!sessionStorage.getItem(sessionDriverKey)) {
-                    adminModalWillShow = true;
                     setTimeout(function() {
                         $('#driverContentPopupModal').modal('show');
                     }, 500);
                     sessionStorage.setItem(sessionDriverKey, 'true');
-                }
 
-                $('#driverContentPopupModal').on('hidden.bs.modal', function () {
-                    if (isUserLoggedIn && !sessionStorage.getItem(sessionVehicleKey)) {
+                    $('#driverContentPopupModal').on('hidden.bs.modal', function () {
+                        if (!sessionStorage.getItem(sessionVehicleKey)) {
+                            setTimeout(function() {
+                                $('#vehicleImageUpdateModal').modal('show');
+                            }, 500);
+                            sessionStorage.setItem(sessionVehicleKey, 'true');
+                        }
+                    });
+                <?php } else { ?>
+                    if (!sessionStorage.getItem(sessionVehicleKey)) {
                         setTimeout(function() {
                             $('#vehicleImageUpdateModal').modal('show');
                         }, 500);
                         sessionStorage.setItem(sessionVehicleKey, 'true');
                     }
-                });
-                <?php } else if($show_all_users_popup) { ?>
-                // Fallback to all-users popup if driver popup is empty
-                if (!sessionStorage.getItem(sessionAdminKey)) {
-                    adminModalWillShow = true;
-                    setTimeout(function() {
-                        $('#contentPopupModal').modal('show');
-                    }, 500);
-                    sessionStorage.setItem(sessionAdminKey, 'true');
-                }
-
-                $('#contentPopupModal').on('hidden.bs.modal', function () {
-                    if (isUserLoggedIn && !sessionStorage.getItem(sessionVehicleKey)) {
-                        setTimeout(function() {
-                            $('#vehicleImageUpdateModal').modal('show');
-                        }, 500);
-                        sessionStorage.setItem(sessionVehicleKey, 'true');
-                    }
-                });
                 <?php } ?>
             } else {
-                // Non-drivers (customers / visitors): ONLY show all-users popup, never driver popup
+                // Flow: Opening the app (All Users / Customers)
                 <?php if($show_all_users_popup) { ?>
-                if (!sessionStorage.getItem(sessionAdminKey)) {
-                    adminModalWillShow = true;
-                    setTimeout(function() {
-                        $('#contentPopupModal').modal('show');
-                    }, 500);
-                    sessionStorage.setItem(sessionAdminKey, 'true');
-                }
-                <?php } ?>
-            }
+                    if (!sessionStorage.getItem(sessionAdminKey)) {
+                        setTimeout(function() {
+                            $('#contentPopupModal').modal('show');
+                        }, 500);
+                        sessionStorage.setItem(sessionAdminKey, 'true');
 
-            // If admin/driver modal is NOT showing right now, show the static modal directly for drivers
-            if (!adminModalWillShow && isUserLoggedIn && isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
-                setTimeout(function() {
-                    $('#vehicleImageUpdateModal').modal('show');
-                }, 1000);
-                sessionStorage.setItem(sessionVehicleKey, 'true');
+                        // When All Users / Customers popup is closed, show the hardcoded vehicle model next!
+                        $('#contentPopupModal').on('hidden.bs.modal', function () {
+                            if (!sessionStorage.getItem(sessionVehicleKey)) {
+                                setTimeout(function() {
+                                    $('#vehicleImageUpdateModal').modal('show');
+                                }, 500);
+                                sessionStorage.setItem(sessionVehicleKey, 'true');
+                            }
+                        });
+                    } else if (!sessionStorage.getItem(sessionVehicleKey)) {
+                        setTimeout(function() {
+                            $('#vehicleImageUpdateModal').modal('show');
+                        }, 500);
+                        sessionStorage.setItem(sessionVehicleKey, 'true');
+                    }
+                <?php } else { ?>
+                    // If no all-users popup content from admin, show hardcoded vehicle modal directly
+                    if (!sessionStorage.getItem(sessionVehicleKey)) {
+                        setTimeout(function() {
+                            $('#vehicleImageUpdateModal').modal('show');
+                        }, 500);
+                        sessionStorage.setItem(sessionVehicleKey, 'true');
+                    }
+                <?php } ?>
             }
         });
 </script>
