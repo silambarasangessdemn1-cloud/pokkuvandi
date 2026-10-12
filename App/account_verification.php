@@ -187,5 +187,45 @@ Thanks</p> -->
       <script type="text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
       <!-- Custom scripts for all pages-->
       <script src="js/osahan.js"></script>
+
+<?php
+$signup_pop_q = mysqli_query($config, "SELECT content FROM signup_messages ORDER BY id DESC LIMIT 1");
+$signup_del_content = mysqli_fetch_array($signup_pop_q);
+$signup_popup_text = $signup_del_content ? trim(strip_tags(str_replace('&nbsp;', '', $signup_del_content[0]))) : '';
+$signup_has_image = $signup_del_content ? strpos($signup_del_content[0], '<img') !== false : false;
+$signup_show_popup = ($signup_popup_text != '' || $signup_has_image) ? true : false;
+?>
+<?php if(isset($_GET['success']) && $_GET['success'] == 100 && $signup_show_popup) { ?>
+<div class="modal fade" id="signupContentPopupModal" tabindex="-1" role="dialog" aria-labelledby="signupContentPopupModalLabel" aria-hidden="true" style="z-index: 9999;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); overflow: hidden;">
+      <div class="modal-header" style="background: linear-gradient(135deg, #199b37, #21c045); color: white; border-bottom: none; padding: 20px 25px;">
+        <h5 class="modal-title" id="signupContentPopupModalLabel" style="font-weight: 700; font-size: 1.25rem; letter-spacing: 0.5px;">📢 Announcement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity: 0.8; text-shadow: none; font-size: 1.5rem;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <style>
+        #signupContentPopupModal .modal-body, #signupContentPopupModal .modal-body * {
+            color: #111111 !important;
+        }
+      </style>
+      <div class="modal-body text-center" style="padding: 30px 25px; font-size: 1.05rem; line-height: 1.6; color: #111111;">
+        <?php echo $signup_del_content[0]; ?>
+      </div>
+      <div class="modal-footer justify-content-center" style="border-top: 1px solid #f0f0f0; padding: 15px 25px; background-color: #fafafa;">
+        <button type="button" class="btn btn-modern" data-dismiss="modal" style="background-color: #199b37; color: white; border-radius: 8px; padding: 8px 24px; font-weight: 600; border: none;">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#signupContentPopupModal').modal('show');
+    }, 400);
+});
+</script>
+<?php } ?>
    </body>
 </html>

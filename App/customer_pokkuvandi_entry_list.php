@@ -335,17 +335,21 @@ $hideContactNumber = ($tripStatus == 'completed' || $tripStatus == 'cancelled');
 
 if (!$hideContactNumber) {
     // Assume logged-in user
-    $loggedInUserId = $prof_id;
+    $loggedInUserId = isset($prof_id) ? $prof_id : null;
     $today = date('Y-m-d');
     $canView = false;
 
     if ($loggedInUserId) {
-        // Get user expiry from DB (adjust table/column if needed)
-        $user = mysqli_fetch_assoc(mysqli_query($config, "SELECT expiry_date,post_id,category_id FROM create_post WHERE customer_id = $loggedInUserId"));
-        $canView = (strtotime($user['expiry_date']) >= strtotime($today));
-       $postid = $user['post_id'];
-       $cat_id =$user['category_id'];
-       
+        // Check if ANY vehicle of the driver is renewed (expiry_date >= today)
+        $vehicle_renew_query = mysqli_query($config, "SELECT expiry_date, post_id, category_id FROM create_post WHERE customer_id = '$loggedInUserId' AND expiry_date >= '$today' ORDER BY expiry_date DESC LIMIT 1");
+        if ($vehicle_renew_query && mysqli_num_rows($vehicle_renew_query) > 0) {
+            $user = mysqli_fetch_assoc($vehicle_renew_query);
+            $canView = true;
+            $postid = $user['post_id'];
+            $cat_id = $user['category_id'];
+        } else {
+            $canView = false;
+        }
     }
     ?>
                 <tr>

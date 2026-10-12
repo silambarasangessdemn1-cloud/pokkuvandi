@@ -133,6 +133,11 @@
                                     <span class="sub-item">Popup Message </span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="signup_messages.php">
+                                    <span class="sub-item">Sign In & Up Popup</span>
+                                </a>
+                            </li>
 
                             <li>
                                 <a href="copy_right.php">

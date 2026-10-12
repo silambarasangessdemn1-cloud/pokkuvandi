@@ -105,11 +105,16 @@ if($logstatus == 1)
 											
 						  <form action="Function/edit_front_content.php" method="post">		
 						 <div class="form-group">
-						 <label for="email2">Popup Message</label>
+						 <label for="email2">Popup Message (All Users / Customers)</label>
 						 <input type="hidden" class="form-control" name="Edit_front_id"  value="<?php echo $leets->cms_id;?>">
 						
-					<textarea name="name_front" style="width:100%; height: 150px; color: #333333;">      <?php echo $leets->fron_contanct; ?>
-</textarea><br>
+					<textarea name="name_front" style="width:100%; height: 150px; color: #333333;"><?php echo $leets->fron_contanct; ?></textarea><br>
+						</div>
+
+						<div class="form-group">
+						<label for="name_driver_front" style="font-weight: 600; color: #1572e8;"><i class="fa fa-truck"></i> Driver Popup Message (Drivers Only / ஓட்டுநர்களுக்கு மட்டும்)</label>
+						<textarea name="name_driver_front" style="width:100%; height: 150px; color: #333333;"><?php echo isset($leets->driver_contanct) ? $leets->driver_contanct : ''; ?></textarea><br>
+						</div>
 						
 
 

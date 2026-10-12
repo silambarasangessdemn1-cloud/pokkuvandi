@@ -198,6 +198,11 @@ if($namestatus == 1)
 error_reporting(0);
 ini_set('display_errors', 0);
 
+$signup_pop_q = mysqli_query($config, "SELECT content FROM signup_messages ORDER BY id DESC LIMIT 1");
+$signup_del_content = mysqli_fetch_array($signup_pop_q);
+$signup_popup_text = $signup_del_content ? trim(strip_tags(str_replace('&nbsp;', '', $signup_del_content[0]))) : '';
+$signup_has_image = $signup_del_content ? strpos($signup_del_content[0], '<img') !== false : false;
+$signup_show_popup = ($signup_popup_text != '' || $signup_has_image) ? true : false;
 
 if($_GET['verify'])
 {
@@ -390,16 +395,10 @@ if($namestatus == 1)
            <?php } 
 
 else {
-    echo "<script>
+?>
+    <script>
     window.onload = function() {
-        Swal.fire({
-            icon: 'success',
-            title: 'Welcome to Pokkuvandi. Signed in Successfully..!',
-            text: 'Redirecting...',
-            timer: 1500,
-            showConfirmButton: false
-        }).then(() => {
-            // Ask whether user is driver or customer
+        function askDriverOrCustomer() {
             Swal.fire({
                 title: 'Please Select',
                 text: 'Are you a Driver or Customer?',
@@ -410,18 +409,30 @@ else {
                 allowOutsideClick: false
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Driver selected
                     localStorage.setItem('user_type', 'driver');
-                    window.location.href = 'Directory.php'; // or your driver page
+                    window.location.href = 'Directory.php';
                 } else {
-                    // Customer selected
                     localStorage.setItem('user_type', 'customer');
-                    window.location.href = 'Directory.php'; // or your customer page
+                    window.location.href = 'Directory.php';
                 }
             });
-        });
+        }
+
+        <?php if($signup_show_popup) { ?>
+            $('#signinContentPopupModal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $('#signinContentPopupModal').modal('show');
+            $('#signinContentPopupModal').on('hidden.bs.modal', function () {
+                askDriverOrCustomer();
+            });
+        <?php } else { ?>
+            askDriverOrCustomer();
+        <?php } ?>
     };
- </script>";
+    </script>
+<?php
 }
 	  ?>
 		   <p class="text-muted text-center small m-0 py-3">or</p>
@@ -451,6 +462,32 @@ else {
       <script type="text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
       <!-- Custom scripts for all pages-->
       <script src="js/osahan.js"></script>
+
+<?php if($signup_show_popup) { ?>
+<div class="modal fade" id="signinContentPopupModal" tabindex="-1" role="dialog" aria-labelledby="signinContentPopupModalLabel" aria-hidden="true" style="z-index: 9999;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); overflow: hidden;">
+      <div class="modal-header" style="background: linear-gradient(135deg, #199b37, #21c045); color: white; border-bottom: none; padding: 20px 25px;">
+        <h5 class="modal-title" id="signinContentPopupModalLabel" style="font-weight: 700; font-size: 1.25rem; letter-spacing: 0.5px;">📢 Announcement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity: 0.8; text-shadow: none; font-size: 1.5rem;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <style>
+        #signinContentPopupModal .modal-body, #signinContentPopupModal .modal-body * {
+            color: #111111 !important;
+        }
+      </style>
+      <div class="modal-body text-center" style="padding: 30px 25px; font-size: 1.05rem; line-height: 1.6; color: #111111;">
+        <?php echo $signup_del_content[0]; ?>
+      </div>
+      <div class="modal-footer justify-content-center" style="border-top: 1px solid #f0f0f0; padding: 15px 25px; background-color: #fafafa;">
+        <button type="button" class="btn btn-modern" data-dismiss="modal" style="background-color: #199b37; color: white; border-radius: 8px; padding: 8px 24px; font-weight: 600; border: none;">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
    </body>
 </html>
 

@@ -1124,14 +1124,32 @@ $( document ).ready(function() {
 
 
 <?php
-$about_q = mysqli_query($config,"select fron_contanct from cms");
-$del_content = mysqli_fetch_array($about_q);
-$popup_text = $del_content ? trim(strip_tags(str_replace('&nbsp;', '', $del_content[0]))) : '';
-$has_image = $del_content ? strpos($del_content[0], '<img') !== false : false;
-$show_popup = ($popup_text != '' || $has_image) ? true : false;
-$popup_hash = $del_content ? md5($del_content[0]) : '';
+$is_driver_user = false;
+if (!empty($prof_id)) {
+    $chk_driver = mysqli_query($config, "SELECT post_id FROM create_post WHERE customer_id='$prof_id' LIMIT 1");
+    if ($chk_driver && mysqli_num_rows($chk_driver) > 0) {
+        $is_driver_user = true;
+    }
+}
+
+$about_q = mysqli_query($config, "SELECT fron_contanct, driver_contanct FROM cms LIMIT 1");
+$del_content = mysqli_fetch_assoc($about_q);
+
+$all_users_content = isset($del_content['fron_contanct']) ? $del_content['fron_contanct'] : '';
+$driver_content = isset($del_content['driver_contanct']) ? $del_content['driver_contanct'] : '';
+
+$all_users_text = trim(strip_tags(str_replace('&nbsp;', '', $all_users_content)));
+$all_users_has_img = strpos($all_users_content, '<img') !== false;
+$show_all_users_popup = ($all_users_text != '' || $all_users_has_img);
+$all_users_hash = md5($all_users_content);
+
+$driver_text = trim(strip_tags(str_replace('&nbsp;', '', $driver_content)));
+$driver_has_img = strpos($driver_content, '<img') !== false;
+$show_driver_popup = ($driver_text != '' || $driver_has_img);
+$driver_hash = md5($driver_content);
 ?>
-<?php if($show_popup) { ?>
+
+<?php if($show_all_users_popup) { ?>
 <div class="modal fade" id="contentPopupModal" tabindex="-1" role="dialog" aria-labelledby="contentPopupModalLabel" aria-hidden="true" style="z-index: 9999;">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); overflow: hidden;">
@@ -1147,10 +1165,36 @@ $popup_hash = $del_content ? md5($del_content[0]) : '';
         }
       </style>
       <div class="modal-body text-center" style="padding: 30px 25px; font-size: 1.05rem; line-height: 1.6; color: #111111;">
-        <?php echo $del_content[0]; ?>
+        <?php echo $all_users_content; ?>
       </div>
       <div class="modal-footer justify-content-center" style="border-top: 1px solid #f0f0f0; padding: 15px 25px; background-color: #fafafa;">
         <button type="button" class="btn btn-modern" data-dismiss="modal" onclick="closePopup()" style="background-color: #199b37; color: white; border-radius: 8px; padding: 8px 24px; font-weight: 600; border: none;">Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
+
+<?php if($show_driver_popup) { ?>
+<div class="modal fade" id="driverContentPopupModal" tabindex="-1" role="dialog" aria-labelledby="driverContentPopupModalLabel" aria-hidden="true" style="z-index: 9999;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); overflow: hidden;">
+      <div class="modal-header" style="background: linear-gradient(135deg, #1572e8, #0056b3); color: white; border-bottom: none; padding: 20px 25px;">
+        <h5 class="modal-title" id="driverContentPopupModalLabel" style="font-weight: 700; font-size: 1.25rem; letter-spacing: 0.5px;">📢 Driver Announcement (ஓட்டுநர் அறிவிப்பு)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeDriverPopup()" style="color: white; opacity: 0.8; text-shadow: none; font-size: 1.5rem;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <style>
+        #driverContentPopupModal .modal-body, #driverContentPopupModal .modal-body * {
+            color: #111111 !important;
+        }
+      </style>
+      <div class="modal-body text-center" style="padding: 30px 25px; font-size: 1.05rem; line-height: 1.6; color: #111111;">
+        <?php echo $driver_content; ?>
+      </div>
+      <div class="modal-footer justify-content-center" style="border-top: 1px solid #f0f0f0; padding: 15px 25px; background-color: #fafafa;">
+        <button type="button" class="btn btn-modern" data-dismiss="modal" onclick="closeDriverPopup()" style="background-color: #1572e8; color: white; border-radius: 8px; padding: 8px 24px; font-weight: 600; border: none;">Got it!</button>
       </div>
     </div>
   </div>
@@ -1262,40 +1306,73 @@ $("#enq_city").change(function(){
             return v ? v[2] : null;
         }
 
-        <?php if($show_popup) { ?>
         function closePopup() {
             $('#contentPopupModal').modal('hide');
         }
-        <?php } ?>
+        function closeDriverPopup() {
+            $('#driverContentPopupModal').modal('hide');
+        }
 
         $(document).ready(function() {
             var adminModalWillShow = false;
-            var sessionAdminKey = 'app_admin_msg_shown_' + '<?php echo $popup_hash; ?>';
+            var sessionAdminKey = 'app_admin_msg_shown_' + '<?php echo $all_users_hash; ?>';
+            var sessionDriverKey = 'app_driver_msg_shown_' + '<?php echo $driver_hash; ?>';
             var sessionVehicleKey = 'app_vehicle_msg_shown';
-            var isDriver = (localStorage.getItem('user_type') === 'driver');
+            var isDriver = (localStorage.getItem('user_type') === 'driver') || <?php echo $is_driver_user ? 'true' : 'false'; ?>;
             var isUserLoggedIn = <?php echo (isset($session_id) && $session_id != '') ? 'true' : 'false'; ?>;
 
-            <?php if($show_popup) { ?>
-            if (!sessionStorage.getItem(sessionAdminKey)) {
-                adminModalWillShow = true;
-                setTimeout(function() {
-                    $('#contentPopupModal').modal('show');
-                }, 500);
-                sessionStorage.setItem(sessionAdminKey, 'true');
+            if (isDriver) {
+                <?php if($show_driver_popup) { ?>
+                // Show driver popup specifically to drivers
+                if (!sessionStorage.getItem(sessionDriverKey)) {
+                    adminModalWillShow = true;
+                    setTimeout(function() {
+                        $('#driverContentPopupModal').modal('show');
+                    }, 500);
+                    sessionStorage.setItem(sessionDriverKey, 'true');
+                }
+
+                $('#driverContentPopupModal').on('hidden.bs.modal', function () {
+                    if (isUserLoggedIn && !sessionStorage.getItem(sessionVehicleKey)) {
+                        setTimeout(function() {
+                            $('#vehicleImageUpdateModal').modal('show');
+                        }, 500);
+                        sessionStorage.setItem(sessionVehicleKey, 'true');
+                    }
+                });
+                <?php } else if($show_all_users_popup) { ?>
+                // Fallback to all-users popup if driver popup is empty
+                if (!sessionStorage.getItem(sessionAdminKey)) {
+                    adminModalWillShow = true;
+                    setTimeout(function() {
+                        $('#contentPopupModal').modal('show');
+                    }, 500);
+                    sessionStorage.setItem(sessionAdminKey, 'true');
+                }
+
+                $('#contentPopupModal').on('hidden.bs.modal', function () {
+                    if (isUserLoggedIn && !sessionStorage.getItem(sessionVehicleKey)) {
+                        setTimeout(function() {
+                            $('#vehicleImageUpdateModal').modal('show');
+                        }, 500);
+                        sessionStorage.setItem(sessionVehicleKey, 'true');
+                    }
+                });
+                <?php } ?>
+            } else {
+                // Non-drivers (customers / visitors): ONLY show all-users popup, never driver popup
+                <?php if($show_all_users_popup) { ?>
+                if (!sessionStorage.getItem(sessionAdminKey)) {
+                    adminModalWillShow = true;
+                    setTimeout(function() {
+                        $('#contentPopupModal').modal('show');
+                    }, 500);
+                    sessionStorage.setItem(sessionAdminKey, 'true');
+                }
+                <?php } ?>
             }
 
-            // When admin modal closes, show the static modal if not shown this session and user is driver
-            $('#contentPopupModal').on('hidden.bs.modal', function () {
-                if (isUserLoggedIn && isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
-                    setTimeout(function() {
-                        $('#vehicleImageUpdateModal').modal('show');
-                    }, 500);
-                    sessionStorage.setItem(sessionVehicleKey, 'true');
-                }
-            });
-            <?php } ?>
-
-            // If admin modal is NOT showing right now, show the static modal directly for drivers
+            // If admin/driver modal is NOT showing right now, show the static modal directly for drivers
             if (!adminModalWillShow && isUserLoggedIn && isDriver && !sessionStorage.getItem(sessionVehicleKey)) {
                 setTimeout(function() {
                     $('#vehicleImageUpdateModal').modal('show');

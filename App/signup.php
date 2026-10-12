@@ -297,23 +297,23 @@ Please Enter Valid OTP!
 		   ?>
 		   <form action="register.php" method="post">
                <div class="form-group">
-                  <label for="exampleInputName1">Name</label>
+                  <label for="exampleInputName1">Name <span style="color: red;">*</span></label>
                   <input placeholder="Enter Name" name="Lee_Customer_Name" type="text" class="form-control" id="user_name" value="<?php echo $_GET['name']?>" aria-describedby="emailHelp" required>
                </div>
                <div class="form-group">
-                  <label for="exampleInputName1">Father's Name</label>
+                  <label for="exampleInputName1">Father's Name <span style="color: red;">*</span></label>
                   <input placeholder="Enter Father's Name" name="Lee_Customer_Fathername" type="text" class="form-control" id="user_fathername" value="<?php echo $_GET['fathername']?>" aria-describedby="emailHelp" required>
                </div>
                <div class="form-group">
-                  <label for="exampleInputName1">Date Of Birth</label>
+                  <label for="exampleInputName1">Date Of Birth <span style="color: red;">*</span></label>
                   <input placeholder="Enter DOB" name="Lee_Customer_DOB" type="date" class="form-control" id="user_dateohbirth" value="<?php echo $_GET['DOB']?>" aria-describedby="emailHelp" required>
                </div>
                <div class="form-group">
-                  <label for="exampleInputName1">Address</label>
+                  <label for="exampleInputName1">Address <span style="color: red;">*</span></label>
                   <input placeholder="Enter Address" name="Lee_Customer_address" type="text" class="form-control" id="user_fathername" value="<?php echo $_GET['address']?>" aria-describedby="emailHelp" required>
                </div>
                <div class="form-group">
-                                                    <label for="exampleInputName1">District</label>
+                                                    <label for="exampleInputName1">District <span style="color: red;">*</span></label>
                                                         <select required class="form-control" id='city' name="Add_city">
                                                             <option value="">---SELECT---</option>
                                                             <?php
@@ -326,18 +326,18 @@ Please Enter Valid OTP!
                                                         </select>
                                                 </div>
                                                 <div class="form-group ">
-                                                    <label for="exampleInputName1">City</label>
+                                                    <label for="exampleInputName1">City <span style="color: red;">*</span></label>
                                                         <div id="area">
 
                                                         </div>
                                                 </div>
                <div class="form-group">
-                  <label for="exampleInputNumber1">Phone Number</label>
+                  <label for="exampleInputNumber1">Phone Number <span style="color: red;">*</span></label>
                   <input placeholder="Enter Phone Number" name="Lee_Customer_phonenumber" maxlength="12" type="number" class="form-control" value="<?php echo $_GET['phonenumber']?>"  id="user_ph" aria-describedby="emailHelp" required>
 				  <center><h6 style="color:red;">Mobile Number Already Registred</h6> </center>
                </div>
                <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
+                  <label for="exampleInputEmail1">Email <span style="color: red;">*</span></label>
                   <input placeholder="Enter Email" type="email" name="Lee_Customer_email" class="form-control" id="exampleInputEmail1" value="<?php echo $_GET['email']?>" aria-describedby="emailHelp" required>
                </div>
                <!-- <div class="form-group" style="display:none">
@@ -345,11 +345,11 @@ Please Enter Valid OTP!
                   <input placeholder="Enter Phone Number"   name="referred_by"   onKeyPress="if(this.value.length==10) return false;" type="number" class="form-control"   aria-describedby="emailHelp" >
                </div> -->
                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
+                  <label for="exampleInputPassword1">Password <span style="color: red;">*</span></label>
                   <input placeholder="Enter Password"   value="<?php echo $_GET['passwor'] ?>" type="password" name="Lee_Customer_password" class="form-control" id="exampleInputPassword1" required>
                </div>
                <div class="form-group">
-                  <label for="exampleInputPassword2">Confirmation Password</label>
+                  <label for="exampleInputPassword2">Confirmation Password <span style="color: red;">*</span></label>
                   <input placeholder="Enter Confirmation Password" value="<?php echo $_GET['passwor'] ?>" name="Lee_Customer_confirm_password" type="password" class="form-control" id="exampleInputPassword2" required>
               
               
@@ -365,7 +365,7 @@ Please Enter Valid OTP!
                </div>
                <div class="form-group" style="  margin-left: 6%;">
                <input type="checkbox" class="form-check-input " id="exampleCheck1" required>
-    <label class="form-check-label " for="exampleCheck1">I agree to the callinfo <a href="terms_and_conditions.php"> Terms and Conditions</a></label>
+    <label class="form-check-label " for="exampleCheck1">I agree to the callinfo <a href="terms_and_conditions.php"> Terms and Conditions</a> <span style="color: red;">*</span></label>
          </div>
          <input  name="smsotp"type="hidden" class="form-control" id="smsotp" value="<?php echo rand(0,10000); ?>">
          <div class="form-group" id="o_sms" style="display: none;">
@@ -408,24 +408,24 @@ Please Enter Valid OTP!
     </script>
 			 <form  id="registrationForm" action="register.php" method="post">
                <div class="form-group">
-                  <label for="exampleInputName1">Name</label>
+                  <label for="exampleInputName1">Name <span style="color: red;">*</span></label>
                   <input placeholder="Enter Name" name="Lee_Customer_Name" type="text" class="form-control" id="user_name" required value="<?php echo isset($_SESSION['form_data']['Lee_Customer_Name']) ? $_SESSION['form_data']['Lee_Customer_Name'] : ''; ?>">
                </div>
                <div class="form-group">
-                  <label for="exampleInputName1">Father's Name</label>
+                  <label for="exampleInputName1">Father's Name <span style="color: red;">*</span></label>
                   <input placeholder="Enter Father's Name" name="Lee_Customer_fatherName" type="text" class="form-control" id="user_fathername" required value="<?php echo isset($_SESSION['form_data']['Lee_Customer_fatherName']) ? $_SESSION['form_data']['Lee_Customer_fatherName'] : ''; ?>">
                   </div>
                <div class="form-group">
-                  <label for="exampleInputName1">Date OF Birth</label>
+                  <label for="exampleInputName1">Date OF Birth <span style="color: red;">*</span></label>
                   <input placeholder="Enter Date Of Birth" name="Lee_Customer_DOB" type="date" class="form-control" id="user_dateohbirth"  required  value="<?php echo isset($_SESSION['form_data']['Lee_Customer_DOB']) ? $_SESSION['form_data']['Lee_Customer_DOB'] : ''; ?>">
                </div>
                <div class="form-group">
-                  <label for="exampleInputName1">Address</label>
+                  <label for="exampleInputName1">Address <span style="color: red;">*</span></label>
                   <input placeholder="Enter Address" name="Lee_Customer_address" type="text" class="form-control" id="user_address"  required  value="<?php echo isset($_SESSION['form_data']['Lee_Customer_address']) ? $_SESSION['form_data']['Lee_Customer_address'] : ''; ?>">
                </div>
 
                <div class="form-group">
-    <label for="exampleFormControlSelect1">State</label>
+    <label for="exampleFormControlSelect1">State <span style="color: red;">*</span></label>
     <select required class="form-control" id="state" name="state" onchange="loadDistricts(this.value)">
         <option value="">---SELECT---</option>
         <?php
@@ -438,7 +438,7 @@ Please Enter Valid OTP!
     </select>
 </div>
                <div class="form-group">
-                                                    <label for="exampleInputName1">District</label>
+                                                    <label for="exampleInputName1">District <span style="color: red;">*</span></label>
                                                         <select required class="form-control" id='city' name="Add_city">
                                                             <option value="">---SELECT---</option>
                                                             <?php
@@ -455,7 +455,7 @@ Please Enter Valid OTP!
                                                        
                                                 </div>
                                                 <div class="form-group ">
-                                                    <label for="exampleInputName1">City</label>
+                                                    <label for="exampleInputName1">City <span style="color: red;">*</span></label>
                                                         <div id="area">
 
                                                         </div>
@@ -463,7 +463,7 @@ Please Enter Valid OTP!
 
                                                 
                                                 <div class="form-group">
-    <label for="exampleInputNumber1">Phone Number</label>
+    <label for="exampleInputNumber1">Phone Number <span style="color: red;">*</span></label>
     <input 
         placeholder="Enter Phone Number" 
         name="Lee_Customer_phonenumber" 
@@ -481,7 +481,7 @@ Please Enter Valid OTP!
 
 
                <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
+                  <label for="exampleInputEmail1">Email <span style="color: red;">*</span></label>
                   <input placeholder="Enter Email" type="email" name="Lee_Customer_email" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" required  value="<?php echo isset($_SESSION['form_data']['Lee_Customer_email']) ? $_SESSION['form_data']['Lee_Customer_email'] : ''; ?>">
                   
                </div>
@@ -490,7 +490,7 @@ Please Enter Valid OTP!
                   <input placeholder="Enter Phone Number"   name="referred_by"   onKeyPress="if(this.value.length==10) return false;" type="number" class="form-control"  id="" aria-describedby="emailHelp" >
                </div> -->
               <div class="form-group">
-                  <label for="exampleInputPassword1">Pin(Password)</label>
+                  <label for="exampleInputPassword1">Pin(Password) <span style="color: red;">*</span></label>
                 
                   <input placeholder="Enter Pin Number" maxlength="6"  type="password" name="Lee_Customer_password" class="form-control" id="exampleInputPassword1" required>
             
@@ -503,14 +503,14 @@ Please Enter Valid OTP!
                
                
               <div class="form-group">
-                  <label for="exampleInputPassword2">Confirmation Pin (Password)</label>
+                  <label for="exampleInputPassword2">Confirmation Pin (Password) <span style="color: red;">*</span></label>
                   <input placeholder="Enter Confirmation Pin Number" maxlength="6" name="Lee_Customer_confirm_password" type="password" class="form-control" id="exampleInputPassword2" required>
                </div>
                <div class="form-group" style="  margin-left: 6%;">
                <input  name="smsotp"type="hidden" class="form-control" id="smsotp" value="<?php echo rand(0,10000); ?>">
                <input type="checkbox" class="form-check-input " id="exampleCheck1" required>
 
-    <label class="form-check-label " for="exampleCheck1">I agree to the callinfo <a href="terms_and_conditions.php"> Terms and Conditions</a></label>
+    <label class="form-check-label " for="exampleCheck1">I agree to the Pokkuvandi <a href="terms_and_conditions.php"> Terms and Conditions</a> <span style="color: red;">*</span></label>
          </div>
          <div class="form-group" id="o_sms" style="display: none;">
          <label style="Color:red" for="exampleInputPassword1"><b>ENTER YOUR OTP HERE </b></label>         <input  name="esmsotp" type="text" class="form-control" id="esmsotp" >
@@ -713,3 +713,5 @@ function loadDistricts(stateId) {
     }
 }
 </script>
+</body>
+</html>
