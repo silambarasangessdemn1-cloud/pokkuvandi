@@ -270,10 +270,15 @@ if($namestatus == 1)
 
                </a> -->
                <?php 
-               $sql="SELECT * FROM `biding_vender` where cust_id='$session_id'";
-                $main_cate4=mysqli_query($config,$sql);
-               $data=mysqli_fetch_object($main_cate4);
-               if($data->vender_id)
+               $data = null;
+               if (!empty($session_id)) {
+                   $sql = "SELECT * FROM `biding_vender` where cust_id='$session_id'";
+                   $main_cate4 = mysqli_query($config, $sql);
+                   if ($main_cate4 && mysqli_num_rows($main_cate4) > 0) {
+                       $data = mysqli_fetch_object($main_cate4);
+                   }
+               }
+               if($data && !empty($data->vender_id))
                {?>
                       <a href="Business_Enquiry.php" class="text-decoration-none text-dark">
 

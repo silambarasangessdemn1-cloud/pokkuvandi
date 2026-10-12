@@ -1132,8 +1132,8 @@ if (!empty($prof_id)) {
     }
 }
 
-$about_q = mysqli_query($config, "SELECT fron_contanct, driver_contanct FROM cms LIMIT 1");
-$del_content = mysqli_fetch_assoc($about_q);
+$about_q = mysqli_query($config, "SELECT * FROM cms LIMIT 1");
+$del_content = ($about_q && mysqli_num_rows($about_q) > 0) ? mysqli_fetch_assoc($about_q) : [];
 
 $all_users_content = isset($del_content['fron_contanct']) ? $del_content['fron_contanct'] : '';
 $driver_content = isset($del_content['driver_contanct']) ? $del_content['driver_contanct'] : '';

@@ -102,7 +102,7 @@ if($logstatus == 1)
 							} else {
 								mysqli_query($config, "insert into signup_messages (id, title, content, status) values (1, 'Sign Up Message', '', 1)");
 								$signup_q = mysqli_query($config, "select * from signup_messages limit 1");
-								$row_signup = mysqli_fetch_object($signup_q);
+								$row_signup = ($signup_q && mysqli_num_rows($signup_q) > 0) ? mysqli_fetch_object($signup_q) : (object)['id' => 1, 'content' => '', 'title' => 'Sign Up Message', 'status' => 1];
 							}
 						?>
 								

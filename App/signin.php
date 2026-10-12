@@ -198,11 +198,15 @@ if($namestatus == 1)
 error_reporting(0);
 ini_set('display_errors', 0);
 
+$signup_show_popup = false;
+$signup_del_content = null;
 $signup_pop_q = mysqli_query($config, "SELECT content FROM signup_messages ORDER BY id DESC LIMIT 1");
-$signup_del_content = mysqli_fetch_array($signup_pop_q);
-$signup_popup_text = $signup_del_content ? trim(strip_tags(str_replace('&nbsp;', '', $signup_del_content[0]))) : '';
-$signup_has_image = $signup_del_content ? strpos($signup_del_content[0], '<img') !== false : false;
-$signup_show_popup = ($signup_popup_text != '' || $signup_has_image) ? true : false;
+if ($signup_pop_q && mysqli_num_rows($signup_pop_q) > 0) {
+    $signup_del_content = mysqli_fetch_array($signup_pop_q);
+    $signup_popup_text = $signup_del_content ? trim(strip_tags(str_replace('&nbsp;', '', $signup_del_content[0]))) : '';
+    $signup_has_image = $signup_del_content ? strpos($signup_del_content[0], '<img') !== false : false;
+    $signup_show_popup = ($signup_popup_text != '' || $signup_has_image) ? true : false;
+}
 
 if($_GET['verify'])
 {
