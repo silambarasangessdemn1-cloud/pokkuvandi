@@ -90,11 +90,26 @@ if($logstatus == 1)
 						 
 					</div>
 					<div class="row">
-							 
-				 
-				<div class="container">
-					<div class="row">
-							
+						<div class="container">
+							<?php if(isset($_GET['mes'])) { ?>
+							<div class="alert alert-success alert-dismissible fade show" role="alert">
+								<strong>Success!</strong> Popup message updated successfully.
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<?php } ?>
+							<?php if(isset($_GET['erro'])) { ?>
+							<div class="alert alert-danger alert-dismissible fade show" role="alert">
+								<strong>Error!</strong> <?php echo isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : 'An error occurred while saving.'; ?>
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<?php } ?>
+
+							<div class="row">
+								<div class="col-md-12">
 						<?php 
 											 
 											$lee_tc=mysqli_query($config,"select * from cms");
@@ -102,51 +117,36 @@ if($logstatus == 1)
 											{
 											?>
 								
-											
-						  <form action="Function/edit_front_content.php" method="post">		
-						 <div class="form-group">
-						 <label for="email2">Popup Message (All Users / Customers)</label>
-						 <input type="hidden" class="form-control" name="Edit_front_id"  value="<?php echo $leets->cms_id;?>">
-						
-					<textarea name="name_front" style="width:100%; height: 150px; color: #333333;"><?php echo $leets->fron_contanct; ?></textarea><br>
-						</div>
+						  <!-- Popup Message (All Users / Customers) -->
+						  <form action="Function/edit_front_content.php" method="post" style="width: 100%; margin-bottom: 25px;">		
+							 <div class="form-group" style="padding-left: 0; padding-right: 0;">
+								 <label for="name_front" style="font-weight: 600;">Popup Message (All Users / Customers)</label>
+								 <input type="hidden" class="form-control" name="Edit_front_id" value="<?php echo $leets->cms_id;?>">
+								 <textarea name="name_front" id="name_front" style="width:100%; height: 150px; color: #333333;"><?php echo $leets->fron_contanct; ?></textarea><br>
+							 </div>
+							 <div class="form-group" style="padding-left: 0; padding-right: 0;">
+								 <button class="btn btn-success" type="submit" name="Lee_customer_front_edit">Submit</button>
+							 </div>
+						  </form>
 
-						<div class="form-group">
-						<label for="name_driver_front" style="font-weight: 600; color: #1572e8;"><i class="fa fa-truck"></i> Driver Popup Message (Drivers Only / ஓட்டுநர்களுக்கு மட்டும்)</label>
-						<textarea name="name_driver_front" style="width:100%; height: 150px; color: #333333;"><?php echo isset($leets->driver_contanct) ? $leets->driver_contanct : ''; ?></textarea><br>
-						</div>
-						
+						  <hr style="margin: 30px 0; border-top: 1px dashed #dcdcdc;">
 
-
-						
-
-
-						
-						
-						
-						
-						
-						
-						
-						</div> 
-							
-						
-		     <div class="form-group">
-									<button class="btn btn-success" type="submit" name="Lee_front_edit">Submit</button>
- 								</div>
-						
-						
-						
-						</form>
-						
-						
-						
-						
+						  <!-- Driver Popup Message (Drivers Only) -->
+						  <form action="Function/edit_front_content.php" method="post" style="width: 100%; margin-bottom: 25px;">		
+							 <div class="form-group" style="padding-left: 0; padding-right: 0;">
+								 <label for="name_driver_front" style="font-weight: 600; color: #1572e8;"><i class="fa fa-truck"></i> Driver Popup Message (Drivers Only / ஓட்டுநர்களுக்கு மட்டும்)</label>
+								 <input type="hidden" class="form-control" name="Edit_front_id" value="<?php echo $leets->cms_id;?>">
+								 <textarea name="name_driver_front" id="name_driver_front" style="width:100%; height: 150px; color: #333333;"><?php echo isset($leets->driver_contanct) ? $leets->driver_contanct : ''; ?></textarea><br>
+							 </div>
+							 <div class="form-group" style="padding-left: 0; padding-right: 0;">
+								 <button class="btn btn-success" type="submit" name="Lee_driver_front_edit">Submit</button>
+							 </div>
+						  </form>
 											<?php } ?>
-						
-						
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
 			 
 	</div>
 				</div>

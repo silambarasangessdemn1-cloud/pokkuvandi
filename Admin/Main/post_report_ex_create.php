@@ -228,27 +228,25 @@ while ($row = mysqli_fetch_assoc($result)) {
         $isFreeRegistration = true;
     }
     
+    $hasOnlineTransaction = (!empty($paidAmount) && $paidAmount > 0) || (!empty($paidTransactionID)) || (!empty($paidOn) && ($paymentType === '0' || $paymentType === 0));
+    $isOnlinePaid = (!$isFreeRegistration) && (
+        $hasOnlineTransaction ||
+        ($status == 1 && ($paymentType === '0' || $paymentType === 0) && (!empty($paymentConfirmedAt) || !empty($row['razorpay_order_id']) || (!empty($refNo) && stripos($refNo, 'pay_') === 0)))
+    );
+    
     // Determine payment status
     if ($isFreeRegistration) {
         $paymentStatus = "Free Registration";
         $amount = "Free";
-    } elseif (!empty($paidAmount) && $paidAmount > 0) {
+    } elseif ($isOnlinePaid) {
         if (!empty($paidTransactionID)) {
             $paymentStatus = "Online Payment (Transaction ID: $paidTransactionID)";
         } else {
             $paymentStatus = "Online Payment";
         }
-        $amount = "₹" . number_format($paidAmount, 2);
-    } elseif ($paymentType == '0' && empty($utrNumber)) {
-        if (!empty($paidTransactionID) || !empty($paymentConfirmedAt) || (!empty($paidAmount) && $paidAmount > 0)) {
-            if (!empty($paidTransactionID)) {
-                $paymentStatus = "Online Payment (Transaction ID: $paidTransactionID)";
-            } else {
-                $paymentStatus = "Online Payment";
-            }
-            $amount = "₹" . number_format($packageAmount, 2);
+        if (!empty($paidAmount) && $paidAmount > 0) {
+            $amount = "₹" . number_format($paidAmount, 2);
         } else {
-            $paymentStatus = "Payment Pending";
             $amount = "₹" . number_format($packageAmount, 2);
         }
     } elseif ($paymentType == '1') {
@@ -273,29 +271,74 @@ while ($row = mysqli_fetch_assoc($result)) {
         }
         $amount = "₹" . number_format($packageAmount, 2);
     } else {
-        if (empty($paymentType) || $status == '0' || $status == 0) {
-            $paymentStatus = "Payment Pending";
-            if ($packageAmountFloat !== null && $packageAmountFloat > 0) {
-                $amount = "₹" . number_format($packageAmount, 2);
-            } else {
-                $amount = "-";
-            }
+        $paymentStatus = "Payment Pending";
+        if ($packageAmountFloat !== null && $packageAmountFloat > 0) {
+            $amount = "₹" . number_format($packageAmount, 2);
         } else {
-            $paymentStatus = "Payment Pending";
             $amount = "-";
         }
     }
     
-    // Determine Paid Date (Priority: Paid_on > utr_date > payment_confirmed_at > create_on)
-    $paidDate = '';
-    if (!empty($paidOn)) {
-        $paidDate = date('d-m-Y', strtotime($paidOn));
-    } elseif (!empty($utrDate)) {
-        $paidDate = date('d-m-Y', strtotime($utrDate));
-    } elseif (!empty($paymentConfirmedAt)) {
-        $paidDate = date('d-m-Y', strtotime($paymentConfirmedAt));
-    } elseif (!empty($row['create_on'])) {
-        $paidDate = date('d-m-Y', strtotime($row['create_on']));
+    // Determine Paid Date (Confirmed On)
+    $paidDate = '-';
+    if ($isFreeRegistration) {
+        $paidDate = '-';
+    } elseif ($isOnlinePaid) {
+        $onlineTs = (!empty($paidOn) && $paidOn !== '0000-00-00' && $paidOn !== '0000-00-00 00:00:00') ? strtotime($paidOn) : false;
+        $onlineHasTime = false;
+        if ($onlineTs !== false && $onlineTs > 0) {
+            $oTime = date('H:i:s', $onlineTs);
+            if ($oTime !== '00:00:00' && $oTime !== '05:30:00') {
+                $onlineHasTime = true;
+            }
+        }
+
+        $dbTs = (!empty($paymentConfirmedAt) && $paymentConfirmedAt !== '0000-00-00 00:00:00') ? strtotime($paymentConfirmedAt) : false;
+        $dbHasTime = false;
+        if ($dbTs !== false && $dbTs > 0) {
+            $dTime = date('H:i:s', $dbTs);
+            if ($dTime !== '00:00:00' && $dTime !== '05:30:00') {
+                $dbHasTime = true;
+            }
+        }
+
+        if ($onlineHasTime) {
+            $paidDate = date('d-M-Y h:i A', $onlineTs);
+        } elseif ($dbHasTime) {
+            $paidDate = date('d-M-Y h:i A', $dbTs);
+        } elseif ($onlineTs !== false && $onlineTs > 0) {
+            $paidDate = date('d-M-Y', $onlineTs);
+        } elseif ($dbTs !== false && $dbTs > 0) {
+            $paidDate = date('d-M-Y', $dbTs);
+        }
+    } else {
+        $dbTs = (!empty($paymentConfirmedAt) && $paymentConfirmedAt !== '0000-00-00 00:00:00') ? strtotime($paymentConfirmedAt) : false;
+        if ($dbTs !== false && $dbTs > 0) {
+            $dbTime = date('H:i:s', $dbTs);
+            if ($dbTime !== '00:00:00' && $dbTime !== '05:30:00') {
+                $paidDate = date('d-M-Y h:i A', $dbTs);
+            } else {
+                $paidDate = date('d-M-Y', $dbTs);
+            }
+        } elseif (!empty($utrDate) && $utrDate !== '0000-00-00' && $status == 1) {
+            $uTs = strtotime($utrDate);
+            if ($uTs !== false && $uTs > 0) {
+                $paidDate = date('d-M-Y', $uTs);
+            }
+        } elseif ($status == 1 && ($paymentType === '1' || $paymentType === '2' || $paymentType === 1 || $paymentType === 2)) {
+            $activeDate = (!empty($row['created_at']) && $row['created_at'] !== '0000-00-00 00:00:00') ? $row['created_at'] : (!empty($row['post_addon']) ? $row['post_addon'] : '');
+            if (!empty($activeDate)) {
+                $aTs = strtotime($activeDate);
+                if ($aTs !== false && $aTs > 0) {
+                    $aTime = date('H:i:s', $aTs);
+                    if ($aTime !== '00:00:00' && $aTime !== '05:30:00') {
+                        $paidDate = date('d-M-Y h:i A', $aTs);
+                    } else {
+                        $paidDate = date('d-M-Y', $aTs);
+                    }
+                }
+            }
+        }
     }
     
     // Registration Date

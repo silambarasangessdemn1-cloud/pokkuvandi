@@ -10,7 +10,9 @@ mysqli_set_charset($config, 'utf8mb4');
  if (mysqli_connect_errno()) {
    echo "Failed to connect to MySQL: " . mysqli_connect_error();
  } else {
+   date_default_timezone_set('Asia/Kolkata');
    mysqli_query($config, "SET SESSION sql_mode = ''");
+   mysqli_query($config, "SET time_zone = '+05:30'");
 
    // Auto-create signup_messages table if not exists
    mysqli_query($config, "CREATE TABLE IF NOT EXISTS `signup_messages` (

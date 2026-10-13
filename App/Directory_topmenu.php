@@ -1010,13 +1010,64 @@ $(document).ready(function() {
         var activationPopupShown = localStorage.getItem('activation_popup_shown_post_<?= $activation_post_id ?>');
         
         if (!activationPopupShown) {
+            // Function to mark activation popup as shown in both localStorage and database
+            function markActivationPopupShown(callback) {
+                var postId = '<?= $activation_post_id ?>';
+                localStorage.setItem('activation_popup_shown_post_' + postId, '1');
+                $.ajax({
+                    url: 'mark_post_activation_popup_shown.php',
+                    type: 'POST',
+                    data: {
+                        post_id: postId
+                    },
+                    success: function(response) {
+                        console.log('Activation popup marked as shown');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error marking activation popup:', error);
+                    },
+                    complete: function() {
+                        if (typeof callback === 'function') {
+                            callback();
+                        }
+                    }
+                });
+            }
+
+            // Function to navigate to active list page when "View Active List" is clicked
+            window.navigateToActiveList = function(e) {
+                if (e) {
+                    e.preventDefault();
+                }
+                // Close the modal
+                Swal.close();
+                // Mark as shown in localStorage immediately so it won't reopen on active list page
+                localStorage.setItem('activation_popup_shown_post_<?= $activation_post_id ?>', '1');
+                
+                var redirected = false;
+                function doRedirect() {
+                    if (!redirected) {
+                        redirected = true;
+                        window.location.href = 'createpost_list.php';
+                    }
+                }
+
+                // Send AJAX to update DB, then redirect
+                markActivationPopupShown(function() {
+                    doRedirect();
+                });
+
+                // Safety timeout fallback (300ms) in case AJAX is slow
+                setTimeout(doRedirect, 300);
+            };
+
             // Show modern activation popup
             Swal.fire({
                 title: '🎉 Post Activated!',
                 html: '<div style="font-size: 16px; padding: 10px;">' +
                       '<p style="margin-bottom: 15px;">Congratulations! Your vehicle registration has been activated successfully.</p>' +
                       '<p style="margin-bottom: 20px; color: #28a745; font-weight: 600;">Your post is now live and visible to customers!</p>' +
-                      '<a href="createpost_list.php" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #199b37; color: white; text-decoration: none; border-radius: 5px; font-weight: 600;">View Active List →</a>' +
+                      '<a href="createpost_list.php" id="btn_view_active_list" onclick="navigateToActiveList(event)" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #199b37; color: white; text-decoration: none; border-radius: 5px; font-weight: 600; cursor: pointer;">View Active List →</a>' + 
                       '</div>',
                 icon: 'success',
                 iconColor: '#199b37',
@@ -1029,26 +1080,15 @@ $(document).ready(function() {
                     popup: 'animated-popup',
                     title: 'swal-title-custom',
                     htmlContainer: 'swal-html-custom'
+                },
+                didOpen: function() {
+                    $('#btn_view_active_list').on('click', function(e) {
+                        navigateToActiveList(e);
+                    });
                 }
             }).then((result) => {
-                // Mark popup as shown in database and localStorage
-                $.ajax({
-                    url: 'mark_post_activation_popup_shown.php',
-                    type: 'POST',
-                    data: {
-                        post_id: '<?= $activation_post_id ?>'
-                    },
-                    success: function(response) {
-                        console.log('Activation popup marked as shown');
-                        // Mark in localStorage
-                        localStorage.setItem('activation_popup_shown_post_<?= $activation_post_id ?>', '1');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error marking activation popup:', error);
-                        // Still mark in localStorage as fallback
-                        localStorage.setItem('activation_popup_shown_post_<?= $activation_post_id ?>', '1');
-                    }
-                });
+                // When "Got it!" (confirmButton) or close button is clicked, close modal and mark shown without navigating
+                markActivationPopupShown();
             });
         }
     }

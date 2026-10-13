@@ -103,7 +103,10 @@ if (!edit_has_column($config, 'activation_popup_shown')) {
 $current_status = '0';
 $current_post_addon = '';
 $current_popup_shown = 0;
-$select_cols = "status, post_addon";
+$select_cols = "status, post_addon, payment_type";
+if (edit_has_column($config, 'payment_confirmed_at')) {
+    $select_cols .= ", payment_confirmed_at";
+}
 if (edit_has_column($config, 'activation_popup_shown')) {
     $select_cols .= ", activation_popup_shown";
 }
@@ -114,6 +117,7 @@ if ($current_status_query) {
         $current_status = isset($current_status_data['status']) ? $current_status_data['status'] : '0';
         $current_post_addon = isset($current_status_data['post_addon']) ? $current_status_data['post_addon'] : '';
         $current_popup_shown = isset($current_status_data['activation_popup_shown']) ? intval($current_status_data['activation_popup_shown']) : 0;
+        $current_confirmed_at = !empty($current_status_data['payment_confirmed_at']) ? trim($current_status_data['payment_confirmed_at']) : '';
     }
 }
 
@@ -130,7 +134,13 @@ if ($paid_status == 'pending' || $paid_status == 'free') {
 } elseif ($paid_status == '0' || $paid_status == '1' || $paid_status == '2' || $paid_status == '3') {
     $auto_status = '1';
     $payment_type_value = edit_sql_int($paid_status, 0);
-    $payment_confirmed_sql = ($paid_on !== '') ? "'$paid_on'" : 'NOW()';
+    if ($paid_on !== '') {
+        $payment_confirmed_sql = "'$paid_on'";
+    } elseif (!empty($current_confirmed_at) && $current_confirmed_at !== '0000-00-00 00:00:00') {
+        $payment_confirmed_sql = "'".mysqli_real_escape_string($config, $current_confirmed_at)."'";
+    } else {
+        $payment_confirmed_sql = 'NOW()';
+    }
 } elseif ($paid_status !== '' && is_numeric($paid_status)) {
     $payment_type_value = edit_sql_int($paid_status, 0);
     $payment_confirmed_sql = 'NULL';

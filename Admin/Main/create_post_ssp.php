@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/php_errors.log');
+date_default_timezone_set("Asia/Kolkata");
 
 // Set error handler to catch all errors
 function customErrorHandler($errno, $errstr, $errfile, $errline) {
@@ -240,28 +241,28 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
         }
     }
 
-    // Payment transaction details
+    // Payment transaction details (find latest successful transaction for this post)
     $paidTransactionID = '';
     $paidAmount = 0;
-    $paymentConfirmedAt = '';
-    $onlinePaymentQuery = mysqli_query($config, "SELECT transactionId, Paid_Amout, Paid_on FROM online_payment_transcation WHERE Order_id = '{$row['post_id']}' AND Paid_Amout > 0 LIMIT 1");
+    $onlinePaidOn = '';
+    $onlinePaymentQuery = mysqli_query($config, "SELECT transactionId, Paid_Amout, Paid_on FROM online_payment_transcation WHERE Order_id = '{$row['post_id']}' AND (Paid_Amout > 0 OR Order_Paid_Status = 'success') ORDER BY IFNULL(Paid_on, '1970-01-01') DESC, Online_order_id DESC LIMIT 1");
     if ($onlinePaymentQuery && mysqli_num_rows($onlinePaymentQuery) > 0) {
         $onlinePaymentData = mysqli_fetch_assoc($onlinePaymentQuery);
-        $paidTransactionID = $onlinePaymentData['transactionId'];
-        $paidAmount = $onlinePaymentData['Paid_Amout'];
-        $paymentConfirmedAt = $onlinePaymentData['Paid_on'];
+        $paidTransactionID = !empty($onlinePaymentData['transactionId']) ? trim($onlinePaymentData['transactionId']) : '';
+        $paidAmount = !empty($onlinePaymentData['Paid_Amout']) ? floatval(str_replace(',', '', $onlinePaymentData['Paid_Amout'])) : 0;
+        $onlinePaidOn = !empty($onlinePaymentData['Paid_on']) ? trim($onlinePaymentData['Paid_on']) : '';
         mysqli_free_result($onlinePaymentQuery);
     }
 
-    // Payment Status Logic (same as create_post.php)
+    // Payment Status Logic
     $paymentType = $row['payment_type'];
-    $refNo = $row['ref_no'];
+    $refNo = !empty($row['ref_no']) ? trim($row['ref_no']) : '';
     $packageAmount = $row['package_amount'];
     $netAmount = $row['net_amount'];
-    $utrNumber = $row['utr_number'];
-    $utrDate = $row['utr_date'];
+    $utrNumber = !empty($row['utr_number']) ? trim($row['utr_number']) : '';
+    $utrDate = !empty($row['utr_date']) ? trim($row['utr_date']) : '';
     $status = $row['status'];
-    $paymentConfirmedAt_db = $row['payment_confirmed_at'];
+    $paymentConfirmedAt_db = !empty($row['payment_confirmed_at']) ? trim($row['payment_confirmed_at']) : '';
     
     // Calculate Net Amount if discount applied
     $discountAmount = $row['discount_amount'];
@@ -283,51 +284,138 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
         ($calculatedNetAmountFloat !== null && $calculatedNetAmountFloat == 0)) {
         $isFreeRegistration = true;
     }
-    
-    // Determine payment status (matching create_post.php logic)
+
+    // Check if user paid online:
+    // A post is paid online if:
+    // 1. Not a free registration, AND
+    // 2. Either a successful transaction exists in online_payment_transcation ($paidAmount > 0 OR Order_Paid_Status = 'success' OR transactionId present)
+    //    OR post is Active (status=1) with payment_type='0' (Online)
+    $hasOnlineTransaction = ($paidAmount > 0) || (!empty($paidTransactionID)) || (!empty($onlinePaidOn) && ($paymentType === '0' || $paymentType === 0));
+    $isOnlinePaid = (!$isFreeRegistration) && (
+        $hasOnlineTransaction ||
+        ($status == 1 && ($paymentType === '0' || $paymentType === 0) && (!empty($paymentConfirmedAt_db) || !empty($row['razorpay_order_id']) || (!empty($refNo) && stripos($refNo, 'pay_') === 0)))
+    );
+
+    // Determine Confirmed On date and time:
+    // - If user paid through online payment: show that online payment time/date
+    // - Or else (manual payment, e.g. Admin Cash, Admin Bank, Scan QR / UTR): use manual payment confirmation time/date
+    $paymentConfirmedDate = '-';
     if ($isFreeRegistration) {
-        $paymentStatus = "Free Registration<br><span class='badge bg-info mt-2'>Free</span>";
-    } elseif (!empty($paidAmount) && $paidAmount > 0) {
-        $paymentStatus = "Online Payment (Transaction ID: $paidTransactionID)<br><span class='badge bg-success mt-2'>Paid</span>";
-    } elseif ($paymentType == '0' && empty($utrNumber)) {
-        if (!empty($paidTransactionID) || !empty($paymentConfirmedAt_db) || (!empty($paidAmount) && $paidAmount > 0)) {
-            if (!empty($paidTransactionID)) {
-                $paymentStatus = "Online Payment (Transaction ID: $paidTransactionID)";
-            } else {
-                $paymentStatus = "Online Payment";
+        $paymentConfirmedDate = '-';
+    } elseif ($isOnlinePaid) {
+        // ONLINE PAYMENT:
+        // Priority 1: Check online_payment_transcation.Paid_on
+        $onlineTs = (!empty($onlinePaidOn) && $onlinePaidOn !== '0000-00-00' && $onlinePaidOn !== '0000-00-00 00:00:00') ? strtotime($onlinePaidOn) : false;
+        $onlineHasTime = false;
+        if ($onlineTs !== false && $onlineTs > 0) {
+            $oTime = date('H:i:s', $onlineTs);
+            if ($oTime !== '00:00:00' && $oTime !== '05:30:00') {
+                $onlineHasTime = true;
             }
-            $paymentStatus .= "<br><span class='badge bg-success mt-2'>Paid</span>";
-            if (!empty($paymentConfirmedAt_db)) {
-                $p_time = date('H:i:s', strtotime($paymentConfirmedAt_db));
-                $p_format = ($p_time === '00:00:00') ? 'd-M-Y' : 'd-M-Y h:i A';
-                $paymentStatus .= "<br><small>Confirmed on: " . date($p_format, strtotime($paymentConfirmedAt_db)) . "</small>";
-            }
-        } else {
-            $paymentStatus = "Payment Pending<br><span class='badge bg-warning mt-2'>Pending</span>";
         }
-    } elseif ($paymentType == '1') {
-        $paymentStatus = "Admin Cash<br><span class='badge bg-success mt-2'>Paid</span>";
-    } elseif ($paymentType == '2') {
-        $paymentStatus = "Admin Bank + Transaction (Ref No: $refNo)<br><span class='badge bg-success mt-2'>Paid</span>";
-    } elseif (!empty($utrNumber)) {
-        if ($status == 1) {
-            $paymentStatus = "UTR No: $utrNumber<br>UTR Date: $utrDate<br><span class='badge bg-success mt-2'>Payment Confirmed</span>";
-            if (!empty($paymentConfirmedAt_db)) {
-                $p_time = date('H:i:s', strtotime($paymentConfirmedAt_db));
-                $p_format = ($p_time === '00:00:00') ? 'd-M-Y' : 'd-M-Y h:i A';
-                $paymentStatus .= "<br><small>Confirmed on: " . date($p_format, strtotime($paymentConfirmedAt_db)) . "</small>";
+
+        // Priority 2: Check create_post.payment_confirmed_at (recorded by Razorpay webhook on payment success)
+        $dbTs = (!empty($paymentConfirmedAt_db) && $paymentConfirmedAt_db !== '0000-00-00 00:00:00') ? strtotime($paymentConfirmedAt_db) : false;
+        $dbHasTime = false;
+        if ($dbTs !== false && $dbTs > 0) {
+            $dTime = date('H:i:s', $dbTs);
+            if ($dTime !== '00:00:00' && $dTime !== '05:30:00') {
+                $dbHasTime = true;
             }
-        } else {
-            $paymentStatus = "UTR No: $utrNumber<br>UTR Date: $utrDate<br><button class='btn btn-success btn-sm mt-2' onclick='updatePaymentStatus(" . $row['post_id'] . ")'>Confirm Payment</button>";
-            $paymentStatus .= "<br><button class='btn btn-warning btn-sm mt-1' onclick='updateUTRNumber(" . $row['post_id'] . ", \"" . $utrNumber . "\", \"" . $utrDate . "\")'>Update UTR</button>";
-            $paymentStatus .= "<br><button class='btn btn-danger btn-sm mt-1' onclick='clearUTRNumber(" . $row['post_id'] . ")'>Clear UTR</button>";
+        }
+
+        if ($onlineHasTime) {
+            // Online transaction table has exact timestamp
+            $paymentConfirmedDate = date('d-M-Y h:i A', $onlineTs);
+        } elseif ($dbHasTime) {
+            // Webhook recorded exact timestamp in payment_confirmed_at
+            $paymentConfirmedDate = date('d-M-Y h:i A', $dbTs);
+        } elseif ($onlineTs !== false && $onlineTs > 0) {
+            // Date-only from online transaction table
+            $paymentConfirmedDate = date('d-M-Y', $onlineTs);
+        } elseif ($dbTs !== false && $dbTs > 0) {
+            // Date-only from payment_confirmed_at
+            $paymentConfirmedDate = date('d-M-Y', $dbTs);
         }
     } else {
-        if (empty($paymentType) || $status == '0' || $status == 0) {
-            $paymentStatus = "Payment Pending<br><span class='badge bg-warning mt-2'>Pending</span>";
-        } else {
-            $paymentStatus = "Payment Pending";
+        // MANUAL / NON-ONLINE PAYMENT:
+        // Use the manual confirmation time (set when admin clicks 'Confirm Payment' or updates payment status)
+        $dbTs = (!empty($paymentConfirmedAt_db) && $paymentConfirmedAt_db !== '0000-00-00 00:00:00') ? strtotime($paymentConfirmedAt_db) : false;
+        if ($dbTs !== false && $dbTs > 0) {
+            $dbTime = date('H:i:s', $dbTs);
+            if ($dbTime !== '00:00:00' && $dbTime !== '05:30:00') {
+                $paymentConfirmedDate = date('d-M-Y h:i A', $dbTs);
+            } else {
+                $paymentConfirmedDate = date('d-M-Y', $dbTs);
+            }
+        } elseif (!empty($utrDate) && $utrDate !== '0000-00-00' && $status == 1) {
+            $uTs = strtotime($utrDate);
+            if ($uTs !== false && $uTs > 0) {
+                $paymentConfirmedDate = date('d-M-Y', $uTs);
+            }
+        } elseif ($status == 1 && ($paymentType === '1' || $paymentType === '2' || $paymentType === 1 || $paymentType === 2)) {
+            // Active Admin Cash / Admin Bank fallback
+            $activeDate = (!empty($row['created_at']) && $row['created_at'] !== '0000-00-00 00:00:00') ? $row['created_at'] : (!empty($row['post_addon']) ? $row['post_addon'] : '');
+            if (!empty($activeDate)) {
+                $aTs = strtotime($activeDate);
+                if ($aTs !== false && $aTs > 0) {
+                    $aTime = date('H:i:s', $aTs);
+                    if ($aTime !== '00:00:00' && $aTime !== '05:30:00') {
+                        $paymentConfirmedDate = date('d-M-Y h:i A', $aTs);
+                    } else {
+                        $paymentConfirmedDate = date('d-M-Y', $aTs);
+                    }
+                }
+            }
         }
+    }
+    
+    // Determine payment status display (matching create_post.php logic)
+    if ($isFreeRegistration) {
+        $paymentStatus = "Free Registration<br><span class='badge bg-info mt-2'>Free</span>";
+    } elseif ($isOnlinePaid) {
+        $txText = !empty($paidTransactionID) ? " (Transaction ID: $paidTransactionID)" : "";
+        $paymentStatus = "Online Payment$txText<br><span class='badge bg-success mt-2'>Paid</span>";
+        if ($paymentConfirmedDate !== '-') {
+            $paymentStatus .= "<br><small>Confirmed on: $paymentConfirmedDate</small>";
+        }
+    } elseif ($paymentType == '1') {
+        if ($status == 1) {
+            $paymentStatus = "Admin Cash<br><span class='badge bg-success mt-2'>Paid</span>";
+            if ($paymentConfirmedDate !== '-') {
+                $paymentStatus .= "<br><small>Confirmed on: $paymentConfirmedDate</small>";
+            }
+        } else {
+            $paymentStatus = "Admin Cash<br><span class='badge bg-warning mt-2'>Pending</span>";
+            $paymentConfirmedDate = '-';
+        }
+    } elseif ($paymentType == '2') {
+        $refText = !empty($refNo) ? " (Ref No: $refNo)" : "";
+        if ($status == 1) {
+            $paymentStatus = "Admin Bank + Transaction$refText<br><span class='badge bg-success mt-2'>Paid</span>";
+            if ($paymentConfirmedDate !== '-') {
+                $paymentStatus .= "<br><small>Confirmed on: $paymentConfirmedDate</small>";
+            }
+        } else {
+            $paymentStatus = "Admin Bank$refText<br><span class='badge bg-warning mt-2'>Pending</span>";
+            $paymentConfirmedDate = '-';
+        }
+    } elseif (!empty($utrNumber) || $paymentType == '3') {
+        $uDateFormatted = (!empty($utrDate) && $utrDate !== '0000-00-00') ? date('d-M-Y', strtotime($utrDate)) : (!empty($utrDate) ? $utrDate : '-');
+        if ($status == 1) {
+            $paymentStatus = "UTR No: $utrNumber<br>UTR Date: $uDateFormatted<br><span class='badge bg-success mt-2'>Payment Confirmed</span>";
+            if ($paymentConfirmedDate !== '-') {
+                $paymentStatus .= "<br><small>Confirmed on: $paymentConfirmedDate</small>";
+            }
+        } else {
+            $paymentStatus = "UTR No: $utrNumber<br>UTR Date: $uDateFormatted<br><button class='btn btn-success btn-sm mt-2' onclick='updatePaymentStatus(" . $row['post_id'] . ")'>Confirm Payment</button>";
+            $paymentStatus .= "<br><button class='btn btn-warning btn-sm mt-1' onclick='updateUTRNumber(" . $row['post_id'] . ", \"" . $utrNumber . "\", \"" . $utrDate . "\")'>Update UTR</button>";
+            $paymentStatus .= "<br><button class='btn btn-danger btn-sm mt-1' onclick='clearUTRNumber(" . $row['post_id'] . ")'>Clear UTR</button>";
+            $paymentConfirmedDate = '-';
+        }
+    } else {
+        $paymentStatus = "Payment Pending<br><span class='badge bg-warning mt-2'>Pending</span>";
+        $paymentConfirmedDate = '-';
     }
     
     // Amount display
@@ -345,23 +433,14 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
     $statusText = ($row['status'] == 1) ? '<label class="btn btn-success">Active</label>' : '<label class="btn btn-danger">In-Active</label>';
     
     // Date
-    if (!empty($row['created_at'])) {
+    if (!empty($row['created_at']) && $row['created_at'] !== '0000-00-00 00:00:00') {
         $c_time = date('H:i:s', strtotime($row['created_at']));
-        $c_format = ($c_time === '00:00:00') ? 'd-m-Y' : 'd-m-Y h:i A';
+        $c_format = ($c_time === '00:00:00' || $c_time === '05:30:00') ? 'd-m-Y' : 'd-m-Y h:i A';
         $createDate = date($c_format, strtotime($row['created_at']));
     } elseif (!empty($row['post_addon'])) {
-        // Fallback just in case created_at is somehow empty, though it shouldn't be
         $createDate = date('d-m-Y', strtotime($row['post_addon']));
     } else {
         $createDate = '';
-    }
-    // Payment Confirmed On
-    if (!empty($paymentConfirmedAt_db)) {
-        $p_time2 = date('H:i:s', strtotime($paymentConfirmedAt_db));
-        $p_format2 = ($p_time2 === '00:00:00') ? 'd-M-Y' : 'd-M-Y h:i A';
-        $paymentConfirmedDate = date($p_format2, strtotime($paymentConfirmedAt_db));
-    } else {
-        $paymentConfirmedDate = '-';
     }
     
     // Vehicle photo
