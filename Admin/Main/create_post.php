@@ -179,8 +179,14 @@ $csvUrl = 'post_report_ex_create.php' . (!empty($csvParams) ? '?' . implode('&',
 <!-- <a style="float: right;" target="_black" class="btn btn-danger" href="https://www.md5online.org/md5-decrypt.html">MD5 Decryption</a> -->
 </div>
 								<div class="card-body">
-									<center> <a href="add_create_post.php" class="btn btn-success">
-											<i class="fas fa-plus"></i> Create New Registration </a></center>
+									<div class="d-flex justify-content-center align-items-center flex-wrap" style="gap: 12px; margin-bottom: 20px;">
+										<a href="add_create_post.php" class="btn btn-success">
+											<i class="fas fa-plus"></i> Create New Registration
+										</a>
+										<button type="button" class="btn btn-primary shadow-sm" id="btnOpenSendMessage" onclick="openSendMessageModal()">
+											<i class="fas fa-paper-plane mr-1"></i> Send Message to Selected Drivers (<span id="selectedCountBadge">0</span>)
+										</button>
+									</div>
 											<?php
 // Remove PHP pagination - Load ALL data for DataTables
 // DataTables will handle pagination on client-side
@@ -509,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function() {
 										<table id="basic-datatables" class="display table table-striped table-hover">
 											<thead>
 												<tr>
-													<th>S.No</th>
+													<th style="min-width: 90px;"><input type="checkbox" id="selectAllDrivers" title="Select All" style="width: 17px; height: 17px; cursor: pointer; vertical-align: middle; margin-right: 4px;"> S.No</th>
 													<th> Driver Name</th>
 													<!-- <th> Vehicle Name</th> -->
 													<th>Vehicle No</th>
@@ -711,6 +717,13 @@ document.addEventListener('DOMContentLoaded', function() {
 				"serverSide": true, // Enable server-side processing
 				"columnDefs": [
 					{
+						"targets": 0,
+						"orderable": false,
+						"createdCell": function (td, cellData) {
+							$(td).html(cellData);
+						}
+					},
+					{
 						"targets": 3,
 						"orderable": false,
 						"createdCell": function (td, cellData) {
@@ -718,6 +731,19 @@ document.addEventListener('DOMContentLoaded', function() {
 						}
 					}
 				],
+				"drawCallback": function(settings) {
+					$('.driver-checkbox').each(function() {
+						var custId = $(this).val();
+						var postId = $(this).data('post-id');
+						var key = (custId && custId != '0') ? custId : ('p_' + postId);
+						if (window.selectedDriversMap && window.selectedDriversMap[key]) {
+							$(this).prop('checked', true);
+						}
+					});
+					if (typeof updateSelectAllCheckboxState === 'function') {
+						updateSelectAllCheckboxState();
+					}
+				},
 				"ajax": {
 					"url": sspUrl,
 					"type": "GET",
@@ -1043,6 +1069,281 @@ document.addEventListener('DOMContentLoaded', function() {
 							});
 						}
 					});
+				}
+			});
+		}
+	</script>
+
+	<!-- Modal for Sending Message to Selected Drivers -->
+	<div class="modal fade" id="sendMessageModal" tabindex="-1" role="dialog" aria-labelledby="sendMessageModalLabel" aria-hidden="true" style="z-index: 10500;">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content shadow border-0" style="border-radius: 12px; overflow: hidden;">
+				<div class="modal-header text-white" style="background: linear-gradient(135deg, #1572e8, #0056b3);">
+					<h5 class="modal-title font-weight-bold" id="sendMessageModalLabel">
+						<i class="fas fa-paper-plane mr-2"></i> Send Message to Selected Driver(s)
+					</h5>
+					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="opacity: 0.9;">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-4" style="background-color: #fcfcfc;">
+					<div class="alert alert-info py-2 px-3 mb-3 d-flex align-items-center justify-content-between" style="border-radius: 8px;">
+						<div>
+							<i class="fas fa-users mr-1"></i> <strong>Selected Drivers:</strong> 
+							<span id="selectedDriversCountText" class="badge badge-primary ml-1" style="font-size: 13px;">0 Drivers</span>
+						</div>
+						<button type="button" class="btn btn-sm btn-outline-danger" onclick="clearSelectedDrivers()">
+							<i class="fas fa-times-circle mr-1"></i> Clear Selection
+						</button>
+					</div>
+					
+					<label class="font-weight-bold text-muted small mb-1">RECIPIENTS PREVIEW</label>
+					<div id="selectedDriversListPreview" class="mb-3 p-2 border rounded bg-white d-flex flex-wrap" style="max-height: 120px; overflow-y: auto; gap: 6px;">
+						<!-- Recipient badges will be rendered here -->
+					</div>
+
+					<div class="form-group mb-2 p-0">
+						<label for="driverMessageText" class="font-weight-bold text-dark">
+							Message Content / செய்தி <span class="text-danger">*</span>
+						</label>
+						<textarea class="form-control" id="driverMessageText" rows="5" placeholder="Type your message here (e.g. Please update your vehicle front view photo, payment confirmation notice, etc.)..." style="font-size: 15px; border-radius: 8px; line-height: 1.5;" required></textarea>
+						<small class="form-text text-muted mt-2">
+							<i class="fas fa-info-circle text-primary"></i> This message will open directly as a popup modal on the selected driver's screen when they use the mobile app.
+						</small>
+					</div>
+				</div>
+				<div class="modal-footer bg-light border-top py-3">
+					<button type="button" class="btn btn-secondary px-3" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-success px-4 font-weight-bold" id="btnSubmitDriverMessage" onclick="submitDriverMessage()">
+						<i class="fas fa-paper-plane mr-1"></i> Send Message Now
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		window.selectedDriversMap = {};
+
+		function updateSelectedCountBadge() {
+			var count = Object.keys(selectedDriversMap).length;
+			$('#selectedCountBadge').text(count);
+			$('#selectedDriversCountText').text(count + (count === 1 ? ' Driver' : ' Drivers'));
+		}
+
+		function updateSelectAllCheckboxState() {
+			var visibleCheckboxes = $('.driver-checkbox');
+			if (visibleCheckboxes.length === 0) {
+				$('#selectAllDrivers').prop('checked', false);
+				return;
+			}
+			var allChecked = true;
+			visibleCheckboxes.each(function() {
+				if (!$(this).prop('checked')) {
+					allChecked = false;
+				}
+			});
+			$('#selectAllDrivers').prop('checked', allChecked);
+		}
+
+		// Checkbox selection event (delegated for DataTables dynamic rows)
+		$(document).on('change', '.driver-checkbox', function() {
+			var custId = $(this).val();
+			var postId = $(this).data('post-id');
+			var key = (custId && custId != '0') ? custId : ('p_' + postId);
+			var name = $(this).data('driver-name') || '';
+			var phone = $(this).data('phone') || '';
+			var vehicle = $(this).data('vehicle-no') || '';
+
+			if ($(this).is(':checked')) {
+				selectedDriversMap[key] = {
+					customer_id: custId,
+					post_id: postId,
+					driver_name: name,
+					phone_no: phone,
+					vehicle_no: vehicle
+				};
+			} else {
+				delete selectedDriversMap[key];
+			}
+			updateSelectedCountBadge();
+			updateSelectAllCheckboxState();
+		});
+
+		// Select All visible checkbox
+		$(document).on('change', '#selectAllDrivers', function() {
+			var isChecked = $(this).is(':checked');
+			$('.driver-checkbox').each(function() {
+				var custId = $(this).val();
+				var postId = $(this).data('post-id');
+				var key = (custId && custId != '0') ? custId : ('p_' + postId);
+				var name = $(this).data('driver-name') || '';
+				var phone = $(this).data('phone') || '';
+				var vehicle = $(this).data('vehicle-no') || '';
+
+				$(this).prop('checked', isChecked);
+				if (isChecked) {
+					selectedDriversMap[key] = {
+						customer_id: custId,
+						post_id: postId,
+						driver_name: name,
+						phone_no: phone,
+						vehicle_no: vehicle
+					};
+				} else {
+					delete selectedDriversMap[key];
+				}
+			});
+			updateSelectedCountBadge();
+		});
+
+		function renderSelectedDriversPreview() {
+			var container = $('#selectedDriversListPreview');
+			container.empty();
+			var keys = Object.keys(selectedDriversMap);
+			if (keys.length === 0) {
+				container.html('<span class="text-muted small">No drivers selected yet.</span>');
+				return;
+			}
+			keys.forEach(function(key) {
+				var drv = selectedDriversMap[key];
+				var label = (drv.driver_name || 'Driver');
+				if (drv.vehicle_no) label += ' (' + drv.vehicle_no + ')';
+				if (drv.phone_no) label += ' - ' + drv.phone_no;
+				var badgeHtml = '<span class="badge badge-light border p-2 m-1 d-inline-flex align-items-center" style="font-size: 13px;">' +
+					'<i class="fas fa-user mr-1 text-primary"></i> ' + $('<div>').text(label).html() +
+					' <a href="javascript:void(0)" onclick="removeSingleDriverSelection(\'' + key + '\')" class="ml-2 text-danger font-weight-bold" style="text-decoration:none;">&times;</a>' +
+					'</span>';
+				container.append(badgeHtml);
+			});
+		}
+
+		function removeSingleDriverSelection(key) {
+			delete selectedDriversMap[key];
+			$('.driver-checkbox').each(function() {
+				var custId = $(this).val();
+				var postId = $(this).data('post-id');
+				var itemKey = (custId && custId != '0') ? custId : ('p_' + postId);
+				if (itemKey === key) {
+					$(this).prop('checked', false);
+				}
+			});
+			updateSelectedCountBadge();
+			updateSelectAllCheckboxState();
+			renderSelectedDriversPreview();
+		}
+
+		function clearSelectedDrivers() {
+			selectedDriversMap = {};
+			$('.driver-checkbox').prop('checked', false);
+			$('#selectAllDrivers').prop('checked', false);
+			updateSelectedCountBadge();
+			renderSelectedDriversPreview();
+		}
+
+		function openSendMessageModal() {
+			if (Object.keys(selectedDriversMap).length === 0) {
+				Swal.fire({
+					icon: 'warning',
+					title: 'No Drivers Selected',
+					text: 'Please select one or more drivers using the checkboxes first.',
+					confirmButtonColor: '#1572e8'
+				});
+				return;
+			}
+			renderSelectedDriversPreview();
+			$('#sendMessageModal').modal('show');
+		}
+
+		function openSingleDriverMessage(customerId, driverName, phone, vehicleNo) {
+			selectedDriversMap = {};
+			$('.driver-checkbox').prop('checked', false);
+			$('#selectAllDrivers').prop('checked', false);
+			
+			var key = (customerId && customerId != '0') ? customerId : 'single_' + phone;
+			selectedDriversMap[key] = {
+				customer_id: customerId,
+				driver_name: driverName,
+				phone_no: phone,
+				vehicle_no: vehicleNo
+			};
+			
+			$('.driver-checkbox').each(function() {
+				if ($(this).val() == customerId && customerId != '0') {
+					$(this).prop('checked', true);
+				}
+			});
+			
+			updateSelectedCountBadge();
+			renderSelectedDriversPreview();
+			$('#sendMessageModal').modal('show');
+		}
+
+		function submitDriverMessage() {
+			var messageText = $('#driverMessageText').val().trim();
+			if (!messageText) {
+				Swal.fire({
+					icon: 'warning',
+					title: 'Message Required',
+					text: 'Please enter the message content you wish to send.',
+					confirmButtonColor: '#1572e8'
+				});
+				return;
+			}
+			
+			var driversList = Object.values(selectedDriversMap);
+			if (driversList.length === 0) {
+				Swal.fire({
+					icon: 'warning',
+					title: 'No Recipients',
+					text: 'Please select at least one driver.',
+					confirmButtonColor: '#1572e8'
+				});
+				return;
+			}
+
+			var btn = $('#btnSubmitDriverMessage');
+			btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin mr-1"></i> Sending...');
+
+			$.ajax({
+				url: 'Function/send_driver_message.php',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					message: messageText,
+					drivers: JSON.stringify(driversList)
+				},
+				success: function(res) {
+					if (res && res.success) {
+						$('#sendMessageModal').modal('hide');
+						$('#driverMessageText').val('');
+						clearSelectedDrivers();
+						Swal.fire({
+							icon: 'success',
+							title: 'Message Sent!',
+							text: res.message || 'Message sent successfully to selected driver(s)!',
+							confirmButtonColor: '#28a745'
+						});
+					} else {
+						Swal.fire({
+							icon: 'error',
+							title: 'Failed',
+							text: (res && res.message) ? res.message : 'Failed to send message. Please try again.',
+							confirmButtonColor: '#dc3545'
+						});
+					}
+				},
+				error: function(xhr, status, err) {
+					console.error('Send message error:', err);
+					Swal.fire({
+						icon: 'error',
+						title: 'Error',
+						text: 'Server communication error. Please try again.',
+						confirmButtonColor: '#dc3545'
+					});
+				},
+				complete: function() {
+					btn.prop('disabled', false).html('<i class="fas fa-paper-plane mr-1"></i> Send Message Now');
 				}
 			});
 		}

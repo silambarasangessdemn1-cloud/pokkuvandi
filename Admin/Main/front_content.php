@@ -86,7 +86,7 @@ if($logstatus == 1)
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Popup Message</h4>
+						<h4 class="page-title"> Popup Message</h4>
 						 
 					</div>
 					<div class="row">

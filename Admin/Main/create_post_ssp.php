@@ -447,11 +447,23 @@ while ($row = mysqli_fetch_assoc($dataResult)) {
     $vehiclePhoto = '<img src="../../photos/vehicle/' . $row['vehicle_photo'] . '" style="width: 128px; height: 129px;">';
     
     // Action buttons
-    $actionButtons = '<a href="edit_create_post.php?pid=' . $row['post_id'] . '" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a> ';
-    $actionButtons .= '<a style="color:white" data-toggle="modal" data-target="#exampleModaldelete" onclick="deletepost(' . $row['post_id'] . ')" class="btn btn-danger"><i class="fas fa-trash"></i></a>';
+    $safeDriverName = htmlspecialchars($row['driver_name'] ?? '', ENT_QUOTES, 'UTF-8');
+    $safePhone = htmlspecialchars($row['phone_no'] ?? '', ENT_QUOTES, 'UTF-8');
+    $safeVehicleNo = htmlspecialchars($row['vehicle_no'] ?? '', ENT_QUOTES, 'UTF-8');
+    $customerId = (int)($row['customer_id'] ?? 0);
+
+    $actionButtons = '<a href="edit_create_post.php?pid=' . $row['post_id'] . '" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt"></i></a> ';
+    $actionButtons .= '<a style="color:white" data-toggle="modal" data-target="#exampleModaldelete" onclick="deletepost(' . $row['post_id'] . ')" class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i></a> ';
+    $actionButtons .= '<button type="button" class="btn btn-warning" title="Send Message to this Driver" onclick="openSingleDriverMessage(' . $customerId . ', \'' . addslashes($safeDriverName) . '\', \'' . addslashes($safePhone) . '\', \'' . addslashes($safeVehicleNo) . '\')"><i class="fas fa-comment-dots"></i></button>';
     
+    // Checkbox column with S.No
+    $sNoHtml = '<div class="d-flex align-items-center justify-content-center">';
+    $sNoHtml .= '<input type="checkbox" class="driver-checkbox mr-2" value="' . $customerId . '" data-driver-name="' . $safeDriverName . '" data-phone="' . $safePhone . '" data-vehicle-no="' . $safeVehicleNo . '" data-post-id="' . $row['post_id'] . '" style="width: 17px; height: 17px; cursor: pointer;">';
+    $sNoHtml .= '<span>' . $rowNum . '</span>';
+    $sNoHtml .= '</div>';
+
     $data[] = array(
-        $rowNum,
+        $sNoHtml,
         $row['driver_name'],
         $row['vehicle_no'],
         $vehiclePhoto,

@@ -415,10 +415,12 @@ else {
                 if (result.isConfirmed) {
                     localStorage.setItem('user_type', 'driver');
                     sessionStorage.setItem('show_driver_popup_now', 'true');
+                    sessionStorage.removeItem('app_vehicle_msg_shown');
                     window.location.href = 'Directory.php?from_driver=1';
                 } else {
                     localStorage.setItem('user_type', 'customer');
                     sessionStorage.removeItem('show_driver_popup_now');
+                    sessionStorage.setItem('app_vehicle_msg_shown', 'true');
                     window.location.href = 'Directory.php';
                 }
             });

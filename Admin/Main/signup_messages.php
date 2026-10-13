@@ -86,7 +86,7 @@ if($logstatus == 1)
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Popup Message</h4>
+						<h4 class="page-title">Sign Up / Sign In Popup Message</h4>
 						 
 					</div>
 					<div class="row">
@@ -108,7 +108,7 @@ if($logstatus == 1)
 								
 						  <form action="signup_action/edit_signup_msg.php" method="post" style="width:100%;">		
 						 <div class="form-group">
-						 <label for="email2">Popup Message</label>
+						 <label for="email2">Sign Up / Sign In Popup Message</label>
 						 <input type="hidden" class="form-control" name="Edit_signup_id"  value="<?php echo $row_signup->id;?>">
 						
 					<textarea name="name_signup" style="width:100%; height: 150px; color: #333333;"><?php echo $row_signup->content; ?></textarea><br>

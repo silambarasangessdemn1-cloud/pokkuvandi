@@ -1322,67 +1322,76 @@ $("#enq_city").change(function(){
             var isFromDriverSelection = (urlParams.get('from_driver') === '1') || (sessionStorage.getItem('show_driver_popup_now') === 'true');
             if (isFromDriverSelection) {
                 sessionStorage.removeItem('show_driver_popup_now');
+                sessionStorage.removeItem('app_vehicle_msg_shown');
             }
 
             var sessionAdminKey = 'app_admin_msg_shown_' + '<?php echo $all_users_hash; ?>';
             var sessionDriverKey = 'app_driver_msg_shown_' + '<?php echo $driver_hash; ?>';
             var sessionVehicleKey = 'app_vehicle_msg_shown';
 
+            function showVehicleModal() {
+                if (!sessionStorage.getItem(sessionVehicleKey)) {
+                    setTimeout(function() {
+                        $('#vehicleImageUpdateModal').modal('show');
+                    }, 500);
+                    sessionStorage.setItem(sessionVehicleKey, 'true');
+                }
+            }
+
             if (isFromDriverSelection) {
                 // Flow: User just logged in and selected Driver
-                <?php if($show_driver_popup) { ?>
-                    setTimeout(function() {
-                        $('#driverContentPopupModal').modal('show');
-                    }, 500);
-                    sessionStorage.setItem(sessionDriverKey, 'true');
+                var hasParticularMsg = ($('#driverParticularMsgModal').length > 0);
+                var adminModalId = null;
+                var adminSessionKey = null;
 
-                    $('#driverContentPopupModal').on('hidden.bs.modal', function () {
-                        if (!sessionStorage.getItem(sessionVehicleKey)) {
+                <?php if ($show_driver_popup) { ?>
+                    adminModalId = '#driverContentPopupModal';
+                    adminSessionKey = sessionDriverKey;
+                <?php } elseif ($show_all_users_popup) { ?>
+                    adminModalId = '#contentPopupModal';
+                    adminSessionKey = sessionAdminKey;
+                <?php } ?>
+
+                if (hasParticularMsg) {
+                    // Admin sent personal direct message to this driver -> show that first
+                    $('#driverParticularMsgModal').on('hidden.bs.modal', function () {
+                        if (adminModalId && $(adminModalId).length > 0) {
                             setTimeout(function() {
-                                $('#vehicleImageUpdateModal').modal('show');
+                                $(adminModalId).modal('show');
                             }, 500);
-                            sessionStorage.setItem(sessionVehicleKey, 'true');
+                            if (adminSessionKey) sessionStorage.setItem(adminSessionKey, 'true');
+
+                            $(adminModalId).on('hidden.bs.modal', function () {
+                                showVehicleModal();
+                            });
+                        } else {
+                            showVehicleModal();
                         }
                     });
-                <?php } else { ?>
-                    if (!sessionStorage.getItem(sessionVehicleKey)) {
-                        setTimeout(function() {
-                            $('#vehicleImageUpdateModal').modal('show');
-                        }, 500);
-                        sessionStorage.setItem(sessionVehicleKey, 'true');
-                    }
-                <?php } ?>
+                } else if (adminModalId && $(adminModalId).length > 0) {
+                    // Admin CMS announcement message appears first
+                    setTimeout(function() {
+                        $(adminModalId).modal('show');
+                    }, 500);
+                    if (adminSessionKey) sessionStorage.setItem(adminSessionKey, 'true');
+
+                    // After admin announcement is closed, show vehicle modal!
+                    $(adminModalId).on('hidden.bs.modal', function () {
+                        showVehicleModal();
+                    });
+                } else {
+                    // No admin message, show vehicle modal directly for driver
+                    showVehicleModal();
+                }
             } else {
-                // Flow: Opening the app (All Users / Customers)
+                // Flow: Opening the app (All Users / Customers / Non-driver)
+                // Only show All Users announcement from admin if configured. Do NOT show vehicle modal.
                 <?php if($show_all_users_popup) { ?>
                     if (!sessionStorage.getItem(sessionAdminKey)) {
                         setTimeout(function() {
                             $('#contentPopupModal').modal('show');
                         }, 500);
                         sessionStorage.setItem(sessionAdminKey, 'true');
-
-                        // When All Users / Customers popup is closed, show the hardcoded vehicle model next!
-                        $('#contentPopupModal').on('hidden.bs.modal', function () {
-                            if (!sessionStorage.getItem(sessionVehicleKey)) {
-                                setTimeout(function() {
-                                    $('#vehicleImageUpdateModal').modal('show');
-                                }, 500);
-                                sessionStorage.setItem(sessionVehicleKey, 'true');
-                            }
-                        });
-                    } else if (!sessionStorage.getItem(sessionVehicleKey)) {
-                        setTimeout(function() {
-                            $('#vehicleImageUpdateModal').modal('show');
-                        }, 500);
-                        sessionStorage.setItem(sessionVehicleKey, 'true');
-                    }
-                <?php } else { ?>
-                    // If no all-users popup content from admin, show hardcoded vehicle modal directly
-                    if (!sessionStorage.getItem(sessionVehicleKey)) {
-                        setTimeout(function() {
-                            $('#vehicleImageUpdateModal').modal('show');
-                        }, 500);
-                        sessionStorage.setItem(sessionVehicleKey, 'true');
                     }
                 <?php } ?>
             }

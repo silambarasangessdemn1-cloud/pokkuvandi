@@ -245,12 +245,31 @@ $notif_sql = "
     WHERE status = 1
       AND (
         (message_type = 'common' AND (is_read IS NULL OR is_read = 0))
-        OR (message_type = 'particular' AND customer_id = '$session_id' AND (is_read IS NULL OR is_read = 0))
+        OR (message_type = 'particular' AND (customer_id = '$session_id' " . (!empty($session__phone) ? "OR customer_phone = '$session__phone'" : "") . ") AND (is_read IS NULL OR is_read = 0))
       )
     ORDER BY notification_id DESC
 ";
 $notif_result = mysqli_query($config, $notif_sql);
-$notif_count = mysqli_num_rows($notif_result);
+$notif_count = ($notif_result) ? mysqli_num_rows($notif_result) : 0;
+
+// Also fetch unread PARTICULAR messages sent directly to this driver/user to open automatically as a modal
+$particular_notifs = array();
+if ($session_id) {
+    $p_notif_sql = "
+        SELECT * FROM comman_notification_messages
+        WHERE status = 1
+          AND message_type = 'particular'
+          AND (customer_id = '$session_id' " . (!empty($session__phone) ? "OR customer_phone = '$session__phone'" : "") . ")
+          AND (is_read IS NULL OR is_read = 0)
+        ORDER BY notification_id DESC
+    ";
+    $p_notif_result = mysqli_query($config, $p_notif_sql);
+    if ($p_notif_result && mysqli_num_rows($p_notif_result) > 0) {
+        while ($pn_row = mysqli_fetch_object($p_notif_result)) {
+            $particular_notifs[] = $pn_row;
+        }
+    }
+}
 ?>
 
 <!-- Notification Bell for Common/Particular Messages -->
@@ -323,6 +342,60 @@ $notif_count = mysqli_num_rows($notif_result);
   </div>
 </div>
 </div>
+
+<?php if (!empty($particular_notifs)) { ?>
+<!-- Automatic Popup Modal for Particular Driver Message(s) -->
+<div class="modal fade" id="driverParticularMsgModal" tabindex="-1" role="dialog" aria-labelledby="driverParticularMsgModalLabel" aria-hidden="true" style="z-index: 10550;">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content shadow-lg" style="border: none; border-radius: 16px; overflow: hidden;">
+      <div class="modal-header text-white" style="background: linear-gradient(135deg, #1572e8, #0056b3); padding: 18px 24px; border-bottom: none;">
+        <h5 class="modal-title font-weight-bold" id="driverParticularMsgModalLabel" style="font-size: 1.25rem;">
+          📢 Message from Pokkuvandi (முக்கிய அறிவிப்பு)
+        </h5>
+        <button type="button" class="close text-white" onclick="acknowledgeDriverParticularModal()" aria-label="Close" style="opacity: 0.9; text-shadow: none; font-size: 1.5rem;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 24px; max-height: 65vh; overflow-y: auto; background-color: #f8f9fa;">
+        <?php foreach ($particular_notifs as $p_msg): ?>
+          <div class="card mb-3 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;" id="particular_card_<?= $p_msg->notification_id; ?>">
+            <div class="card-body p-3 bg-white">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="badge badge-primary px-2 py-1" style="font-size: 12px; font-weight: 600;">
+                  <i class="fas fa-shield-alt mr-1"></i> Admin Message
+                </span>
+                <small class="text-muted"><i class="icofont-clock-time"></i> <?= date('d-M-Y h:i A', strtotime($p_msg->created_at)); ?></small>
+              </div>
+              <div class="text-dark my-2" style="font-size: 16px; line-height: 1.6; font-family: 'Latha', sans-serif; white-space: pre-line;">
+                <?= htmlspecialchars($p_msg->message_text, ENT_QUOTES, 'UTF-8'); ?>
+              </div>
+              
+              <!-- Reply Section -->
+              <div class="mt-3 pt-2 border-top">
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="toggleParticularReply(<?= $p_msg->notification_id; ?>)">
+                  <i class="fas fa-reply mr-1"></i> Reply / பதில் அனுப்ப
+                </button>
+                <div id="particularReplyForm_<?= $p_msg->notification_id; ?>" style="display: none;" class="mt-2">
+                  <div class="form-group mb-2">
+                    <textarea class="form-control" id="particularReplyText_<?= $p_msg->notification_id; ?>" rows="2" placeholder="Write your reply to admin here..."></textarea>
+                  </div>
+                  <button type="button" class="btn btn-sm btn-success" onclick="submitParticularReply(<?= $p_msg->notification_id; ?>)">Send Reply</button>
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="toggleParticularReply(<?= $p_msg->notification_id; ?>)">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+      <div class="modal-footer justify-content-center bg-white border-top py-3">
+        <button type="button" class="btn btn-success px-4 py-2 font-weight-bold shadow-sm" onclick="acknowledgeDriverParticularModal()" style="border-radius: 8px; font-size: 16px; min-width: 160px;">
+          ✓ Got it! (சரி)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
 
 
 
@@ -667,7 +740,101 @@ $(document).ready(function () {
     $('#commonMsgModal').on('hidden.bs.modal', function () {
         location.reload();
     });
+
+    <?php if (!empty($particular_notifs)) { ?>
+    // Auto-open personal modal for this driver when they have unread direct messages from admin
+    setTimeout(function() {
+        $('#driverParticularMsgModal').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+        });
+    }, 600);
+    <?php } ?>
 });
+
+function toggleParticularReply(notifId) {
+    $('#particularReplyForm_' + notifId).slideToggle(200);
+}
+
+function submitParticularReply(notifId) {
+    var replyText = $('#particularReplyText_' + notifId).val();
+    if (!replyText || !replyText.trim()) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Warning!',
+            text: 'Please enter a reply message',
+            confirmButtonColor: '#3085d6'
+        });
+        return;
+    }
+    
+    $.ajax({
+        url: "submit_notification_reply.php",
+        type: "POST",
+        data: {
+            notification_id: notifId,
+            reply_message: replyText,
+            customer_id: "<?= $session_id ?>"
+        },
+        success: function(response) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your reply has been sent successfully!',
+                confirmButtonColor: '#28a745',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            $('#particular_card_' + notifId).fadeOut(400, function() {
+                $(this).remove();
+                if ($('#driverParticularMsgModal .modal-body .card').length === 0) {
+                    $('#driverParticularMsgModal').modal('hide');
+                }
+            });
+            // Mark as read
+            $.ajax({
+                url: "mark_specific_notification_read.php",
+                type: "POST",
+                data: {
+                    notification_id: notifId,
+                    customer_id: "<?= $session_id ?>",
+                    customer_phone: "<?= $session__phone ?>"
+                }
+            });
+            updateNotificationCount();
+        },
+        error: function(err) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Failed to send reply. Please try again.',
+                confirmButtonColor: '#dc3545'
+            });
+        }
+    });
+}
+
+function acknowledgeDriverParticularModal() {
+    var notifIds = <?= json_encode(array_map(function($m) { return (int)$m->notification_id; }, $particular_notifs)) ?>;
+    $('#driverParticularMsgModal').modal('hide');
+    
+    if (notifIds && notifIds.length > 0) {
+        $.ajax({
+            url: "mark_specific_notification_read.php",
+            type: "POST",
+            data: {
+                notification_ids: notifIds.join(','),
+                customer_id: "<?= $session_id ?>",
+                customer_phone: "<?= $session__phone ?>"
+            },
+            success: function() {
+                console.log("Particular messages marked as read");
+                updateNotificationCount();
+            }
+        });
+    }
+}
 
 // Function to show reply form
 function showReplyForm(notificationId) {

@@ -130,7 +130,7 @@
                             </li>
                             <li>
                                 <a href="front_content.php">
-                                    <span class="sub-item">Popup Message </span>
+                                    <span class="sub-item"> Popup Message </span>
                                 </a>
                             </li>
                             <li>
