@@ -1,5 +1,5 @@
 <?php include('config/setup.php')?>
- <div class="border-bottom p-3" style="background-color: #dee2e6 !important;">
+ <div class="border-bottom p-3 app-top-header" style="background-color: #dee2e6 !important;">
             <div class="title d-flex align-items-center">
                <a href="home.php" class="text-decoration-none text-dark d-flex align-items-center">
                   <img class="osahan-logo mr-2" src=" <?php 

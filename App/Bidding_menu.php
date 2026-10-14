@@ -1,6 +1,6 @@
 <?php include('config/setup.php')?>
 
- <div class="border-bottom p-3" style="background-color: #199b37 !important;">
+ <div class="border-bottom p-3 app-top-header" style="background-color: #199b37 !important;">
 
             <div class="title d-flex align-items-center">
 

@@ -8,6 +8,17 @@ Version: 1.0
 (function($) {
     "use strict"; // Start of use strict
 
+    // Detect standalone / PWA / Edge-to-Edge mode
+    try {
+        var isStandalone = window.matchMedia('(display-mode: standalone)').matches 
+                        || window.matchMedia('(display-mode: fullscreen)').matches
+                        || window.navigator.standalone === true
+                        || (window.innerWidth <= 768 && (window.screen.height - window.innerHeight < 70));
+        if (isStandalone) {
+            document.documentElement.classList.add('is-standalone-app');
+        }
+    } catch(e) {}
+
     // Tooltip
     $('[data-toggle="tooltip"]').tooltip();
 

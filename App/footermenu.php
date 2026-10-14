@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
 
-<div class="osahan-menu-fotter fixed-bottom bg-white text-center border-top">
+<div class="osahan-menu-fotter fixed-bottom text-center border-top">
 
          <div class="row m-0">
 
@@ -115,15 +115,32 @@ Pokkuvandi
 
       <style>
          .osahan-menu-fotter{
-            background-color: #199b37   !important;
-            padding-bottom: env(safe-area-inset-bottom, 25px);
+            background-color: #199b37 !important;
+            height: auto !important;
+            min-height: 59px;
+            padding-top: 6px !important;
+            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 8px) !important;
             z-index: 1040;
          }
          /* Add extra padding for android system navigation bar overlap */
          @media screen and (max-width: 768px) {
             .osahan-menu-fotter {
-               padding-bottom: calc(env(safe-area-inset-bottom, 25px) + 15px) !important;
+               height: auto !important;
+               min-height: 59px;
+               padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 8px), 48px) !important;
             }
+         }
+         @media all and (display-mode: standalone), all and (display-mode: fullscreen) {
+            .osahan-menu-fotter {
+               height: auto !important;
+               min-height: 59px;
+               padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 8px), 52px) !important;
+            }
+         }
+         .is-standalone-app .osahan-menu-fotter {
+            height: auto !important;
+            min-height: 59px;
+            padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 8px), 52px) !important;
          }
          .iconm{
             color: #000000!important;

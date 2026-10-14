@@ -190,7 +190,23 @@ a.selected {
 }
 
 .fixed-bottom-padding {
-    padding-bottom: 59px;
+    padding-bottom: 70px;
+}
+
+@media screen and (max-width: 768px) {
+    .fixed-bottom-padding {
+        padding-bottom: calc(70px + max(env(safe-area-inset-bottom, 0px), 48px)) !important;
+    }
+}
+
+@media all and (display-mode: standalone), all and (display-mode: fullscreen) {
+    .fixed-bottom-padding {
+        padding-bottom: calc(70px + max(env(safe-area-inset-bottom, 0px), 52px)) !important;
+    }
+}
+
+.is-standalone-app .fixed-bottom-padding {
+    padding-bottom: calc(70px + max(env(safe-area-inset-bottom, 0px), 52px)) !important;
 }
 
 .fixed-bottom-auto {
@@ -201,6 +217,35 @@ a.selected {
     border-radius: 0px;
     box-shadow: 10px -1px 10px rgba(0, 0, 0, .075);
     height: 59px;
+}
+
+/* Allow footer menu to expand height for navigation bar clearance */
+.osahan-menu-fotter.fixed-bottom,
+.fixed-bottom.osahan-menu-fotter {
+    height: auto !important;
+    min-height: 59px;
+}
+
+/* Top Header Safe Area & Status Bar Padding */
+.app-top-header {
+    background-color: #199b37 !important;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 12px) !important;
+}
+
+@media screen and (max-width: 768px) {
+    .app-top-header {
+        padding-top: max(calc(env(safe-area-inset-top, 0px) + 10px), 36px) !important;
+    }
+}
+
+@media all and (display-mode: standalone), all and (display-mode: fullscreen) {
+    .app-top-header {
+        padding-top: max(calc(env(safe-area-inset-top, 0px) + 10px), 42px) !important;
+    }
+}
+
+.is-standalone-app .app-top-header {
+    padding-top: max(calc(env(safe-area-inset-top, 0px) + 10px), 42px) !important;
 }
 
 .fixed-bottom .btn,

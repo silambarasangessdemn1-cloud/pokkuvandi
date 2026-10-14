@@ -1,6 +1,20 @@
 <?php include('config/setup.php')?>
 <?php include('session.php');?>
 
+<script>
+(function() {
+  try {
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches 
+                    || window.matchMedia('(display-mode: fullscreen)').matches
+                    || window.navigator.standalone === true
+                    || (window.innerWidth <= 768 && (window.screen.height - window.innerHeight < 70));
+    if (isStandalone) {
+      document.documentElement.classList.add('is-standalone-app');
+    }
+  } catch(e) {}
+})();
+</script>
+
 <style>
 .text-red {
   color: red;
@@ -29,10 +43,31 @@
   50% { opacity: 0; }
 }
 
-   </style>
+/* Top Header Safe Area & Status Bar Padding */
+.app-top-header {
+  background-color: #199b37 !important;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 12px) !important;
+}
+
+@media screen and (max-width: 768px) {
+  .app-top-header {
+    padding-top: max(calc(env(safe-area-inset-top, 0px) + 10px), 36px) !important;
+  }
+}
+
+@media all and (display-mode: standalone), all and (display-mode: fullscreen) {
+  .app-top-header {
+    padding-top: max(calc(env(safe-area-inset-top, 0px) + 10px), 42px) !important;
+  }
+}
+
+.is-standalone-app .app-top-header {
+  padding-top: max(calc(env(safe-area-inset-top, 0px) + 10px), 42px) !important;
+}
+</style>
 
 
- <div class="border-bottom p-3" style="background-color: #199b37 !important;">
+ <div class="border-bottom p-3 app-top-header" style="background-color: #199b37 !important;">
 
             <div class="title d-flex align-items-center">
             <a style="margin-top: 0%;
@@ -89,7 +124,10 @@ $del=mysqli_fetch_object($about);
 
 <meta name="twitter:card" content="summary" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#199b37">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="twitter:site" content="https://callinfo.in/bdirectory/fullsite/App/Directory.php" />
 
@@ -98,8 +136,6 @@ $del=mysqli_fetch_object($about);
 <meta property="og:image" content="https://callinfo.in/bdirectory/fullsite/<?php  echo  $new_str = str_replace('../','', $ms);
 
  ?>" />			
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 
 <meta property="og:title" content="<?php echo $del->title;
