@@ -5,7 +5,7 @@
 
          <div class="row m-0">
 
-            <a href="Directory.php" class="text-dark iconm small col font-weight-bold text-decoration-none p-2 ">
+            <a href="Directory.php" class="text-dark iconm small col font-weight-bold text-decoration-none py-1 px-1">
 
                <p class="h5 m-0"><i class=" icofont-grocery"></i></p>
 
@@ -24,7 +24,7 @@
             <a href="<?php if ($session_id != NULL) {
                echo 'my_account.php';
             } else {
-               echo 'signin.php';} ?>" class="text-muted iconm col small text-decoration-none p-2">
+               echo 'signin.php';} ?>" class="text-muted iconm col small text-decoration-none py-1 px-1">
 
                <p class="h5 m-0"><i class="fa fa-group"></i></p>
 
@@ -56,7 +56,7 @@ $delkk=mysqli_fetch_object($abountm);
  
 
 
-<a href="Business_Enquiry.php" class="text-muted small iconmv col text-decoration-none p-2 <?php 
+<a href="Business_Enquiry.php" class="text-muted small iconmv col text-decoration-none py-1 px-1 <?php 
    //   echo $del->rtotal;
 
    
@@ -88,7 +88,7 @@ echo $delkk->total;
 
 
            
-   <a href="help_support.php" class="text-muted col iconm small text-decoration-none p-2">
+   <a href="help_support.php" class="text-muted col iconm small text-decoration-none py-1 px-1">
 
 <p class="h5 m-0"><i class="fa fa-newspaper-o"></i></p>
 
@@ -98,7 +98,7 @@ Contact us
 Menu
 </a> -->
 
-<a href="#" class="text-muted col iconm small text-decoration-none p-2 toggle">
+<a href="#" class="text-muted col iconm small text-decoration-none py-1 px-1 toggle">
 <p class="h5 m-0"><i class="fa fa-bars" aria-hidden="true"></i></p>
 Menu
 </a>
@@ -117,33 +117,55 @@ Pokkuvandi
          .osahan-menu-fotter{
             background-color: #199b37 !important;
             height: auto !important;
-            min-height: 59px;
-            padding-top: 6px !important;
-            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 8px) !important;
+            min-height: 48px !important;
+            padding-top: 3px !important;
+            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 3px) !important;
             z-index: 1040;
          }
-         /* Add extra padding for android system navigation bar overlap */
          @media screen and (max-width: 768px) {
             .osahan-menu-fotter {
                height: auto !important;
-               min-height: 59px;
-               padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 8px), 48px) !important;
+               min-height: 48px !important;
+               padding-top: 3px !important;
+               padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 3px) !important;
             }
          }
          @media all and (display-mode: standalone), all and (display-mode: fullscreen) {
             .osahan-menu-fotter {
                height: auto !important;
-               min-height: 59px;
-               padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 8px), 52px) !important;
+               min-height: 48px !important;
+               padding-top: 3px !important;
+               padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 4px) !important;
             }
          }
          .is-standalone-app .osahan-menu-fotter {
             height: auto !important;
-            min-height: 59px;
-            padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 8px), 52px) !important;
+            min-height: 48px !important;
+            padding-top: 3px !important;
+            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 4px) !important;
          }
-         .iconm{
-            color: #000000!important;
+         .osahan-menu-fotter a.iconm,
+         .osahan-menu-fotter a.iconmv {
+            color: #000000 !important;
+            padding: 3px 2px !important;
+            font-size: 11px !important;
+            line-height: 1.2 !important;
+         }
+         .osahan-menu-fotter a.iconm p,
+         .osahan-menu-fotter a.iconmv p {
+            font-size: 18px !important;
+            line-height: 1.2 !important;
+            margin-bottom: 2px !important;
+         }
+         .osahan-menu-fotter a.iconm p i,
+         .osahan-menu-fotter a.iconmv p i {
+            font-size: 18px !important;
+         }
+         .osahan-menu-fotter .toggle.hc-nav-trigger,
+         .osahan-menu-fotter .toggle {
+            font-size: 11px !important;
+            line-height: 1.2 !important;
+            padding: 3px 2px !important;
          }
          .iconmv.selected{
             color: var(--red) !important;

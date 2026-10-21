@@ -8,15 +8,16 @@
 
 $mid=$_POST['mid'];
 $area=$_POST['area'];
-                                                if($area =='')
-                                                {
-                                                    $or="SELECT * FROM `create_post` order by post_id ";                                          
-                                            
-                                                }
-                                                else{
-                                                    $or="SELECT * FROM `sub_category_filter` INNER JOIN `create_post` ON `create_post`.`subcategory_id` = `sub_category_filter`.Sub_Category_id  where filter_id= '$area' GROUP BY `sub_category_filter`.`filter_id` ";                                          
-                                                
-                                                }
+date_default_timezone_set('Asia/Kolkata'); 
+$current_date = date("Y-m-d");
+
+if($area =='')
+{
+    $or="SELECT * FROM `create_post` WHERE status = '1' and disable_status = '0' and delete_approval_status = '0' and expiry_date >= '$current_date' order by post_id DESC";                                          
+}
+else{
+    $or="SELECT * FROM `sub_category_filter` INNER JOIN `create_post` ON `create_post`.`subcategory_id` = `sub_category_filter`.Sub_Category_id WHERE `create_post`.status = '1' and `create_post`.disable_status = '0' and `create_post`.delete_approval_status = '0' and `create_post`.expiry_date >= '$current_date' and filter_id= '$area' GROUP BY `sub_category_filter`.`filter_id` ORDER BY `create_post`.post_id DESC";                                          
+}
                                                $maincate3=mysqli_query($config,$or);
                                                 $ldata[]= mysqli_num_rows($maincate3);
                                                 while($mac3=mysqli_fetch_object($maincate3))

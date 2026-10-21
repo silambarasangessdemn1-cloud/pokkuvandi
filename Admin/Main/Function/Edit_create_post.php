@@ -121,18 +121,25 @@ if ($current_status_query) {
     }
 }
 
-$auto_status = edit_post_val('Add_status') !== '' ? edit_sql_int(edit_post_val('Add_status'), 0) : '0';
+$posted_status = edit_post_val('Add_status');
+$auto_status = $posted_status !== '' ? edit_sql_int($posted_status, 0) : '0';
 $payment_type_value = 'NULL';
 $payment_confirmed_sql = 'NULL';
 
-if ($paid_status == 'pending' || $paid_status == 'free') {
-    if ($paid_status == 'pending') {
-        $auto_status = '0';
-    }
+if ($paid_status == 'pending') {
+    $auto_status = '0';
+    $payment_type_value = 'NULL';
+    $payment_confirmed_sql = 'NULL';
+} elseif ($paid_status == 'free') {
     $payment_type_value = 'NULL';
     $payment_confirmed_sql = 'NULL';
 } elseif ($paid_status == '0' || $paid_status == '1' || $paid_status == '2' || $paid_status == '3') {
-    $auto_status = '1';
+    // If admin explicitly marked vehicle In-Active ('0'), respect it!
+    if ($posted_status === '0' || $posted_status === 0) {
+        $auto_status = '0';
+    } else {
+        $auto_status = '1';
+    }
     $payment_type_value = edit_sql_int($paid_status, 0);
     if ($paid_on !== '') {
         $payment_confirmed_sql = "'$paid_on'";
@@ -245,7 +252,13 @@ if (edit_has_column($config, 'payment_confirmed_at')) {
     $set[] = "payment_confirmed_at=".$payment_confirmed_sql;
 }
 if (edit_has_column($config, 'activation_popup_shown')) {
-    $popup_val = (intval($auto_status) == 1 && $current_popup_shown == 0) ? 1 : $current_popup_shown;
+    if (intval($auto_status) == 1 && $current_popup_shown == 0) {
+        $popup_val = 1;
+    } elseif (intval($auto_status) == 0) {
+        $popup_val = 0;
+    } else {
+        $popup_val = $current_popup_shown;
+    }
     $set[] = "activation_popup_shown=".intval($popup_val);
 }
 

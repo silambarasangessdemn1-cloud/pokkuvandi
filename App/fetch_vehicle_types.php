@@ -9,7 +9,11 @@ $options = '';
  $query = "SELECT DISTINCT vt.Vehicle_type_id, vt.vehicle_type_name 
           FROM create_post  cp
           JOIN vehicle_type vt ON cp.vehicle_type_id = vt.Vehicle_type_id
-          WHERE cp.customer_id = '$customer_id' AND cp.subcategory_id = '$sub_category_id'";
+          WHERE cp.customer_id = '$customer_id' 
+            AND cp.subcategory_id = '$sub_category_id'
+            AND cp.status = '1'
+            AND cp.disable_status = '0'
+            AND cp.delete_approval_status = '0'";
 
 $result = mysqli_query($config, $query);
 

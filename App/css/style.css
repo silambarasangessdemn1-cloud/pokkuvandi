@@ -190,23 +190,23 @@ a.selected {
 }
 
 .fixed-bottom-padding {
-    padding-bottom: 70px;
+    padding-bottom: 56px;
 }
 
 @media screen and (max-width: 768px) {
     .fixed-bottom-padding {
-        padding-bottom: calc(70px + max(env(safe-area-inset-bottom, 0px), 48px)) !important;
+        padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)) !important;
     }
 }
 
 @media all and (display-mode: standalone), all and (display-mode: fullscreen) {
     .fixed-bottom-padding {
-        padding-bottom: calc(70px + max(env(safe-area-inset-bottom, 0px), 52px)) !important;
+        padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)) !important;
     }
 }
 
 .is-standalone-app .fixed-bottom-padding {
-    padding-bottom: calc(70px + max(env(safe-area-inset-bottom, 0px), 52px)) !important;
+    padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)) !important;
 }
 
 .fixed-bottom-auto {
@@ -216,14 +216,14 @@ a.selected {
 .fixed-bottom {
     border-radius: 0px;
     box-shadow: 10px -1px 10px rgba(0, 0, 0, .075);
-    height: 59px;
+    height: 48px;
 }
 
 /* Allow footer menu to expand height for navigation bar clearance */
 .osahan-menu-fotter.fixed-bottom,
 .fixed-bottom.osahan-menu-fotter {
     height: auto !important;
-    min-height: 59px;
+    min-height: 48px;
 }
 
 /* Top Header Safe Area & Status Bar Padding */
@@ -250,19 +250,19 @@ a.selected {
 
 .fixed-bottom .btn,
 .fixed-bottom.btn {
-    height: 59px;
+    height: 48px;
     border-radius: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
     font-weight: 500;
-    padding: 12px 14px;
+    padding: 10px 14px;
     border: none;
 }
 
 .fixed-bottom-bar {
-    padding-bottom: 58px;
+    padding-bottom: 50px;
 }
 
 .h-auto {

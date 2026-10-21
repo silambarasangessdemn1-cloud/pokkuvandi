@@ -181,11 +181,20 @@ $totalRecords = isset($countRow['total']) ? $countRow['total'] : 0;
 mysqli_free_result($countResult);
 
 // Fetch data with pagination - simplified query without JOINs to avoid GROUP BY issues
+$limitClause = "";
+if ($length > 0) {
+    $limitClause = "LIMIT $start, $length";
+} elseif ($length == -1) {
+    $limitClause = ""; // Return all records
+} else {
+    $limitClause = "LIMIT $start, 10";
+}
+
 $dataQuery = "SELECT create_post.*
      FROM create_post
      $where
      ORDER BY create_post.post_id DESC
-     LIMIT $start, $length";
+     $limitClause";
 
 $dataResult = mysqli_query($config, $dataQuery);
 
@@ -205,53 +214,62 @@ if (!$dataResult) {
     exit;
 }
 
+// Pre-load reference maps for fast lookups
+$stateMap = array();
+$stateQuery = mysqli_query($config, "SELECT state_id, name FROM dir_state_master");
+if ($stateQuery) {
+    while ($sData = mysqli_fetch_assoc($stateQuery)) {
+        $stateMap[$sData['state_id']] = $sData['name'];
+    }
+    mysqli_free_result($stateQuery);
+}
+
+$cityMap = array();
+$cityQuery = mysqli_query($config, "SELECT dir_city_id, dir_city_name FROM dir_city_master");
+if ($cityQuery) {
+    while ($cData = mysqli_fetch_assoc($cityQuery)) {
+        $cityMap[$cData['dir_city_id']] = $cData['dir_city_name'];
+    }
+    mysqli_free_result($cityQuery);
+}
+
+$areaMap = array();
+$areaQuery = mysqli_query($config, "SELECT dir_area_id, dir_area_name FROM dir_area_master");
+if ($areaQuery) {
+    while ($aData = mysqli_fetch_assoc($areaQuery)) {
+        $areaMap[$aData['dir_area_id']] = $aData['dir_area_name'];
+    }
+    mysqli_free_result($areaQuery);
+}
+
+// Pre-load online transactions mapped by Order_id
+$onlineTransMap = array();
+$onlinePaymentQuery = mysqli_query($config, "SELECT Order_id, transactionId, Paid_Amout, Paid_on FROM online_payment_transcation WHERE (Paid_Amout > 0 OR Order_Paid_Status = 'success') ORDER BY IFNULL(Paid_on, '1970-01-01') ASC, Online_order_id ASC");
+if ($onlinePaymentQuery) {
+    while ($tRow = mysqli_fetch_assoc($onlinePaymentQuery)) {
+        $onlineTransMap[$tRow['Order_id']] = $tRow;
+    }
+    mysqli_free_result($onlinePaymentQuery);
+}
+
 // Prepare response data
 $data = array();
-$rowNum = $start + 1;
+$rowNum = ($length == -1) ? 1 : ($start + 1);
 
 while ($row = mysqli_fetch_assoc($dataResult)) {
-    // Fetch related data for each row (similar to post_report_export.php approach)
-    $stateName = '';
-    if (!empty($row['state_id'])) {
-        $stateQuery = mysqli_query($config, "SELECT name FROM dir_state_master WHERE state_id = '{$row['state_id']}' LIMIT 1");
-        if ($stateQuery && mysqli_num_rows($stateQuery) > 0) {
-            $stateData = mysqli_fetch_assoc($stateQuery);
-            $stateName = $stateData['name'];
-            mysqli_free_result($stateQuery);
-        }
-    }
+    $stateName = (!empty($row['state_id']) && isset($stateMap[$row['state_id']])) ? $stateMap[$row['state_id']] : '';
+    $cityName = (!empty($row['city_id']) && isset($cityMap[$row['city_id']])) ? $cityMap[$row['city_id']] : '';
+    $areaName = (!empty($row['area_id']) && isset($areaMap[$row['area_id']])) ? $areaMap[$row['area_id']] : '';
 
-    $cityName = '';
-    if (!empty($row['city_id'])) {
-        $cityQuery = mysqli_query($config, "SELECT dir_city_name FROM dir_city_master WHERE dir_city_id = '{$row['city_id']}' LIMIT 1");
-        if ($cityQuery && mysqli_num_rows($cityQuery) > 0) {
-            $cityData = mysqli_fetch_assoc($cityQuery);
-            $cityName = $cityData['dir_city_name'];
-            mysqli_free_result($cityQuery);
-        }
-    }
-
-    $areaName = '';
-    if (!empty($row['area_id'])) {
-        $areaQuery = mysqli_query($config, "SELECT dir_area_name FROM dir_area_master WHERE dir_area_id = '{$row['area_id']}' LIMIT 1");
-        if ($areaQuery && mysqli_num_rows($areaQuery) > 0) {
-            $areaData = mysqli_fetch_assoc($areaQuery);
-            $areaName = $areaData['dir_area_name'];
-            mysqli_free_result($areaQuery);
-        }
-    }
-
-    // Payment transaction details (find latest successful transaction for this post)
+    // Payment transaction details
     $paidTransactionID = '';
     $paidAmount = 0;
     $onlinePaidOn = '';
-    $onlinePaymentQuery = mysqli_query($config, "SELECT transactionId, Paid_Amout, Paid_on FROM online_payment_transcation WHERE Order_id = '{$row['post_id']}' AND (Paid_Amout > 0 OR Order_Paid_Status = 'success') ORDER BY IFNULL(Paid_on, '1970-01-01') DESC, Online_order_id DESC LIMIT 1");
-    if ($onlinePaymentQuery && mysqli_num_rows($onlinePaymentQuery) > 0) {
-        $onlinePaymentData = mysqli_fetch_assoc($onlinePaymentQuery);
+    if (isset($onlineTransMap[$row['post_id']])) {
+        $onlinePaymentData = $onlineTransMap[$row['post_id']];
         $paidTransactionID = !empty($onlinePaymentData['transactionId']) ? trim($onlinePaymentData['transactionId']) : '';
         $paidAmount = !empty($onlinePaymentData['Paid_Amout']) ? floatval(str_replace(',', '', $onlinePaymentData['Paid_Amout'])) : 0;
         $onlinePaidOn = !empty($onlinePaymentData['Paid_on']) ? trim($onlinePaymentData['Paid_on']) : '';
-        mysqli_free_result($onlinePaymentQuery);
     }
 
     // Payment Status Logic

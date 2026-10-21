@@ -2,14 +2,16 @@
 
 <?php
 $key=$_POST['key'];
+date_default_timezone_set('Asia/Kolkata');
+$current_date = date("Y-m-d");
 
 $main_cate33=mysqli_query($config,"select * from main_category where Main_Category_Name  LIKE '$key%' order by (Main_Category_id) DESC  ");                                
 $macate33=mysqli_fetch_object($main_cate33);
 
-$main_cate33__=mysqli_query($config,"select * from create_post where vehicle_name  LIKE '$key%' order by (post_id) DESC  ");                                
+$main_cate33__=mysqli_query($config,"select * from create_post where vehicle_name  LIKE '$key%' and status = '1' and disable_status = '0' and delete_approval_status = '0' and expiry_date >= '$current_date' order by (post_id) DESC  ");                                
 $macate33__=mysqli_fetch_object($main_cate33__);
 
-$main___=mysqli_query($config,"select * from create_post where meta_keyword LIKE '$key%' order by (post_id) DESC  ");                                
+$main___=mysqli_query($config,"select * from create_post where meta_keyword LIKE '$key%' and status = '1' and disable_status = '0' and delete_approval_status = '0' and expiry_date >= '$current_date' order by (post_id) DESC  ");                                
 $main3__=mysqli_fetch_object($main___);
 
 $sub___=mysqli_query($config,"select * from sub_category where Sub_Category_Name  LIKE '$key%' order by (Sub_Category_id) DESC");                                
@@ -44,7 +46,7 @@ $sub__=mysqli_fetch_object($sub___);
  elseif($macate33__ != '')
                                {
                                  //echo $query="select * from create_post where vehicle_name LIKE '$key%' order by (post_id) DESC  ";
-                                 $main_cate3__=mysqli_query($config,"select * from create_post where vehicle_name LIKE '$key%' order by (post_id) DESC  ");
+                                 $main_cate3__=mysqli_query($config,"select * from create_post where vehicle_name LIKE '$key%' and status = '1' and disable_status = '0' and delete_approval_status = '0' and expiry_date >= '$current_date' order by (post_id) DESC  ");
                                  
                           			while($macate3__=mysqli_fetch_object($main_cate3__))
                                    {
@@ -70,7 +72,7 @@ $sub__=mysqli_fetch_object($sub___);
 else if($main3__!='')
 {
    //echo $query="select * from create_post where meta_keyword LIKE '$key%' order by (post_id) DESC  ";
-  $main_cate_post3=mysqli_query($config,"select * from create_post where meta_keyword LIKE '$key%' order by (post_id) DESC  ");
+  $main_cate_post3=mysqli_query($config,"select * from create_post where meta_keyword LIKE '$key%' and status = '1' and disable_status = '0' and delete_approval_status = '0' and expiry_date >= '$current_date' order by (post_id) DESC  ");
    while($macate_post3__=mysqli_fetch_object($main_cate_post3))
     {
                                  

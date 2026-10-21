@@ -17,7 +17,7 @@ $current_Date=date('Y-m-d');
                           if($_SESSION["city"] == 1){
 
                             // $or="SELECT * FROM `create_post` WHERE ((`loader_from_date` >= '$current_Date' and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and delete_approval_status ='0' and expiry_date >= '$current_Date')) OR ((`loader_to_date` >= '$current_Date' and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."'  and delete_approval_status ='0' and expiry_date >= '$current_Date') )  and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and delete_approval_status ='0'  and expiry_date >= '$current_Date' ORDER BY post_id DESC ";
-                            $or="SELECT * FROM `create_post`  inner join driver_pokkuvandi_entry on create_post.post_id = driver_pokkuvandi_entry.post_id WHERE  ((driver_pokkuvandi_entry.loader_from_date >= '$current_Date'  and create_post.loader_status ='1' and create_post.disable_status='0' and create_post.delete_approval_status ='0' and driver_pokkuvandi_entry.status='1' and create_post.expiry_date >= '$current_Date' )) OR ((driver_pokkuvandi_entry.loader_to_date >= '$current_Date'  and create_post.loader_status ='1' and create_post.disable_status='0' and create_post.delete_approval_status ='0' and driver_pokkuvandi_entry.status='1' and create_post.expiry_date >= '$current_Date'))   ";                                         
+                            $or="SELECT * FROM `create_post`  inner join driver_pokkuvandi_entry on create_post.post_id = driver_pokkuvandi_entry.post_id WHERE  ((driver_pokkuvandi_entry.loader_from_date >= '$current_Date'  and create_post.loader_status ='1' and create_post.status = '1' and create_post.disable_status='0' and create_post.delete_approval_status ='0' and driver_pokkuvandi_entry.status='1' and create_post.expiry_date >= '$current_Date' )) OR ((driver_pokkuvandi_entry.loader_to_date >= '$current_Date'  and create_post.loader_status ='1' and create_post.status = '1' and create_post.disable_status='0' and create_post.delete_approval_status ='0' and driver_pokkuvandi_entry.status='1' and create_post.expiry_date >= '$current_Date'))   ";                                         
                                          
 
 
@@ -25,7 +25,7 @@ $current_Date=date('Y-m-d');
                             
                           }else{
                               // $or="SELECT * FROM `create_post`  WHERE  ((`loader_from_date` >= '$current_Date'  and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and delete_approval_status ='0' and status='1' and expiry_date >= '$current_Date' )) OR ((`loader_to_date` >= '$current_Date'  and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and delete_approval_status ='0' and status='1' and expiry_date >= '$current_Date'))   ";
-                               $or="SELECT * FROM `create_post`  inner join driver_pokkuvandi_entry on create_post.post_id = driver_pokkuvandi_entry.post_id WHERE  ((driver_pokkuvandi_entry.loader_from_date >= '$current_Date'  and create_post.loader_status ='1' and create_post.disable_status='0' and create_post.delete_approval_status ='0' and driver_pokkuvandi_entry.status='1' and create_post.expiry_date >= '$current_Date' and driver_pokkuvandi_entry.loader_to_place = '".$_SESSION["city"]."'  )) OR ((driver_pokkuvandi_entry.loader_to_date >= '$current_Date'  and create_post.loader_status ='1' and create_post.disable_status='0' and driver_pokkuvandi_entry.loader_to_place = '".$_SESSION["city"]."' and create_post.delete_approval_status ='0' and driver_pokkuvandi_entry.status='1' and create_post.expiry_date >= '$current_Date'))   ";                                         
+                               $or="SELECT * FROM `create_post`  inner join driver_pokkuvandi_entry on create_post.post_id = driver_pokkuvandi_entry.post_id WHERE  ((driver_pokkuvandi_entry.loader_from_date >= '$current_Date'  and create_post.loader_status ='1' and create_post.status = '1' and create_post.disable_status='0' and create_post.delete_approval_status ='0' and driver_pokkuvandi_entry.status='1' and create_post.expiry_date >= '$current_Date' and driver_pokkuvandi_entry.loader_to_place = '".$_SESSION["city"]."'  )) OR ((driver_pokkuvandi_entry.loader_to_date >= '$current_Date'  and create_post.loader_status ='1' and create_post.status = '1' and create_post.disable_status='0' and driver_pokkuvandi_entry.loader_to_place = '".$_SESSION["city"]."' and create_post.delete_approval_status ='0' and driver_pokkuvandi_entry.status='1' and create_post.expiry_date >= '$current_Date'))   ";                                         
                                                    
                          }
                          $maincate3=mysqli_query($config,$or);
@@ -50,10 +50,11 @@ $current_Date=date('Y-m-d');
                                                    
 
 
+
                                                   // if(($from_date_time >= $date_time) OR ($to_date_time <= $date_time ))
                                                   if(($date_time >= $from_date_time) OR ($date_time <= $to_date_time))
                                                   {
-                                                    $or_item="SELECT * FROM `create_post` inner join driver_pokkuvandi_entry on create_post.post_id = driver_pokkuvandi_entry.post_id WHERE driver_pokkuvandi_entry.post_id='$post_id'  ORDER BY driver_pokkuvandi_entry.post_id DESC  ";
+                                                    $or_item="SELECT * FROM `create_post` inner join driver_pokkuvandi_entry on create_post.post_id = driver_pokkuvandi_entry.post_id WHERE driver_pokkuvandi_entry.post_id='$post_id' AND create_post.status = '1' ORDER BY driver_pokkuvandi_entry.post_id DESC  ";
                                                    
                                                  
                                                   

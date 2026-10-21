@@ -16,12 +16,12 @@ $current_Date=date('Y-m-d');
                    
                           if($_POST['area'] == 1){
 
-                            echo $or="SELECT * FROM `create_post` WHERE ((`loader_from_date` >= '$current_Date' and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' and expiry_date >= '$current_Date')) OR ((`loader_to_date` >= '$current_Date' and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' and expiry_date >= '$current_Date') )  and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0'  and expiry_date >= '$current_Date' ORDER BY post_id DESC ";
+                            $or="SELECT * FROM `create_post` WHERE ((`loader_from_date` >= '$current_Date' and loader_status ='1' and status = '1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' and expiry_date >= '$current_Date')) OR ((`loader_to_date` >= '$current_Date' and loader_status ='1' and status = '1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' and expiry_date >= '$current_Date') )  and loader_status ='1' and status = '1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0'  and expiry_date >= '$current_Date' ORDER BY post_id DESC ";
 
                            //  $or="SELECT * FROM `create_post` WHERE ((`loader_from_date` >= '$current_Date') AND (`loader_to_date` <= '$current_Date'))    OR   ((`loader_from_date` >= '$current_Date') AND (`loader_to_date` <= '$current_Date')) and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' ORDER BY post_id DESC ";
                             
                           }else{
-                             echo $or="SELECT * FROM `create_post`  WHERE  ((`loader_from_date` >= '$current_Date'  and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and area_id='".$_POST['area']."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' and status='1' and expiry_date >= '$current_Date' )) OR ((`loader_to_date` >= '$current_Date'  and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and area_id='".$_POST['area']."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' and status='1' and expiry_date >= '$current_Date'))   ";
+                             $or="SELECT * FROM `create_post`  WHERE  ((`loader_from_date` >= '$current_Date'  and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and area_id='".$_POST['area']."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' and status='1' and expiry_date >= '$current_Date' )) OR ((`loader_to_date` >= '$current_Date'  and loader_status ='1' and disable_status='0' and city_id = '".$_SESSION["city"]."' and area_id='".$_POST['area']."' and category_id = '$mid' and subcategory_id='$sid' and delete_approval_status ='0' and status='1' and expiry_date >= '$current_Date'))   ";
                                         
                          }
                          $maincate3=mysqli_query($config,$or);
@@ -49,7 +49,7 @@ $current_Date=date('Y-m-d');
                                                   // if(($from_date_time >= $date_time) OR ($to_date_time <= $date_time ))
                                                   if(($date_time >= $from_date_time) OR ($date_time <= $to_date_time))
                                                   {
-                                                    $or_item="SELECT * FROM `create_post` WHERE post_id='$post_id'  ORDER BY post_id DESC  ";
+                                                    $or_item="SELECT * FROM `create_post` WHERE post_id='$post_id' AND status = '1' ORDER BY post_id DESC  ";
                                                    
                                                  
                                                   

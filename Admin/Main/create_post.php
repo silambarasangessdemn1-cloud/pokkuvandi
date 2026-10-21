@@ -773,7 +773,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "info": true, // Show pagination info
 				"lengthChange": true, // Enable length change dropdown
 				"pageLength": 10, // Number of items per page (loads 10 at a time)
-				"lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]], // Page length options
+				"lengthMenu": [[10, 20, 25, 50, 100, -1], [10, 20, 25, 50, 100, "All"]], // Page length options including All
 				"dom": '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6"l>>rtip', // Add buttons and length menu
 				"buttons": [
 					{

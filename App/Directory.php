@@ -316,6 +316,9 @@ $main_cate_post = mysqli_query($config, "
     SELECT * 
     FROM create_post 
     WHERE customer_id = '$session_id' 
+      AND status = '1'
+      AND disable_status = '0'
+      AND delete_approval_status = '0'
       AND expiry_date >= '$current_Date'
 ");
 $macate_post = mysqli_fetch_object($main_cate_post);

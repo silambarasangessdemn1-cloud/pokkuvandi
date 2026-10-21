@@ -226,6 +226,7 @@ WHERE
 (
     driver_pokkuvandi_entry.loader_from_date >= '$current_Date' 
     AND create_post.loader_status = '1' 
+    AND create_post.status = '1'
     AND create_post.disable_status = '0' 
     AND create_post.delete_approval_status = '0' 
     AND driver_pokkuvandi_entry.status = '1' 
@@ -236,6 +237,7 @@ OR
 (
     driver_pokkuvandi_entry.loader_to_date >= '$current_Date' 
     AND create_post.loader_status = '1' 
+    AND create_post.status = '1'
     AND create_post.disable_status = '0' 
     AND create_post.delete_approval_status = '0' 
     AND driver_pokkuvandi_entry.status = '1' 
@@ -277,7 +279,7 @@ if (!$maincate3) {
                                                                {
 
                                                                 //  $or_item="SELECT * FROM `create_post` WHERE post_id='$post_id'  ORDER BY post_id DESC  ";
-                                                                $or_item="SELECT * FROM `create_post` inner join driver_pokkuvandi_entry on create_post.post_id = driver_pokkuvandi_entry.post_id WHERE driver_pokkuvandi_entry.post_id='$post_id'  ORDER BY driver_pokkuvandi_entry.post_id DESC  ";
+                                                                $or_item="SELECT * FROM `create_post` inner join driver_pokkuvandi_entry on create_post.post_id = driver_pokkuvandi_entry.post_id WHERE driver_pokkuvandi_entry.post_id='$post_id' AND create_post.status = '1' ORDER BY driver_pokkuvandi_entry.post_id DESC  ";
                                                    
                                                               
                                                                

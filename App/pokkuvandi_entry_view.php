@@ -315,6 +315,7 @@ input:checked + .slider:before {
                               FROM `create_post`
                               INNER JOIN driver_pokkuvandi_entry ON create_post.post_id = driver_pokkuvandi_entry.post_id
                               WHERE create_post.loader_status = '1' 
+                                AND create_post.status = '1'
                                 AND create_post.disable_status = '0' 
                                 AND create_post.delete_approval_status = '0' 
                                 AND driver_pokkuvandi_entry.status = '1' 
@@ -347,7 +348,7 @@ input:checked + .slider:before {
                          // if(($from_date_time >= $date_time) OR ($to_date_time <= $date_time ))
                          if(($date_time >= $from_date_time) OR ($date_time <= $to_date_time))
                          {
-                           $or_item="SELECT * FROM `create_post` WHERE post_id='$post_id'  ORDER BY post_id DESC  ";
+                           $or_item="SELECT * FROM `create_post` WHERE post_id='$post_id' AND status = '1' ORDER BY post_id DESC  ";
                           
                         
                          
