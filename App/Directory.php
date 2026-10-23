@@ -327,7 +327,7 @@ if ($macate_post) {
 ?>
     <div class="ticker-wrap">
       <div class="ticker">
-        <a style="font-size: 18px; color:white">Pokkuvandi Requirements :</a>
+        <a style="font-size: 18px; color:white">Vehicle Requirements :</a>
         <?php  
         // only fetch valid trips (date filtering inside SQL)
         $main_cate3_cuss = mysqli_query($config, "

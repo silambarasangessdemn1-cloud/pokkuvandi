@@ -190,23 +190,23 @@ a.selected {
 }
 
 .fixed-bottom-padding {
-    padding-bottom: 56px;
+    padding-bottom: 85px;
 }
 
 @media screen and (max-width: 768px) {
     .fixed-bottom-padding {
-        padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)) !important;
+        padding-bottom: calc(85px + env(safe-area-inset-bottom, 0px)) !important;
     }
 }
 
 @media all and (display-mode: standalone), all and (display-mode: fullscreen) {
     .fixed-bottom-padding {
-        padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)) !important;
+        padding-bottom: calc(85px + env(safe-area-inset-bottom, 0px)) !important;
     }
 }
 
 .is-standalone-app .fixed-bottom-padding {
-    padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)) !important;
+    padding-bottom: calc(85px + env(safe-area-inset-bottom, 0px)) !important;
 }
 
 .fixed-bottom-auto {

@@ -328,9 +328,8 @@ if($namestatus == 1)
 
 <input  type="hidden" value="'<?php echo $id ?>'" class="form-control" id="post_id" name="post_id"  >
 
-    <div class="form-group">
- 
-    <button type="submit"  class="btn btn-success ml-1"  name="customer_add">submit</a>
+   <div class="form-group col-12" style="margin-top: 20px; margin-bottom: 85px;">
+    <button type="submit" class="btn btn-success btn-lg btn-block" name="customer_add" style="font-weight: bold; padding: 12px; border-radius: 8px; box-shadow: 0 4px 12px rgba(40,167,69,0.3);">Submit</button>
     <!-- <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Close</button> -->
    </div>
    <?php

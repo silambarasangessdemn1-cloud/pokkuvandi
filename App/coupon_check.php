@@ -88,9 +88,9 @@ if($coupon_)
        
          var postBtnHtml = '';
          if (netamount == 0) {
-           postBtnHtml = '<div class=\"form-group\"><button class=\"btn btn-success\" type=\"submit\" name=\"post_add\">Get Free registration</button></div>';
+           postBtnHtml = '<div class=\"form-group\" style=\"width: 100%; display: flex; justify-content: flex-end; margin-top: 15px; margin-bottom: 85px;\"><button class=\"btn btn-success btn-lg\" type=\"submit\" name=\"post_add\" style=\"padding: 10px 24px; font-weight: bold; border-radius: 8px;\">Get Free registration</button></div>';
          } else {
-           postBtnHtml = '<div class=\"form-group\"><button class=\"btn btn-success\" type=\"submit\" name=\"post_add\">Pay For registration</button></div>';
+           postBtnHtml = '<div class=\"form-group\" style=\"width: 100%; display: flex; justify-content: flex-end; margin-top: 15px; margin-bottom: 85px;\"><button class=\"btn btn-success btn-lg\" type=\"submit\" name=\"post_add\" style=\"padding: 10px 24px; font-weight: bold; border-radius: 8px;\">Pay For registration</button></div>';
          }
        
          document.getElementById('post_btn').innerHTML = postBtnHtml;
@@ -172,9 +172,9 @@ if($coupon_)
     
       var postBtnHtml = '';
       if (netamount == 0) {
-        postBtnHtml = '<div class=\"form-group\"><button class=\"btn btn-success\" type=\"submit\" name=\"post_add\">Get Free registration</button></div>';
+        postBtnHtml = '<div class=\"form-group\" style=\"width: 100%; display: flex; justify-content: flex-end; margin-top: 15px; margin-bottom: 85px;\"><button class=\"btn btn-success btn-lg\" type=\"submit\" name=\"post_add\" style=\"padding: 10px 24px; font-weight: bold; border-radius: 8px;\">Get Free registration</button></div>';
       } else {
-        postBtnHtml = '<div class=\"form-group\"><button class=\"btn btn-success\" type=\"submit\" name=\"post_add\">Pay For registration</button></div>';
+        postBtnHtml = '<div class=\"form-group\" style=\"width: 100%; display: flex; justify-content: flex-end; margin-top: 15px; margin-bottom: 85px;\"><button class=\"btn btn-success btn-lg\" type=\"submit\" name=\"post_add\" style=\"padding: 10px 24px; font-weight: bold; border-radius: 8px;\">Pay For registration</button></div>';
       }
     
       document.getElementById('post_btn').innerHTML = postBtnHtml;

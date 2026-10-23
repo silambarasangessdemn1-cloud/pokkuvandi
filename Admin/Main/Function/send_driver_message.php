@@ -1,7 +1,14 @@
 <?php
-include('../../config/setup.php');
+if (file_exists(__DIR__ . '/../../config/setup.php')) {
+    include(__DIR__ . '/../../config/setup.php');
+} else {
+    include('../../config/setup.php');
+}
 
 header('Content-Type: application/json; charset=UTF-8');
+
+@set_time_limit(300);
+@ini_set('memory_limit', '256M');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Only POST method is allowed']);
@@ -42,21 +49,43 @@ if (mysqli_num_rows($check_table) == 0) {
 }
 
 $message_escaped = mysqli_real_escape_string($config, $message);
-$sent_count = 0;
-$processed_customers = array();
+
+// Collect phones that need customer_id lookup
+$phones_to_lookup = [];
+foreach ($drivers as $drv) {
+    $cid = isset($drv['customer_id']) ? (int)$drv['customer_id'] : 0;
+    $phone = isset($drv['phone_no']) ? trim($drv['phone_no']) : '';
+    if ($cid <= 0 && !empty($phone)) {
+        $phones_to_lookup[] = mysqli_real_escape_string($config, $phone);
+    }
+}
+
+$phone_customer_map = [];
+if (!empty($phones_to_lookup)) {
+    $chunks = array_chunk(array_unique($phones_to_lookup), 500);
+    foreach ($chunks as $chunk) {
+        $phone_in = "'" . implode("','", $chunk) . "'";
+        $lookup_q = mysqli_query($config, "SELECT Customer_Id, Customer_Phone_No FROM customer_master WHERE Customer_Phone_No IN ($phone_in)");
+        if ($lookup_q) {
+            while ($lrow = mysqli_fetch_assoc($lookup_q)) {
+                $phone_customer_map[$lrow['Customer_Phone_No']] = (int)$lrow['Customer_Id'];
+            }
+            mysqli_free_result($lookup_q);
+        }
+    }
+}
+
+$processed_customers = [];
+$rows_to_insert = [];
 
 foreach ($drivers as $drv) {
     $customer_id = isset($drv['customer_id']) ? (int)$drv['customer_id'] : 0;
-    $driver_name = isset($drv['driver_name']) ? mysqli_real_escape_string($config, trim($drv['driver_name'])) : '';
-    $phone = isset($drv['phone_no']) ? mysqli_real_escape_string($config, trim($drv['phone_no'])) : '';
+    $phone = isset($drv['phone_no']) ? trim($drv['phone_no']) : '';
+    $driver_name = isset($drv['driver_name']) ? trim($drv['driver_name']) : '';
 
-    // If customer_id is 0 or missing, try to lookup in customer_master by phone number
-    if ($customer_id <= 0 && !empty($phone)) {
-        $lookup_q = mysqli_query($config, "SELECT Customer_Id FROM customer_master WHERE Customer_Phone_No = '$phone' LIMIT 1");
-        if ($lookup_q && mysqli_num_rows($lookup_q) > 0) {
-            $lookup_row = mysqli_fetch_assoc($lookup_q);
-            $customer_id = (int)$lookup_row['Customer_Id'];
-        }
+    // If customer_id is 0 or missing, check preloaded map
+    if ($customer_id <= 0 && !empty($phone) && isset($phone_customer_map[$phone])) {
+        $customer_id = $phone_customer_map[$phone];
     }
 
     // Deduplicate by customer_id if valid, or by phone
@@ -66,15 +95,25 @@ foreach ($drivers as $drv) {
     }
     $processed_customers[$unique_key] = true;
 
+    $safe_name = mysqli_real_escape_string($config, $driver_name);
+    $safe_phone = mysqli_real_escape_string($config, $phone);
     $cust_id_sql = ($customer_id > 0) ? "'$customer_id'" : "NULL";
 
-    $sql = "INSERT INTO comman_notification_messages 
-            (message_type, message_text, customer_id, customer_name, customer_phone, status, is_read, admin_read, created_at)
-            VALUES 
-            ('particular', '$message_escaped', $cust_id_sql, '$driver_name', '$phone', 1, 0, 1, NOW())";
+    $rows_to_insert[] = "('particular', '$message_escaped', $cust_id_sql, '$safe_name', '$safe_phone', 1, 0, 1, NOW())";
+}
 
-    if (mysqli_query($config, $sql)) {
-        $sent_count++;
+$sent_count = 0;
+if (!empty($rows_to_insert)) {
+    $batch_chunks = array_chunk($rows_to_insert, 200);
+    foreach ($batch_chunks as $bchunk) {
+        $sql = "INSERT INTO comman_notification_messages 
+                (message_type, message_text, customer_id, customer_name, customer_phone, status, is_read, admin_read, created_at)
+                VALUES " . implode(',', $bchunk);
+        if (mysqli_query($config, $sql)) {
+            $sent_count += mysqli_affected_rows($config);
+        } else {
+            error_log("Error batch inserting messages: " . mysqli_error($config));
+        }
     }
 }
 

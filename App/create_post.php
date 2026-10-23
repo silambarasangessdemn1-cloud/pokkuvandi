@@ -1012,9 +1012,9 @@ if ($post1) {
     } elseif (!empty($post1->utr_number) && $post1->delete_approval_status == '1') {
         // ✅ UTR is present AND delete is approved – show Submit Button
         ?>
-        <div id="post_btn">
-            <div class="form-group">                                                         
-                <button class="btn btn-success"  id="post_submit"  type="button" name="post_add">Submit</button>
+        <div id="post_btn" style="width: 100%; margin-top: 15px; margin-bottom: 85px;">
+            <div class="form-group" style="width: 100%; display: flex; justify-content: flex-end;">                                                         
+                <button class="btn btn-success btn-lg" id="post_submit" type="button" name="post_add" style="padding: 10px 24px; font-weight: bold; border-radius: 8px;">Submit</button>
             </div>
         </div>
         <?php
@@ -1022,9 +1022,9 @@ if ($post1) {
 } else {
     // 🤝 No previous post – show Submit Button
     ?>
-    <div id="post_btn">
-        <div class="form-group">                                                         
-            <button class="btn btn-success" id="post_submit" type="button" name="post_add">Submit</button>
+    <div id="post_btn" style="width: 100%; margin-top: 15px; margin-bottom: 85px;">
+        <div class="form-group" style="width: 100%; display: flex; justify-content: flex-end;">                                                         
+            <button class="btn btn-success btn-lg" id="post_submit" type="button" name="post_add" style="padding: 10px 24px; font-weight: bold; border-radius: 8px;">Submit</button>
         </div>
     </div>
     <?php

@@ -183,8 +183,14 @@ $csvUrl = 'post_report_ex_create.php' . (!empty($csvParams) ? '?' . implode('&',
 										<a href="add_create_post.php" class="btn btn-success">
 											<i class="fas fa-plus"></i> Create New Registration
 										</a>
+										<button type="button" class="btn btn-info shadow-sm" id="btnSelectAllDrivers" onclick="handleSelectAllUsersClick()">
+											<i class="fas fa-check-double mr-1"></i> Select All Users
+										</button>
 										<button type="button" class="btn btn-primary shadow-sm" id="btnOpenSendMessage" onclick="openSendMessageModal()">
 											<i class="fas fa-paper-plane mr-1"></i> Send Message to Selected Drivers (<span id="selectedCountBadge">0</span>)
+										</button>
+										<button type="button" class="btn btn-outline-danger shadow-sm" id="btnClearSelectedBtn" onclick="clearSelectedDrivers()" style="display: none;">
+											<i class="fas fa-times-circle mr-1"></i> Deselect All (<span id="deselectCountBadge">0</span>)
 										</button>
 									</div>
 											<?php
@@ -1129,6 +1135,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			var count = Object.keys(selectedDriversMap).length;
 			$('#selectedCountBadge').text(count);
 			$('#selectedDriversCountText').text(count + (count === 1 ? ' Driver' : ' Drivers'));
+			if (count > 0) {
+				$('#btnClearSelectedBtn').show();
+				$('#deselectCountBadge').text(count);
+			} else {
+				$('#btnClearSelectedBtn').hide();
+			}
 		}
 
 		function updateSelectAllCheckboxState() {
@@ -1201,11 +1213,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			var container = $('#selectedDriversListPreview');
 			container.empty();
 			var keys = Object.keys(selectedDriversMap);
-			if (keys.length === 0) {
+			var total = keys.length;
+			if (total === 0) {
 				container.html('<span class="text-muted small">No drivers selected yet.</span>');
 				return;
 			}
-			keys.forEach(function(key) {
+			var maxPreview = 30;
+			var previewKeys = keys.slice(0, maxPreview);
+			previewKeys.forEach(function(key) {
 				var drv = selectedDriversMap[key];
 				var label = (drv.driver_name || 'Driver');
 				if (drv.vehicle_no) label += ' (' + drv.vehicle_no + ')';
@@ -1216,6 +1231,9 @@ document.addEventListener('DOMContentLoaded', function() {
 					'</span>';
 				container.append(badgeHtml);
 			});
+			if (total > maxPreview) {
+				container.append('<div class="w-100 text-center mt-2"><span class="badge badge-info p-2" style="font-size: 12px;">+ ' + (total - maxPreview).toLocaleString() + ' more drivers selected</span></div>');
+			}
 		}
 
 		function removeSingleDriverSelection(key) {
@@ -1239,6 +1257,200 @@ document.addEventListener('DOMContentLoaded', function() {
 			$('#selectAllDrivers').prop('checked', false);
 			updateSelectedCountBadge();
 			renderSelectedDriversPreview();
+		}
+
+		function getCurrentFilterParams() {
+			var params = {};
+			var searchVal = $('#search-input1').val();
+			if (searchVal && searchVal.trim()) params.search = searchVal.trim();
+			var paymentStatus = $('#payment_status_filter').val();
+			if (paymentStatus) params.payment_status = paymentStatus;
+			var expired = $('#expired_filter').val();
+			if (expired) params.expired = expired;
+			var dateFilterType = $('#date_filter_type').val();
+			if (dateFilterType && dateFilterType !== 'all') {
+				params.date_filter_type = dateFilterType;
+				if (dateFilterType === 'single') {
+					params.single_date = $('#single_date').val();
+				} else if (dateFilterType === 'range') {
+					params.date_from = $('#date_from').val();
+					params.date_to = $('#date_to').val();
+				}
+			}
+			var urlParams = new URLSearchParams(window.location.search);
+			['search', 'expired', 'payment_status', 'date_filter_type', 'single_date', 'date_from', 'date_to'].forEach(function(k) {
+				if (!params[k] && urlParams.get(k)) {
+					params[k] = urlParams.get(k);
+				}
+			});
+			return params;
+		}
+
+		function selectCurrentPageDrivers() {
+			var added = 0;
+			$('.driver-checkbox').each(function() {
+				var custId = $(this).val();
+				var postId = $(this).data('post-id');
+				var key = (custId && custId != '0') ? custId : ('p_' + postId);
+				var name = $(this).data('driver-name') || '';
+				var phone = $(this).data('phone') || '';
+				var vehicle = $(this).data('vehicle-no') || '';
+
+				$(this).prop('checked', true);
+				selectedDriversMap[key] = {
+					customer_id: custId,
+					post_id: postId,
+					driver_name: name,
+					phone_no: phone,
+					vehicle_no: vehicle
+				};
+				added++;
+			});
+			$('#selectAllDrivers').prop('checked', true);
+			updateSelectedCountBadge();
+
+			if (typeof Swal !== 'undefined') {
+				Swal.fire({
+					icon: 'success',
+					title: 'Selected',
+					text: added + ' driver(s) on current page selected.',
+					timer: 1500,
+					showConfirmButton: false
+				});
+			}
+		}
+
+		function selectAllMatchingDrivers() {
+			var params = getCurrentFilterParams();
+
+			if (typeof Swal !== 'undefined') {
+				Swal.fire({
+					title: 'Selecting All Users...',
+					text: 'Please wait while all users are being selected...',
+					icon: 'info',
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					showConfirmButton: false,
+					didOpen: () => {
+						Swal.showLoading();
+					}
+				});
+			}
+
+			$.ajax({
+				url: 'Function/get_all_drivers_for_selection.php',
+				type: 'GET',
+				data: params,
+				dataType: 'json',
+				success: function(res) {
+					if (res && res.success && res.drivers) {
+						res.drivers.forEach(function(drv) {
+							var custId = drv.customer_id;
+							var postId = drv.post_id;
+							var key = (custId && custId != '0') ? custId : ('p_' + postId);
+							selectedDriversMap[key] = {
+								customer_id: custId,
+								post_id: postId,
+								driver_name: drv.driver_name || '',
+								phone_no: drv.phone_no || '',
+								vehicle_no: drv.vehicle_no || ''
+							};
+						});
+
+						$('.driver-checkbox').prop('checked', true);
+						$('#selectAllDrivers').prop('checked', true);
+						updateSelectedCountBadge();
+
+						if (typeof Swal !== 'undefined') {
+							Swal.fire({
+								icon: 'success',
+								title: 'All Users Selected!',
+								text: 'Successfully selected ' + res.count.toLocaleString() + ' user(s).',
+								timer: 2000,
+								showConfirmButton: false
+							});
+						}
+					} else {
+						if (typeof Swal !== 'undefined') {
+							Swal.fire({
+								icon: 'error',
+								title: 'Error',
+								text: (res && res.message) ? res.message : 'Failed to fetch all users.',
+								confirmButtonColor: '#dc3545'
+							});
+						}
+					}
+				},
+				error: function(xhr, status, err) {
+					console.error('Error fetching all drivers:', err);
+					if (typeof Swal !== 'undefined') {
+						Swal.fire({
+							icon: 'error',
+							title: 'Error',
+							text: 'Server communication error while selecting users.',
+							confirmButtonColor: '#dc3545'
+						});
+					}
+				}
+			});
+		}
+
+		function handleSelectAllUsersClick() {
+			var totalRecords = <?php echo (int)$totalRecords; ?>;
+			if (typeof table !== 'undefined' && table && table.page) {
+				try {
+					var info = table.page.info();
+					if (info && typeof info.recordsTotal !== 'undefined') {
+						totalRecords = info.recordsTotal;
+					}
+				} catch (e) {}
+			}
+
+			var visibleCount = $('.driver-checkbox').length;
+
+			if (totalRecords <= 0) {
+				if (typeof Swal !== 'undefined') {
+					Swal.fire({
+						icon: 'info',
+						title: 'No Users',
+						text: 'There are no users matching the current filters.',
+						confirmButtonColor: '#1572e8'
+					});
+				}
+				return;
+			}
+
+			// If total records is small or all visible on single page, select directly
+			if (totalRecords <= visibleCount || totalRecords <= 10) {
+				selectAllMatchingDrivers();
+				return;
+			}
+
+			// If multiple pages exist, give admin option for all pages vs current page
+			if (typeof Swal !== 'undefined') {
+				Swal.fire({
+					title: 'Select Users',
+					html: '<div style="font-size: 15px; margin-bottom: 8px;">How would you like to select users?</div>' +
+					      '<div class="text-muted small">You can select all <strong>' + totalRecords.toLocaleString() + '</strong> users across all pages, or only the <strong>' + visibleCount + '</strong> users on this page.</div>',
+					icon: 'question',
+					showCancelButton: true,
+					showDenyButton: true,
+					confirmButtonColor: '#1572e8',
+					denyButtonColor: '#17a2b8',
+					cancelButtonColor: '#6c757d',
+					confirmButtonText: '<i class="fas fa-users mr-1"></i> Select All ' + totalRecords.toLocaleString() + ' Users',
+					denyButtonText: '<i class="fas fa-list-ul mr-1"></i> Current Page Only (' + visibleCount + ')',
+					cancelButtonText: 'Cancel'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						selectAllMatchingDrivers();
+					} else if (result.isDenied) {
+						selectCurrentPageDrivers();
+					}
+				});
+			} else {
+				selectAllMatchingDrivers();
+			}
 		}
 
 		function openSendMessageModal() {

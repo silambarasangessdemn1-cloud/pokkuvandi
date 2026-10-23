@@ -174,18 +174,7 @@ if($namestatus == 1)
             border: 1px solid #e2e8f0;
             padding: 14px;
          }
-         .video-preview {
-            text-align: center;
-            margin: -15px 20px 20px 20px;
-            position: relative;
-            z-index: 11;
-         }
-         .video-preview .btn {
-            border-radius: 20px;
-            padding: 8px 20px;
-            font-size: 14px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-         }
+
          .theme-switch-wrapper {
             display: none;
          }
@@ -250,23 +239,7 @@ if($namestatus == 1)
              
          </div>
 
-    <?php
-// Fetch the video URL from the database
-$video_query = "SELECT Main_Category_Name FROM video WHERE video_name = 'Demo Video' LIMIT 1";
-$video_result = mysqli_query($config, $video_query);
 
-// Check if a result was returned
-if ($video_result && mysqli_num_rows($video_result) > 0) {
-    $video_row = mysqli_fetch_assoc($video_result);
-    $video_id = $video_row['Main_Category_Name'];
-} else {
-    $video_id = '0dAUvAk_YI4'; // Default or fallback video ID if not found
-}
-
-?>
-   <div class="video-preview">
-        <button class="btn btn-success" onclick="window.open('https://www.youtube.com/watch?v=<?php echo $video_id; ?>', '_blank')">Demo Video</button>
-    </div>
 
          <div class="p-3 form-container">
            <!-- <h2 class="my-0">Let's get started</h2>--->
