@@ -173,7 +173,7 @@ $csvUrl = 'post_report_ex_create.php' . (!empty($csvParams) ? '?' . implode('&',
 ?>
 <!-- Download button will be shown in DataTables buttons area -->
 <div style="float:left; margin-bottom: 10px;">
-    <span class="badge badge-info">Total Records: <?php echo $totalRecords; ?></span>
+    <span class="badge badge-info">Total Records: <span id="totalRecordsCount"><?php echo $totalRecords; ?></span></span>
 </div>
 
 <!-- <a style="float: right;" target="_black" class="btn btn-danger" href="https://www.md5online.org/md5-decrypt.html">MD5 Decryption</a> -->
@@ -739,9 +739,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				],
 				"drawCallback": function(settings) {
 					$('.driver-checkbox').each(function() {
-						var custId = $(this).val();
 						var postId = $(this).data('post-id');
-						var key = (custId && custId != '0') ? custId : ('p_' + postId);
+						var key = 'p_' + postId;
 						if (window.selectedDriversMap && window.selectedDriversMap[key]) {
 							$(this).prop('checked', true);
 						}
@@ -765,6 +764,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						setTimeout(function() {
 							var info = table.page.info();
 							var filteredTotal = info.recordsTotal;
+							$('#totalRecordsCount').text(filteredTotal);
 							var button = table.button(0);
 							if (button && button.node) {
 								$(button.node).html('<i class="fas fa-file-excel"></i> Export to Excel (Total: ' + filteredTotal + ')');
@@ -1160,9 +1160,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Checkbox selection event (delegated for DataTables dynamic rows)
 		$(document).on('change', '.driver-checkbox', function() {
-			var custId = $(this).val();
+			var custId = $(this).data('customer-id') || $(this).val();
 			var postId = $(this).data('post-id');
-			var key = (custId && custId != '0') ? custId : ('p_' + postId);
+			var key = 'p_' + postId;
 			var name = $(this).data('driver-name') || '';
 			var phone = $(this).data('phone') || '';
 			var vehicle = $(this).data('vehicle-no') || '';
@@ -1186,9 +1186,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		$(document).on('change', '#selectAllDrivers', function() {
 			var isChecked = $(this).is(':checked');
 			$('.driver-checkbox').each(function() {
-				var custId = $(this).val();
+				var custId = $(this).data('customer-id') || $(this).val();
 				var postId = $(this).data('post-id');
-				var key = (custId && custId != '0') ? custId : ('p_' + postId);
+				var key = 'p_' + postId;
 				var name = $(this).data('driver-name') || '';
 				var phone = $(this).data('phone') || '';
 				var vehicle = $(this).data('vehicle-no') || '';
@@ -1239,9 +1239,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		function removeSingleDriverSelection(key) {
 			delete selectedDriversMap[key];
 			$('.driver-checkbox').each(function() {
-				var custId = $(this).val();
 				var postId = $(this).data('post-id');
-				var itemKey = (custId && custId != '0') ? custId : ('p_' + postId);
+				var itemKey = 'p_' + postId;
 				if (itemKey === key) {
 					$(this).prop('checked', false);
 				}
@@ -1289,9 +1288,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		function selectCurrentPageDrivers() {
 			var added = 0;
 			$('.driver-checkbox').each(function() {
-				var custId = $(this).val();
+				var custId = $(this).data('customer-id') || $(this).val();
 				var postId = $(this).data('post-id');
-				var key = (custId && custId != '0') ? custId : ('p_' + postId);
+				var key = 'p_' + postId;
 				var name = $(this).data('driver-name') || '';
 				var phone = $(this).data('phone') || '';
 				var vehicle = $(this).data('vehicle-no') || '';
@@ -1347,7 +1346,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						res.drivers.forEach(function(drv) {
 							var custId = drv.customer_id;
 							var postId = drv.post_id;
-							var key = (custId && custId != '0') ? custId : ('p_' + postId);
+							var key = 'p_' + postId;
 							selectedDriversMap[key] = {
 								customer_id: custId,
 								post_id: postId,
@@ -1467,24 +1466,33 @@ document.addEventListener('DOMContentLoaded', function() {
 			$('#sendMessageModal').modal('show');
 		}
 
-		function openSingleDriverMessage(customerId, driverName, phone, vehicleNo) {
+		function openSingleDriverMessage(customerId, driverName, phone, vehicleNo, postId) {
 			selectedDriversMap = {};
 			$('.driver-checkbox').prop('checked', false);
 			$('#selectAllDrivers').prop('checked', false);
 			
-			var key = (customerId && customerId != '0') ? customerId : 'single_' + phone;
+			var key = postId ? ('p_' + postId) : ((customerId && customerId != '0') ? ('c_' + customerId) : ('single_' + phone));
 			selectedDriversMap[key] = {
 				customer_id: customerId,
+				post_id: postId || 0,
 				driver_name: driverName,
 				phone_no: phone,
 				vehicle_no: vehicleNo
 			};
 			
-			$('.driver-checkbox').each(function() {
-				if ($(this).val() == customerId && customerId != '0') {
-					$(this).prop('checked', true);
-				}
-			});
+			if (postId) {
+				$('.driver-checkbox').each(function() {
+					if ($(this).data('post-id') == postId) {
+						$(this).prop('checked', true);
+					}
+				});
+			} else if (customerId && customerId != '0') {
+				$('.driver-checkbox').each(function() {
+					if ($(this).val() == customerId || $(this).data('customer-id') == customerId) {
+						$(this).prop('checked', true);
+					}
+				});
+			}
 			
 			updateSelectedCountBadge();
 			renderSelectedDriversPreview();

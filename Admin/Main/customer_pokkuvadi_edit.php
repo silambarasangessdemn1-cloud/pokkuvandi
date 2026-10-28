@@ -114,13 +114,22 @@
 					<div class="row">
 						<div class="col-md-12">
 
-							<?php if (isset($_GET['msg'])) {
-							?>
-								<div class="alert alert-primary" role="alert">
+							<?php if (isset($_GET['msg'])) { ?>
+								<div id="alertMessage" class="alert alert-success alert-dismissible fade show auto-close-alert" role="alert">
 									Succesfully Updated!!!
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
 								</div>
-							<?php }
-							?>
+							<?php } ?>
+							<?php if (isset($_GET['delmsg'])) { ?>
+								<div id="alertMessage" class="alert alert-danger alert-dismissible fade show auto-close-alert" role="alert">
+									Succesfully Deleted!!!
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							<?php } ?>
 
 
 							<div class="card">
@@ -437,6 +446,24 @@ if (!empty($queryParams)) {
 				"info": false,
 				"searching": false // Disable search box
 			});
+
+			// Automatically fade out and remove alert message after 3 seconds
+			var $alert = $('.auto-close-alert');
+			if ($alert.length > 0) {
+				setTimeout(function() {
+					$alert.fadeTo(500, 0).slideUp(500, function() {
+						$(this).remove();
+					});
+				}, 3000);
+
+				// Clean URL parameters so message does not persist on page refresh
+				if (window.history.replaceState) {
+					var cleanUrl = new URL(window.location.href);
+					cleanUrl.searchParams.delete('msg');
+					cleanUrl.searchParams.delete('delmsg');
+					window.history.replaceState(null, '', cleanUrl.pathname + (cleanUrl.search ? cleanUrl.search : ''));
+				}
+			}
 		});
 
 
