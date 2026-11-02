@@ -100,11 +100,16 @@ $mail='<!DOCTYPE html>
 ';
 
 //echo '1';
-smtp_mailer($sendmail,'enquiry',$mail);
+$mail_sent = smtp_mailer($sendmail, 'Pokkuvandi Password Change Request', $mail, $mail_err);
 
-	
-echo "<script>alert('Check your email. A forget password link has been sent to your email ID successfully.');</script>";
-	header("Refresh:1; url=signin.php");
+if ($mail_sent) {
+    echo "<script>alert('Check your email. A forget password link has been sent to your email ID successfully.');</script>";
+    header("Refresh:1; url=signin.php");
+} else {
+    echo "<script>alert('Failed to send email. Please contact administrator or check server mail settings.');</script>";
+    // Log the error for debugging
+    error_log("Failed to send forget password email to " . $sendmail . ": " . $mail_err);
+}
 	
 	
 	
