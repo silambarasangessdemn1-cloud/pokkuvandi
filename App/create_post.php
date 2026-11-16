@@ -223,24 +223,77 @@ if($namestatus == 1)
             background: transparent;
             border-bottom: 3px solid #199b37;
          }
+         .total-amount-highlight-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #e8f5e9 100%);
+            border: 2px solid #28a745;
+            border-radius: 14px;
+            padding: 16px 20px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.15);
+            margin-top: 15px;
+            margin-bottom: 20px;
+         }
+         .total-amount-highlight-box label {
+            font-size: 0.95rem !important;
+            font-weight: 700 !important;
+            color: #155724 !important;
+            margin-bottom: 8px !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+         }
+         .total-amount-highlight-box .amount-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+         }
+         .total-amount-highlight-box .currency-sym {
+            position: absolute;
+            left: 14px;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #199b37;
+            pointer-events: none;
+            z-index: 5;
+         }
+         .total-amount-highlight-box input#total_net_amount {
+            font-size: 1.45rem !important;
+            font-weight: 800 !important;
+            color: #0f5132 !important;
+            background-color: #ffffff !important;
+            border: 2px solid #28a745 !important;
+            border-radius: 10px !important;
+            padding: 10px 14px 10px 38px !important;
+            height: 52px !important;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.04) !important;
+            letter-spacing: 0.5px;
+         }
+         .total-amount-highlight-box small {
+            display: block;
+            margin-top: 6px;
+            color: #28a745;
+            font-weight: 600;
+            font-size: 0.8rem;
+         }
          .qr-notice-card {
-            background: #ffffff;
-            border: 1.5px solid #b8daff;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 3px 12px rgba(0, 123, 255, 0.08);
-            margin-bottom: 18px;
+            background: linear-gradient(135deg, #fff9db 0%, #fff3bf 100%);
+            border: 2px solid #fab005;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 4px 16px rgba(245, 159, 0, 0.18);
+            margin-bottom: 22px;
          }
          .admin-approval-badge {
-            background: #e7f5ff;
-            color: #0c5460;
+            background: #dc3545;
+            color: #ffffff;
             border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            padding: 8px 14px;
+            font-size: 0.92rem;
+            font-weight: 700;
             display: inline-block;
-            margin-top: 8px;
-            border: 1px dashed #17a2b8;
+            margin-top: 10px;
+            box-shadow: 0 3px 8px rgba(220, 53, 69, 0.25);
          }
          .qr-img-wrapper {
             background: #f8f9fa;
@@ -1135,10 +1188,16 @@ document.getElementById("Add_vehicle_photo").addEventListener("change", function
 
 
                                                    
-<div class="form-group col-4">       
-                                                            <label>Total Net Amount</label>                                                  
-                                                        <input type="text" class="form-control"id="total_net_amount"  name="total_net_amount" readonly>
-                                                        </div>
+<div class="col-12 col-md-6 my-2">       
+    <div class="total-amount-highlight-box">
+        <label><i class="fa fa-calculator text-success"></i> Total Net Amount to Pay</label>                                                  
+        <div class="amount-input-wrap">
+            <span class="currency-sym">₹</span>
+            <input type="text" class="form-control" id="total_net_amount" name="total_net_amount" readonly placeholder="0.00">
+        </div>
+        <small><i class="fa fa-info-circle mr-1"></i> Calculated automatically based on your package and discount coupon.</small>
+    </div>
+</div>
                                                    
                                                         <?php
 $query = mysqli_query($config, "SELECT * FROM create_post WHERE customer_id = '$prof_id' AND status = 0 AND delete_approval_status != 1"  );
@@ -1266,16 +1325,17 @@ if (mysqli_num_rows($query) > 0) {
                     <!-- Professional Notice Box -->
                     <div class="qr-notice-card">
                         <div class="d-flex align-items-start">
-                            <div class="mr-3" style="font-size: 1.5rem; color: #17a2b8;">
-                                <i class="fa fa-shield"></i>
+                            <div class="mr-3" style="font-size: 1.8rem; color: #d97706;">
+                                <i class="fa fa-exclamation-circle"></i>
                             </div>
-                            <div>
-                                <h6 class="font-weight-bold text-dark mb-1">Payment & Approval Process</h6>
-                                <p class="mb-2 text-muted" style="font-size: 0.9rem; line-height: 1.5;">
-                                    Scan the QR code below using any UPI app (GPay, PhonePe, Paytm) to make the payment. After successful payment, enter the <strong>UTR / UPI Transaction Reference Number</strong> below and submit.
+                            <div class="flex-grow-1">
+                                <h6 class="font-weight-bold text-dark mb-1" style="font-size: 1.05rem;"><i class="fa fa-shield text-warning mr-1"></i> Scan QR Payment &amp; Verification Process</h6>
+                                <p class="mb-2 text-dark font-weight-500" style="font-size: 0.92rem; line-height: 1.5;">
+                                    1. Scan the QR code below using any UPI app (GPay / PhonePe / Paytm / BHIM) and complete the payment.<br>
+                                    2. Enter your <strong>12-digit UTR / UPI Transaction Reference Number</strong> in the field below and tap <strong>Submit</strong>.
                                 </p>
                                 <div class="admin-approval-badge">
-                                    <i class="fa fa-clock-o mr-1"></i> <strong>Note:</strong> Admin will verify the UTR and approve your registration within <strong>6 to 8 hours</strong>.
+                                    <i class="fa fa-clock-o mr-1"></i> <strong>IMPORTANT:</strong> Admin will verify payment and approve within <strong>6 to 8 Hours</strong>
                                 </div>
                             </div>
                         </div>
