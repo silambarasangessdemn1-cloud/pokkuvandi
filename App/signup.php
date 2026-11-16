@@ -479,6 +479,16 @@ Please Enter Valid OTP!
                   <label for="exampleInputPassword2">Confirmation Pin (Password) <span style="color: red;">*</span></label>
                   <input placeholder="Enter Confirmation Pin Number" maxlength="6" name="Lee_Customer_confirm_password" type="password" class="form-control" id="exampleInputPassword2" required>
                </div>
+               <div class="form-group" style="background: #e8f5e9; border: 1.5px solid #28a745; border-radius: 12px; padding: 12px 15px; margin-top: 15px; margin-bottom: 15px;">
+                  <div class="custom-control custom-checkbox d-flex align-items-center">
+                     <input type="checkbox" class="custom-control-input" id="reg_as_driver" name="reg_as_driver" value="driver">
+                     <label class="custom-control-label font-weight-bold" for="reg_as_driver" style="font-size: 14px; color: #155724; cursor: pointer; padding-left: 5px;">
+                        🚗 Want to register vehicle? (Driver Mode)
+                     </label>
+                  </div>
+                  <small class="text-muted d-block mt-1" style="font-size: 11px; padding-left: 28px;">Check this if you are a driver or vehicle owner to get full driver dashboard access.</small>
+               </div>
+
                <div class="form-group" style="  margin-left: 6%;">
                <input  name="smsotp"type="hidden" class="form-control" id="smsotp" value="<?php echo rand(0,10000); ?>">
                <input type="checkbox" class="form-check-input " id="exampleCheck1" required>

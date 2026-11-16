@@ -114,7 +114,7 @@ if($namestatus == 1)
 		 
 		 if($_GET['success'] == 100)
 		 {
-			 
+			 $is_driver_reg = (isset($_GET['role']) && $_GET['role'] == 'driver');
 			 ?>
              <div class="card" style="width: 96%;
     padding: 4%;
@@ -123,13 +123,22 @@ if($namestatus == 1)
 			 <center><img src="check-mark.png" style="width: 80px;height: 80px;margin-top: 8%;"></center>
              <center>
                 <p style="color:green;font-size: 16px;">Your Account Has Been Created Successfully.</p>
-                <!-- <p>You will shortly receive a confirmation email from us.</p>
-
-<p>kindly verify your email address from the link provided in that email.
-Thanks</p> -->
+                <?php if ($is_driver_reg) { ?>
+                    <p style="color:#155724;font-size: 14px;background: #e8f5e9;padding: 8px 12px;border-radius: 8px;font-weight: 600;">
+                        🚗 Driver Account Activated! You can now register your vehicle and access all driver features.
+                    </p>
+                <?php } ?>
              </center>
-             <!-- <center><a href="signin.php" class="btn btn-primary"> Login <i class="fa fa-chevron-right"></i></a></center> -->
-             <center><a href="Directory.php?msg=newlogin" class="btn btn-primary"> Go <i class="fa fa-chevron-right"></i></a></center>
+             <?php if ($is_driver_reg) { ?>
+                <script>
+                    localStorage.setItem('user_type', 'driver');
+                    sessionStorage.setItem('show_driver_popup_now', 'true');
+                </script>
+                <center><a href="create_post.php" class="btn btn-success btn-lg btn-block" style="font-weight: 600;"> Register Vehicle Now <i class="fa fa-car"></i></a></center>
+                <center><a href="Directory.php?from_driver=1" class="btn btn-link mt-2 text-muted" style="font-size: 13px;">Skip to Home Dashboard</a></center>
+             <?php } else { ?>
+                <center><a href="Directory.php?msg=newlogin" class="btn btn-primary"> Go <i class="fa fa-chevron-right"></i></a></center>
+             <?php } ?>
              
 
              </div>

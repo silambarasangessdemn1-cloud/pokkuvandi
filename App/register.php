@@ -26,8 +26,10 @@ if(isset($_POST['lee_account_registration']))
             $regdate=date('Y-m-d h:i:sa');
             $log_actlog=$_POST['Lee_Customer_confirm_password'];
             $EncryptPassword = md5($log_actlog);
-                $lee_regisration=mysqli_query($config,"insert into customer_master(Customer_Name,Customer_Fathername,Customer_DOB,Customer_Address,Customer_Phone_No,Customer_Mail_id,Customer_Registred_on,Customer_Active_Status,Customer_Password,referred_by,Add_city,Add_area,state_id) 
-            values('".$_POST['Lee_Customer_Name']."','".$_POST['Lee_Customer_fatherName']."','".$_POST['Lee_Customer_DOB']."','".$_POST['Lee_Customer_address']."','".$_POST['Lee_Customer_phonenumber']."','".$_POST['Lee_Customer_email']."','$regdate',1,'$EncryptPassword','".$_POST['referred_by']."','".$_POST['Add_city']."','".$_POST['Add_area']."','".$_POST['state']."')");  
+            $customer_type = (isset($_POST['reg_as_driver']) && $_POST['reg_as_driver'] == 'driver') ? 'driver' : 'customer';
+
+            $lee_regisration=mysqli_query($config,"insert into customer_master(Customer_Name,Customer_Fathername,Customer_DOB,Customer_Address,Customer_Phone_No,Customer_Mail_id,Customer_Registred_on,Customer_Active_Status,Customer_Password,referred_by,Add_city,Add_area,state_id,customer_type) 
+            values('".$_POST['Lee_Customer_Name']."','".$_POST['Lee_Customer_fatherName']."','".$_POST['Lee_Customer_DOB']."','".$_POST['Lee_Customer_address']."','".$_POST['Lee_Customer_phonenumber']."','".$_POST['Lee_Customer_email']."','$regdate',1,'$EncryptPassword','".$_POST['referred_by']."','".$_POST['Add_city']."','".$_POST['Add_area']."','".$_POST['state']."','$customer_type')");  
             
             
             $last_id = mysqli_insert_id($config);
@@ -47,8 +49,11 @@ if(isset($_POST['lee_account_registration']))
                  }
                 }
 
-            
-            header('location:account_verification.php?success=100');
+            if ($customer_type == 'driver') {
+                header('location:account_verification.php?success=100&role=driver');
+            } else {
+                header('location:account_verification.php?success=100');
+            }
         }
          
 

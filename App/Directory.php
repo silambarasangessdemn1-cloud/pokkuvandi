@@ -1113,7 +1113,7 @@ $( document ).ready(function() {
             <div  class="text-center">  
               <img src="front_pop.png" style="width: 60%;">              
               <h5 class="modal-title" id="exampleModalLabel">Do You Want Register Your Vehicle? </h5>       
-              <span class="text-center " ><a href="create_post.php" class="btn btn-primary mt-4 text-white" style="width: 45% !important;font-size: 20px !important;">Yes </a> <a onclick="close_newpop();" class="btn btn-primary mt-4 text-white" style="width: 45% !important;font-size: 20px !important;">No </a></span>
+              <span class="text-center "><a href="javascript:void(0);" onclick="acceptDriverRegistration();" class="btn btn-primary mt-4 text-white" style="width: 45% !important;font-size: 20px !important;">Yes </a> <a onclick="close_newpop();" class="btn btn-primary mt-4 text-white" style="width: 45% !important;font-size: 20px !important;">No </a></span>
        
      
             </div>
@@ -1135,8 +1135,24 @@ if (!empty($prof_id)) {
     $chk_driver = mysqli_query($config, "SELECT post_id FROM create_post WHERE customer_id='$prof_id' LIMIT 1");
     if ($chk_driver && mysqli_num_rows($chk_driver) > 0) {
         $is_driver_user = true;
+    } else {
+        $chk_type = mysqli_query($config, "SELECT customer_type FROM customer_master WHERE Customer_Id='$prof_id' LIMIT 1");
+        if ($chk_type && mysqli_num_rows($chk_type) > 0) {
+            $row_type = mysqli_fetch_assoc($chk_type);
+            if (isset($row_type['customer_type']) && $row_type['customer_type'] === 'driver') {
+                $is_driver_user = true;
+            }
+        }
     }
 }
+?>
+<?php if ($is_driver_user) { ?>
+<script>
+    if (localStorage.getItem('user_type') !== 'driver') {
+        localStorage.setItem('user_type', 'driver');
+    }
+</script>
+<?php } ?>
 
 $about_q = mysqli_query($config, "SELECT * FROM cms LIMIT 1");
 $del_content = ($about_q && mysqli_num_rows($about_q) > 0) ? mysqli_fetch_assoc($about_q) : [];
@@ -1231,6 +1247,19 @@ $driver_hash = md5($driver_content);
   ?>
     <script>
   
+function acceptDriverRegistration() {
+    localStorage.setItem('user_type', 'driver');
+    sessionStorage.setItem('show_driver_popup_now', 'true');
+    <?php if (!empty($prof_id)) { ?>
+    $.ajax({
+        type: "POST",
+        url: "set_driver_role.php",
+        data: { role: 'driver' }
+    });
+    <?php } ?>
+    window.location.href = 'create_post.php';
+}
+
 function close_newpop()
   {
     $('#myModal').modal('hide');

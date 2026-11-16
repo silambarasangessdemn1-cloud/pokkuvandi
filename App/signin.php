@@ -402,6 +402,17 @@ else {
 ?>
     <script>
     window.onload = function() {
+        <?php
+        $pre_customer_type = isset($user_both['customer_type']) ? $user_both['customer_type'] : '';
+        if ($pre_customer_type === 'driver') {
+        ?>
+            localStorage.setItem('user_type', 'driver');
+            sessionStorage.setItem('show_driver_popup_now', 'true');
+            sessionStorage.removeItem('app_vehicle_msg_shown');
+            window.location.href = 'Directory.php?from_driver=1';
+            return;
+        <?php } ?>
+
         function askDriverOrCustomer() {
             Swal.fire({
                 title: 'Please Select',

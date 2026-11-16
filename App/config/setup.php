@@ -29,6 +29,12 @@ mysqli_set_charset($config, 'utf8mb4');
    if ($chk_col && mysqli_num_rows($chk_col) == 0) {
        mysqli_query($config, "ALTER TABLE `cms` ADD COLUMN `driver_contanct` LONGTEXT NULL");
    }
+
+   // Auto-add customer_type column to customer_master table if not exists
+   $chk_ctype = mysqli_query($config, "SHOW COLUMNS FROM `customer_master` LIKE 'customer_type'");
+   if ($chk_ctype && mysqli_num_rows($chk_ctype) == 0) {
+       mysqli_query($config, "ALTER TABLE `customer_master` ADD COLUMN `customer_type` VARCHAR(50) NOT NULL DEFAULT 'customer'");
+   }
  }
 
 error_reporting(0);
