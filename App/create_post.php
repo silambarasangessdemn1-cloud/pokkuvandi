@@ -126,6 +126,147 @@ if($namestatus == 1)
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.10/dist/sweetalert2.min.css">
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.10/dist/sweetalert2.all.min.js"></script>
 
+      <style>
+         /* Enhanced UI for Create Registration Page */
+         .osahan-body {
+            background-color: #f6f8fa;
+            padding: 12px 10px 90px 10px;
+         }
+         #registration_heading {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #199b37;
+            padding: 12px 15px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+         }
+         .registration-main-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            background: #ffffff;
+            overflow: hidden;
+            margin-bottom: 25px;
+         }
+         .registration-main-card .card-body {
+            padding: 20px 18px;
+         }
+         .registration-main-card .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 6px;
+            text-transform: capitalize;
+         }
+         .registration-main-card .form-control {
+            border-radius: 10px;
+            border: 1px solid #ced4da;
+            padding: 10px 14px;
+            font-size: 0.92rem;
+            transition: all 0.2s ease-in-out;
+            background-color: #fbfbfb;
+         }
+         .registration-main-card .form-control:focus {
+            background-color: #ffffff;
+            border-color: #199b37;
+            box-shadow: 0 0 0 0.2rem rgba(25, 155, 55, 0.15);
+         }
+         .registration-main-card select.form-control {
+            height: 44px;
+         }
+         .payment-card-box {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+            background: #ffffff;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 30px;
+         }
+         .payment-header {
+            background: linear-gradient(135deg, #199b37 0%, #157347 100%);
+            color: #ffffff;
+            padding: 18px 20px;
+            text-align: center;
+         }
+         .payment-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+            color: #ffffff;
+         }
+         .nav-tabs-custom {
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            background: #f8f9fa;
+         }
+         .nav-tabs-custom .nav-item {
+            flex: 1;
+            text-align: center;
+         }
+         .nav-tabs-custom .nav-link {
+            border: none;
+            color: #6c757d;
+            font-weight: 600;
+            padding: 12px 15px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+         }
+         .nav-tabs-custom .nav-link.active {
+            color: #199b37;
+            background: transparent;
+            border-bottom: 3px solid #199b37;
+         }
+         .qr-notice-card {
+            background: #ffffff;
+            border: 1.5px solid #b8daff;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 3px 12px rgba(0, 123, 255, 0.08);
+            margin-bottom: 18px;
+         }
+         .admin-approval-badge {
+            background: #e7f5ff;
+            color: #0c5460;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+            border: 1px dashed #17a2b8;
+         }
+         .qr-img-wrapper {
+            background: #f8f9fa;
+            border: 2px dashed #28a745;
+            border-radius: 14px;
+            padding: 15px;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+         }
+         .btn-submit-modern {
+            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+            transition: all 0.2s;
+         }
+         .btn-submit-modern:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.35);
+            color: white;
+         }
+      </style>
+
    </head>
 
    <body class="fixed-bottom-padding">
@@ -161,7 +302,7 @@ if($namestatus == 1)
      
 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <h5 class="text-center" id="registration_heading" >Create Registration</h5>
+            <h5 class="text-center font-weight-bold my-3 text-dark" id="registration_heading"><i class="fa fa-pencil-square-o text-success mr-2"></i>Create Registration</h5>
             <?php
 $query1 = mysqli_query($config, "SELECT * FROM create_post WHERE customer_id = '$prof_id' AND status = 0 AND delete_approval_status != 1");
 
@@ -171,12 +312,15 @@ if (mysqli_num_rows($query1) > 0) {
 
 
 
-    <div class="alert alert-warning text-center">
-    ✅ Your data was already saved. 
+    <div class="alert alert-warning text-center" style="border-radius: 12px; border: 1px solid #ffeeba; background-color: #fff9e6;">
+    <div class="font-weight-bold text-success mb-1">✅ Your details have been saved successfully!</div> 
 
     <?php if (!empty($check123->utr_number)  ) { ?>
-    <span class="text-danger font-weight-bold">Your Scan QR Code Payment Verification is Under Process...Please wait for Activation</span>
-    <p>After Activation... Your  Vehicle/Shop Registration Details will be displayed in Driver Menu... "Registered Vehicle/Services List Page"</p>
+    <div class="mt-2 p-2 bg-white rounded border border-warning">
+        <span class="text-primary font-weight-bold"><i class="fa fa-clock-o mr-1"></i> Scan QR Payment Verification In Progress</span>
+        <div class="badge badge-info p-1 my-1" style="font-size: 0.8rem;">⏳ Estimated Admin Approval: 6 - 8 Hours</div>
+        <p class="small text-muted mb-0 mt-1">Our admin team is currently verifying your payment reference number. Verification and account approval usually takes <strong>6 to 8 hours</strong>. Once approved, your Vehicle/Shop registration details will be activated in the Driver Menu under <em>"Registered Vehicle/Services List Page"</em>.</p>
+    </div>
 
 <?php }?>
 </div>
@@ -203,7 +347,7 @@ if (mysqli_num_rows($query1) > 0) {
 
          
 
-            <div class="card">
+            <div class="card registration-main-card">
            
 
 
@@ -1052,95 +1196,147 @@ if (mysqli_num_rows($query) > 0) {
 ?>
 <?php if (($post->delete_approval_status) != '1' ) { ?>
 <?php if (!empty($post->utr_number)  ) { ?>
-    <div class="alert alert-info text-center">
-        ✅ Your Scan QR Code  Payment Verification is Under Process.<br>
-        <strong>Activaton Status:</strong> <span class="badge bg-warning text-dark">Pending</span><br>
-        <strong>Amount:</strong> ₹<?php echo number_format($amount, 2); ?>
-        <p>After Activation... Your  Vehicle/Shop Registration Details will be displayed in Driver Menu... "Registered Vehicle/Services List Page"</p>
+    <div class="card payment-card-box my-4 p-4 text-center border-0 shadow-sm" style="background: #ffffff; border-radius: 16px;">
+        <div class="mb-3">
+            <span style="font-size: 3rem; color: #17a2b8;">⏳</span>
+        </div>
+        <h5 class="font-weight-bold text-dark mb-2">Scan QR Payment Under Verification</h5>
+        <div class="admin-approval-badge mb-3">
+            <i class="fa fa-clock-o mr-1"></i> Admin Verification & Approval: <strong>Within 6 to 8 Hours</strong>
+        </div>
+        <p class="text-muted" style="max-width: 520px; margin: 0 auto; font-size: 0.95rem;">
+            Thank you! Your UTR reference number has been received. Our admin team will verify the payment and activate your vehicle / shop listing within <strong>6 to 8 hours</strong>.
+        </p>
+        <div class="mt-3 p-3 bg-light rounded d-inline-block text-left" style="min-width: 280px;">
+            <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted">Activation Status:</span>
+                <span class="badge badge-warning text-dark font-weight-bold">Pending Verification</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span class="text-muted">Amount Submitted:</span>
+                <span class="font-weight-bold text-success">₹<?php echo number_format($amount, 2); ?></span>
+            </div>
+        </div>
+        <p class="text-muted small mt-3 mb-0">
+            <i class="fa fa-info-circle text-info mr-1"></i> Once approved, your details will be live and visible in the <strong>Driver Menu &gt; Registered Vehicle/Services List</strong>.
+        </p>
     </div>
     <?php } else { ?>
-<div class="container my-4 p-4 border shadow rounded bg-light">
-    <h3 class="text-center mb-4 text-primary">💳 Bank Payment</h3>
-    <p class="text-center" style="font-size: 1.1rem;">
-<div >
-  <strong>Payment Status:</strong> 
-  <span style="font-weight: 600; font-size: 0.9rem;" class="badge bg-warning text-dark">Pending</span>
-</div>
-    <strong>Amount to Pay:</strong> ₹<?php echo number_format($amount, 2); ?>
-</p>
-
-<div id="utrSuccess" class="alert alert-success mt-2" style="display: none;"></div>
-
-    <!-- Tab Navs -->
-    <ul class="nav nav-tabs mb-3" id="paymentTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="qr-tab" data-toggle="tab" href="#qr" role="tab" aria-controls="qr" aria-selected="true">Scan QR Pay</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="online-tab" data-toggle="tab" href="#online" role="tab" aria-controls="online" aria-selected="false">Online Payment</a>
-        </li>
-    </ul>
-
-    <!-- Tab Content -->
-    <div class="tab-content" id="paymentTabContent">
-        <!-- QR Payment Tab -->
-        <div class="tab-pane fade show active" id="qr" role="tabpanel" aria-labelledby="qr-tab">
-    <div id="qrForm">
-        <input type="hidden" name="post_id" id="post_id" value="<?php echo $post->post_id; ?>">
-
-     
-
-        <div class="form-group">
-
-        <div style="background-color: #fff3cd; color: #856404; padding: 10px; border-left: 5px solid #ffc107; border-radius: 4px; margin-bottom: 10px; font-size: 14px;">
-  <strong>Note:</strong> Please make payment using the below Scan QR Code (Download and Scan). After payment, please update the UTR/UPI Transaction Reference Number in the text box below.
-</div>
-
-<label>QR Code</label><br>
-
-
-
-  <img src="img/qr/qr.jpeg" 
-       alt="QR Code" 
-       class="img-thumbnail" 
-       style="max-width: 150px;">
-
-  <br><br>
-  <a href="img/qr/qr.jpeg" download="qr_code.jpg" class="btn btn-success btn-sm">
-  <i class="fa fa-download"></i> Download QR
-</a>
-
-</div>
-
-<div class="form-group">
-            <label for="utr_number">UTR/UPI Payment Reference Number</label>
-            <input type="text" name="utr_number" id="utr_number" class="form-control" required>
-            <div id="utrError" class="text-danger mt-1" style="display:none;"></div>
-
-        </div>
-        <div class="form-group">
-    <label for="utr_date">UTR/UPI Payment Date</label>
-    <input type="date" name="utr_date" id="utr_date" class="form-control" 
-           value="<?php echo date('Y-m-d'); ?>" required>
-</div>
-        <button type="button" class="btn btn-success" id="submitBtn">Submit</button>
+<div class="payment-card-box">
+    <div class="payment-header">
+        <h3 class="mb-1"><i class="fa fa-credit-card mr-2"></i>Complete Registration Payment</h3>
+        <p class="mb-0 text-white-50 small">Choose your preferred payment method below</p>
     </div>
-</div>
+    
+    <div class="p-4">
+        <div class="d-flex justify-content-between align-items-center p-3 mb-4 rounded" style="background: #f8f9fa; border-left: 4px solid #199b37;">
+            <div>
+                <span class="text-muted d-block small">Amount to Pay</span>
+                <h4 class="mb-0 font-weight-bold text-success">₹<?php echo number_format($amount, 2); ?></h4>
+            </div>
+            <div class="text-right">
+                <span class="text-muted d-block small">Status</span>
+                <span class="badge badge-warning text-dark px-2 py-1">Payment Pending</span>
+            </div>
+        </div>
 
+        <div id="utrSuccess" class="alert alert-success mt-2" style="display: none;"></div>
 
-
-        <!-- Online Payment Tab -->
-        <div class="tab-pane fade" id="online" role="tabpanel" aria-labelledby="online-tab">
-            <div class="p-3">
-                <p class="mb-2">Click the below button  to proceed  the Online Payment by... UPI ID/ Net Banking/ Card Payment/ Wallet Payment</p>
-                <a href="razorpay.php?post_id=<?php echo $post->post_id; ?>" class="btn btn-primary">
-                    Proceed to Pay Online
+        <!-- Tab Navs -->
+        <ul class="nav nav-tabs nav-tabs-custom mb-4" id="paymentTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="qr-tab" data-toggle="tab" href="#qr" role="tab" aria-controls="qr" aria-selected="true">
+                    <i class="fa fa-qrcode mr-1"></i> Scan QR Pay
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="online-tab" data-toggle="tab" href="#online" role="tab" aria-controls="online" aria-selected="false">
+                    <i class="fa fa-bolt mr-1"></i> Instant Online Pay
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="paymentTabContent">
+            <!-- QR Payment Tab -->
+            <div class="tab-pane fade show active" id="qr" role="tabpanel" aria-labelledby="qr-tab">
+                <div id="qrForm">
+                    <input type="hidden" name="post_id" id="post_id" value="<?php echo $post->post_id; ?>">
+
+                    <!-- Professional Notice Box -->
+                    <div class="qr-notice-card">
+                        <div class="d-flex align-items-start">
+                            <div class="mr-3" style="font-size: 1.5rem; color: #17a2b8;">
+                                <i class="fa fa-shield"></i>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold text-dark mb-1">Payment & Approval Process</h6>
+                                <p class="mb-2 text-muted" style="font-size: 0.9rem; line-height: 1.5;">
+                                    Scan the QR code below using any UPI app (GPay, PhonePe, Paytm) to make the payment. After successful payment, enter the <strong>UTR / UPI Transaction Reference Number</strong> below and submit.
+                                </p>
+                                <div class="admin-approval-badge">
+                                    <i class="fa fa-clock-o mr-1"></i> <strong>Note:</strong> Admin will verify the UTR and approve your registration within <strong>6 to 8 hours</strong>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center my-4">
+                        <div class="qr-img-wrapper">
+                            <img src="img/qr/qr.jpeg" 
+                                 alt="Scan QR to Pay" 
+                                 class="img-fluid" 
+                                 style="max-width: 170px; border-radius: 8px;">
+                            <div class="mt-2 text-muted small font-weight-bold">Scan with any UPI App</div>
+                        </div>
+                        <div class="mt-3">
+                            <a href="img/qr/qr.jpeg" download="pokkuvandi_qr.jpg" class="btn btn-outline-success btn-sm px-3 rounded-pill">
+                                <i class="fa fa-download mr-1"></i> Download QR Code
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="utr_number" class="font-weight-bold text-dark">
+                            UTR / UPI Transaction Reference Number <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="utr_number" id="utr_number" class="form-control" placeholder="e.g. 3241XXXXXXXX / 12-digit UPI Ref ID" required style="border-radius: 8px;">
+                        <small class="form-text text-muted">Found in your payment app's receipt details.</small>
+                        <div id="utrError" class="text-danger mt-1 small" style="display:none;"></div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="utr_date" class="font-weight-bold text-dark">Payment Date <span class="text-danger">*</span></label>
+                        <input type="date" name="utr_date" id="utr_date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required style="border-radius: 8px;">
+                    </div>
+
+                    <button type="button" class="btn btn-success btn-block btn-submit-modern py-2 font-weight-bold" id="submitBtn" style="border-radius: 10px; font-size: 1rem;">
+                        <i class="fa fa-check-circle mr-1"></i> Submit Payment for Admin Approval
+                    </button>
+                    <p class="text-center text-muted small mt-2">
+                        Approval turnaround: within 6 - 8 hours after submission.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Online Payment Tab -->
+            <div class="tab-pane fade" id="online" role="tabpanel" aria-labelledby="online-tab">
+                <div class="text-center py-4 px-2">
+                    <div class="mb-3" style="font-size: 2.2rem; color: #199b37;">
+                        <i class="fa fa-bolt"></i>
+                    </div>
+                    <h5 class="font-weight-bold text-dark mb-2">Instant Automatic Activation</h5>
+                    <p class="text-muted mb-4" style="max-width: 480px; margin: 0 auto; font-size: 0.95rem;">
+                        Pay instantly using UPI, Debit/Credit Card, Net Banking, or Wallet. Your vehicle registration is activated immediately upon successful payment.
+                    </p>
+                    <a href="razorpay.php?post_id=<?php echo $post->post_id; ?>" class="btn btn-primary px-4 py-2 font-weight-bold" style="border-radius: 10px; box-shadow: 0 4px 12px rgba(0,123,255,0.25);">
+                        Proceed to Instant Payment &rarr;
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <?php
 }} }
 ?>
